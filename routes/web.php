@@ -13,9 +13,9 @@ use App\Http\Controllers\LineController;
 |
 */
 Route::get('/linelogin', [LineController::class,'getuserid']);
-Route::get('/admin/{path?}', function () {
-    return view('admin');
-})->where('path','.*');
+// Route::get('/admin/{path?}', function () {
+//     return view('admin');
+// })->where('path','.*');
 
 Route::get('/{path?}', function () {
     return view('client');
