@@ -7,6 +7,7 @@ import store from './redux/store';
 
 import setAuthToken from "./redux/utils/setauthtoken";
 import Add from "./pages/Add_crewing";
+import Crewing from "./pages/Crewing";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import About from "./pages/About";
@@ -29,7 +30,8 @@ export default function App() {
                 <BrowserRouter>
                     <Header />
                     <Routes>
-                        <Route path="/login" element={<Login />}></Route>
+                        <Route path='/' element={<Crewing />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/about_project" element={<About />} />
                         <Route path="/term" element={<Term />} />
                         <Route path="/add_crewing" element={<Add />} />

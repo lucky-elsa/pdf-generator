@@ -34959,6 +34959,7 @@ var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react
 var store_1 = __importDefault(__webpack_require__(/*! ./redux/store */ "./resources/js/redux/store.tsx"));
 var setauthtoken_1 = __importDefault(__webpack_require__(/*! ./redux/utils/setauthtoken */ "./resources/js/redux/utils/setauthtoken.tsx"));
 var Add_crewing_1 = __importDefault(__webpack_require__(/*! ./pages/Add_crewing */ "./resources/js/pages/Add_crewing.tsx"));
+var Crewing_1 = __importDefault(__webpack_require__(/*! ./pages/Crewing */ "./resources/js/pages/Crewing.tsx"));
 var Header_1 = __importDefault(__webpack_require__(/*! ./pages/Header */ "./resources/js/pages/Header.tsx"));
 var Footer_1 = __importDefault(__webpack_require__(/*! ./pages/Footer */ "./resources/js/pages/Footer.tsx"));
 var About_1 = __importDefault(__webpack_require__(/*! ./pages/About */ "./resources/js/pages/About.tsx"));
@@ -34977,6 +34978,9 @@ function App() {
   }, react_1["default"].createElement("div", {
     className: "app-container"
   }, react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement(react_router_dom_1.Routes, null, react_1["default"].createElement(react_router_dom_1.Route, {
+    path: '/',
+    element: react_1["default"].createElement(Crewing_1["default"], null)
+  }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/login",
     element: react_1["default"].createElement(Login_1["default"], null)
   }), react_1["default"].createElement(react_router_dom_1.Route, {
@@ -36228,7 +36232,7 @@ function Add_crewing() {
   return react_1["default"].createElement("div", {
     className: 'pt-[75px] mb-[90px]'
   }, react_1["default"].createElement("div", {
-    className: 'flex justify-between w-[171px] ml-[23px]'
+    className: 'flex justify-between w-[163px] ml-[23px]'
   }, react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[16px] font-[600] text-[#9CA3AF]',
     to: "/"
@@ -36321,6 +36325,52 @@ exports["default"] = Add_crewing;
 
 /***/ }),
 
+/***/ "./resources/js/pages/Crewing.tsx":
+/*!****************************************!*\
+  !*** ./resources/js/pages/Crewing.tsx ***!
+  \****************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+function Crewing() {
+  return react_1["default"].createElement("div", {
+    className: 'pt-[75px] mb-[90px]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex justify-between w-[183px] ml-[23px]'
+  }, react_1["default"].createElement(react_router_dom_1.Link, {
+    className: 'text-[16px] font-[600] text-[#9CA3AF]',
+    to: "/"
+  }, "Home"), react_1["default"].createElement("img", {
+    src: '/image/right.png',
+    className: 'pt-[4px] w-3'
+  }), react_1["default"].createElement(react_router_dom_1.Link, {
+    className: 'text-[16px] font-[600] text-[#116ACC]',
+    to: "/about_project"
+  }, "Crewings Board")), react_1["default"].createElement("div", {
+    style: {
+      padding: "48px 58px"
+    },
+    className: 'flex flex-col h-[620px] bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'
+  }, react_1["default"].createElement("p", {
+    className: 'text-[48px] leading-[56px] font-[600] text-[#116ACC]'
+  }, "Crewings Board Data")));
+}
+exports["default"] = Crewing;
+
+/***/ }),
+
 /***/ "./resources/js/pages/Footer.tsx":
 /*!***************************************!*\
   !*** ./resources/js/pages/Footer.tsx ***!
@@ -36399,16 +36449,16 @@ function Header() {
     className: 'flex justify-between w-[635px]'
   }, react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[18px] pt-[20px] font-[400] text-[#374151] link',
-    to: "about_project"
+    to: "/about_project"
   }, "About Project"), react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[18px] pt-[20px] font-[400] text-[#374151] link',
-    to: "crewings_board"
+    to: "/"
   }, "Crewings Board"), react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[18px] pt-[20px] font-[400] text-[#374151] link',
-    to: "cv_creator"
+    to: "/cv_creator"
   }, "CV Creator"), react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[18px] pt-[20px] font-[400] text-[#374151] link',
-    to: "term"
+    to: "/term"
   }, "Terms and Conditions")), react_1["default"].createElement(Tooltip_1["default"], {
     title: "Account settings",
     className: "h-[40px] w-[40px]"

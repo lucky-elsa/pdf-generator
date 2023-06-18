@@ -21,10 +21,10 @@ export default function Header() {
       <img src="/image/Logo.png" />
       <div className='flex justify-end w-[71%]'>
         <div className='flex justify-between w-[635px]'>
-          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="about_project">About Project</Link>
-          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="crewings_board">Crewings Board</Link>
-          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="cv_creator">CV Creator</Link>
-          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="term">Terms and Conditions</Link>
+          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="/about_project">About Project</Link>
+          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="/">Crewings Board</Link>
+          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="/cv_creator">CV Creator</Link>
+          <Link className='text-[18px] pt-[20px] font-[400] text-[#374151] link' to="/term">Terms and Conditions</Link>
         </div>
         <Tooltip title="Account settings" className="h-[40px] w-[40px]">
           <IconButton

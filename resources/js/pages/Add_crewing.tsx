@@ -447,7 +447,7 @@ export default function Add_crewing() {
     ];
     return (
         <div className='pt-[75px] mb-[90px]'>
-            <div className='flex justify-between w-[171px] ml-[23px]'>
+            <div className='flex justify-between w-[163px] ml-[23px]'>
                 <Link className='text-[16px] font-[600] text-[#9CA3AF]' to="/">Home</Link>
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">Add Crewing</Link>
