@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import setAuthToken from "./redux/utils/setauthtoken";
+import Register from "./pages/Register";
 import Add from "./pages/Add_crewing";
 import Crewing from "./pages/Crewing";
 import Header from "./pages/Header";
@@ -13,7 +14,6 @@ import Footer from "./pages/Footer";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Term from "./pages/Term";
-
 
 const container = document.getElementById('app');
 const root = createRoot(container!);
@@ -32,6 +32,7 @@ export default function App() {
                     <Routes>
                         <Route path='/' element={<Crewing />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
                         <Route path="/about_project" element={<About />} />
                         <Route path="/term" element={<Term />} />
                         <Route path="/add_crewing" element={<Add />} />

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import Select from 'react-select';
 import './style.css'
+import Pagination from '@mui/material/Pagination';
 
 export default function Crewing() {
     const options = [
@@ -15,7 +16,7 @@ export default function Crewing() {
             <div className='flex justify-between w-[183px] ml-[23px]'>
                 <Link className='text-[16px] font-[600] text-[#9CA3AF]' to="/">Home</Link>
                 <img src='/image/right.png' className='pt-[4px] w-3' />
-                <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">Crewings Board</Link>
+                <Link className='text-[16px] font-[600] text-[#116ACC]' to="/">Crewings Board</Link>
             </div>
 
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
@@ -119,7 +120,7 @@ export default function Crewing() {
                                 </td>
                                 <td className='text-start'>Test comment goes here / tut komment</td>
                                 <td className='text-start flex gap-[10px]'>
-                                <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
                                         <img src="/image/plus.png" alt="delete" />
                                     </button>
                                 </td>
@@ -196,6 +197,14 @@ export default function Crewing() {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            <div className='mt-[49px] flex justify-center'>
+                <Link className='rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] font-[500] text-[16px] leading-[20px]  bg-[#116ACC]' to="/login">Login or Register to Load More</Link>
+            </div>
+
+            <div className="relative top-[37px] flex justify-center">
+                <Pagination count={10} color="primary" />
             </div>
         </div>
     )

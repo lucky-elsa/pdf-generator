@@ -2,6 +2,10 @@
     border-radius: 7px !important;
 }
 
+.MuiButtonBase-root {
+    border-radius: 7px !important;
+}
+
 table th {
     color: #fff;
     font-style: normal;
