@@ -516,7 +516,7 @@ export default function Add_crewing() {
                     </div>
                 </div>
 
-                <div className='flex justify-end mt-[85px] mr-[80px]'> 
+                <div className='flex justify-end mt-[85px] mr-[80px]'>
                     <button type="button" className='bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'>SAVE</button>
                 </div>
             </form>

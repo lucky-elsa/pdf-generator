@@ -1,0 +1,46 @@
+.css-13cymwt-control {
+    border-radius: 7px !important;
+}
+
+table th {
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: start;
+}
+
+table td {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #374151;
+    padding-top: 18px;
+    letter-spacing: -0.01em;
+    padding-bottom: 18px;
+}
+
+table tbody tr {
+    border-bottom: 2px solid rgba(0, 82, 255, 0.1);
+}
+
+th:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-left: 48px;
+}
+
+th:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-right: 48px;
+}
+
+td:first-child {
+    padding-left: 48px;
+}
+
+td:last-child {
+    padding-right: 48px;
+}

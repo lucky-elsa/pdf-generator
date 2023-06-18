@@ -806,6 +806,24 @@ video {
 .mr-auto {
   margin-right: auto;
 }
+.mt-\[\] {
+  margin-top: ;
+}
+.mt-\[44px\] {
+  margin-top: 44px;
+}
+.mr-\[56px\] {
+  margin-right: 56px;
+}
+.mr-\[10px\] {
+  margin-right: 10px;
+}
+.mr-\[18px\] {
+  margin-right: 18px;
+}
+.mt-\[7px\] {
+  margin-top: 7px;
+}
 .box-border {
   box-sizing: border-box;
 }
@@ -898,6 +916,15 @@ video {
 }
 .h-screen {
   height: 100vh;
+}
+.h-\[64px\] {
+  height: 64px;
+}
+.h-\[18px\] {
+  height: 18px;
+}
+.h-\[16px\] {
+  height: 16px;
 }
 .min-h-full {
   min-height: 100%;
@@ -1013,6 +1040,48 @@ video {
 .w-\[163px\] {
   width: 163px;
 }
+.w-\[3\] {
+  width: 3;
+}
+.w-\[\] {
+  width: ;
+}
+.w-\[13\%\] {
+  width: 13%;
+}
+.w-\[14\%\] {
+  width: 14%;
+}
+.w-\[10\%\] {
+  width: 10%;
+}
+.w-\[17\.5\%\] {
+  width: 17.5%;
+}
+.w-\[20\%\] {
+  width: 20%;
+}
+.w-\[20\%\%\] {
+  width: 20%%;
+}
+.w-\[8\%\] {
+  width: 8%;
+}
+.w-\[32\%\] {
+  width: 32%;
+}
+.w-\[8\.5\%\] {
+  width: 8.5%;
+}
+.w-\[1\] {
+  width: 1;
+}
+.w-\[18px\] {
+  width: 18px;
+}
+.w-\[16px\] {
+  width: 16px;
+}
 .shrink {
   flex-shrink: 1;
 }
@@ -1070,6 +1139,9 @@ video {
 .items-center {
   align-items: center;
 }
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-end {
   justify-content: flex-end;
 }
@@ -1114,6 +1186,15 @@ video {
 }
 .gap-\[15px\] {
   gap: 15px;
+}
+.gap-\[23p\] {
+  gap: 23p;
+}
+.gap-\[23px\] {
+  gap: 23px;
+}
+.gap-\[10px\] {
+  gap: 10px;
 }
 .place-self-center {
   place-self: center;
@@ -1165,6 +1246,9 @@ video {
 }
 .rounded-\[\] {
   border-radius: ;
+}
+.rounded-\[15px\] {
+  border-radius: 15px;
 }
 .rounded-l-2xl {
   border-top-left-radius: 1rem;
@@ -1631,6 +1715,24 @@ video {
 .pr-\[24px\] {
   padding-right: 24px;
 }
+.pl-\[\] {
+  padding-left: ;
+}
+.pl-\[16px\] {
+  padding-left: 16px;
+}
+.pr-\[16px\] {
+  padding-right: 16px;
+}
+.pl-\[15px\] {
+  padding-left: 15px;
+}
+.pl-\[20px\] {
+  padding-left: 20px;
+}
+.pl-\[18px\] {
+  padding-left: 18px;
+}
 .text-left {
   text-align: left;
 }
@@ -1642,6 +1744,9 @@ video {
 }
 .text-justify {
   text-align: justify;
+}
+.text-start {
+  text-align: start;
 }
 .font-\[\] {
   font-family: ;
