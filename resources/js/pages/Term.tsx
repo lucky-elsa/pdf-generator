@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function Term() {
     return (
         <div className='pt-[75px] mb-[90px]'>
-            <div className='flex justify-between w-[117px] ml-[23px]'>
+            <div className='flex justify-between w-[113px] ml-[23px]'>
                 <Link className='text-[16px] font-[600] text-[#9CA3AF]' to="/">Home</Link>
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">Terms</Link>

@@ -78,6 +78,7 @@ td:last-child {
     font-weight: 500 !important;
     font-size: 13px !important;
 }
+
 .css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {
     color: #fff !important;
 }
@@ -135,7 +136,18 @@ td:last-child {
     background-image: url('/image/back.png');
     background-repeat: no-repeat;
     background-size: 60%;
-    /* background-position: right top; */
     background-position-x: 670px;
     background-position-y: -230px;
+}
+
+.back-cv {
+    background-image: url('/image/back1.png');
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position-x: 700px;
+    background-position-y: -350px;
+}
+
+#country-select-demo {
+    padding-bottom: 10px !important;
 }

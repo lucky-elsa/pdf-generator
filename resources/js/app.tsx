@@ -14,6 +14,7 @@ import Footer from "./pages/Footer";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Term from "./pages/Term";
+import CV from "./pages/CV"
 
 const container = document.getElementById('app');
 const root = createRoot(container!);
@@ -34,6 +35,7 @@ export default function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/about_project" element={<About />} />
+                        <Route path="/cv" element={<CV />} />
                         <Route path="/term" element={<Term />} />
                         <Route path="/add_crewing" element={<Add />} />
                     </Routes>

@@ -46439,6 +46439,7 @@ var Footer_1 = __importDefault(__webpack_require__(/*! ./pages/Footer */ "./reso
 var About_1 = __importDefault(__webpack_require__(/*! ./pages/About */ "./resources/js/pages/About.tsx"));
 var Login_1 = __importDefault(__webpack_require__(/*! ./pages/Login */ "./resources/js/pages/Login.tsx"));
 var Term_1 = __importDefault(__webpack_require__(/*! ./pages/Term */ "./resources/js/pages/Term.tsx"));
+var CV_1 = __importDefault(__webpack_require__(/*! ./pages/CV */ "./resources/js/pages/CV.tsx"));
 var container = document.getElementById('app');
 var root = (0, client_1.createRoot)(container);
 root.render(react_1["default"].createElement(App, null));
@@ -46463,6 +46464,9 @@ function App() {
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/about_project",
     element: react_1["default"].createElement(About_1["default"], null)
+  }), react_1["default"].createElement(react_router_dom_1.Route, {
+    path: "/cv",
+    element: react_1["default"].createElement(CV_1["default"], null)
   }), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/term",
     element: react_1["default"].createElement(Term_1["default"], null)
@@ -47802,6 +47806,295 @@ exports["default"] = Add_crewing;
 
 /***/ }),
 
+/***/ "./resources/js/pages/CV.tsx":
+/*!***********************************!*\
+  !*** ./resources/js/pages/CV.tsx ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function get() {
+        return m[k];
+      }
+    };
+  }
+  Object.defineProperty(o, k2, desc);
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  __setModuleDefault(result, mod);
+  return result;
+};
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+var AdapterDayjs_1 = __webpack_require__(/*! @mui/x-date-pickers/AdapterDayjs */ "./node_modules/@mui/x-date-pickers/AdapterDayjs/index.js");
+var LocalizationProvider_1 = __webpack_require__(/*! @mui/x-date-pickers/LocalizationProvider */ "./node_modules/@mui/x-date-pickers/LocalizationProvider/index.js");
+var MobileDatePicker_1 = __webpack_require__(/*! @mui/x-date-pickers/MobileDatePicker */ "./node_modules/@mui/x-date-pickers/MobileDatePicker/index.js");
+var TextField_1 = __importDefault(__webpack_require__(/*! @mui/material/TextField */ "./node_modules/@mui/material/TextField/index.js"));
+function CV() {
+  var _ref = (0, react_1.useState)(''),
+    _ref2 = _slicedToArray(_ref, 2),
+    name = _ref2[0],
+    setName = _ref2[1];
+  var handleChange = function handleChange(event) {
+    setName(event.target.value);
+  };
+  var _ref3 = (0, react_1.useState)(new Date()),
+    _ref4 = _slicedToArray(_ref3, 2),
+    selectedDate = _ref4[0],
+    setSelectedDate = _ref4[1];
+  function handleDateChange(date) {
+    setSelectedDate(date);
+  }
+  return react_1["default"].createElement("div", {
+    className: 'pt-[75px] mb-[90px]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex justify-between w-[148px] ml-[23px]'
+  }, react_1["default"].createElement(react_router_dom_1.Link, {
+    className: 'text-[16px] font-[600] text-[#9CA3AF]',
+    to: "/"
+  }, "Home"), react_1["default"].createElement("img", {
+    src: '/image/right.png',
+    className: 'pt-[4px] w-3'
+  }), react_1["default"].createElement(react_router_dom_1.Link, {
+    className: 'text-[16px] font-[600] text-[#116ACC]',
+    to: "/about_project"
+  }, "CV Creator")), react_1["default"].createElement("form", null, react_1["default"].createElement("div", {
+    style: {
+      padding: "50px 58px 80px 58px"
+    },
+    className: 'back-cv flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[67px] pl-[58px] gap-[47px] mt-[80px]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("p", {
+    className: 'text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC] mt-[120px]'
+  }, "Personal Data"), react_1["default"].createElement("div", {
+    className: 'w-[60%] flex justify-end mr-[30px]'
+  }, react_1["default"].createElement("img", {
+    src: '/image/avatar.png',
+    alt: 'avatar'
+  }))), react_1["default"].createElement("div", {
+    style: {
+      border: "1px dashed #7B61FF",
+      padding: "58px 71px"
+    },
+    className: 'flex rounded-[5px] w-full box-border'
+  }, react_1["default"].createElement("div", {
+    className: 'flex flex-col gap-[83px] w-[50%]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Name:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your name",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Surname:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your citizenship",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Citizenship:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your name",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Country of residence:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your name",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Nearest Airport:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your name",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  })))), react_1["default"].createElement("div", {
+    className: 'flex flex-col gap-[83px] w-[50%]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Gender:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your phone number",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Phone number:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your phone number",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "E-mail:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your email",
+    type: "email",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Other links:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your phone number",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Date of Birth:"), react_1["default"].createElement("div", {
+    className: 'w-[70%] ml-[22px]'
+  }, react_1["default"].createElement(LocalizationProvider_1.LocalizationProvider, {
+    dateAdapter: AdapterDayjs_1.AdapterDayjs
+  }, react_1["default"].createElement(MobileDatePicker_1.MobileDatePicker, {
+    value: selectedDate,
+    onChange: handleDateChange,
+    renderInput: function renderInput(params) {
+      return react_1["default"].createElement(TextField_1["default"], Object.assign({
+        onClick: function onClick() {
+          return console.log("asd");
+        },
+        sx: {
+          width: 300,
+          backgroundColor: "#fff"
+        }
+      }, params));
+    }
+  }))))))), react_1["default"].createElement("div", {
+    className: 'flex justify-center mt-[40px] mr-[80px]'
+  }, react_1["default"].createElement("button", {
+    type: "button",
+    className: 'bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'
+  }, "Register"))));
+}
+exports["default"] = CV;
+
+/***/ }),
+
 /***/ "./resources/js/pages/Crewing.tsx":
 /*!****************************************!*\
   !*** ./resources/js/pages/Crewing.tsx ***!
@@ -48299,7 +48592,7 @@ function Header() {
     to: "/"
   }, "Crewings Board"), react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[18px] pt-[20px] font-[400] text-[#374151] link',
-    to: "/cv_creator"
+    to: "/cv"
   }, "CV Creator"), react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[18px] pt-[20px] font-[400] text-[#374151] link',
     to: "/term"
@@ -48830,7 +49123,7 @@ function Term() {
   return react_1["default"].createElement("div", {
     className: 'pt-[75px] mb-[90px]'
   }, react_1["default"].createElement("div", {
-    className: 'flex justify-between w-[117px] ml-[23px]'
+    className: 'flex justify-between w-[113px] ml-[23px]'
   }, react_1["default"].createElement(react_router_dom_1.Link, {
     className: 'text-[16px] font-[600] text-[#9CA3AF]',
     to: "/"
@@ -49320,7 +49613,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".css-13cymwt-control {\r\n    border-radius: 7px !important;\r\n}\r\n\r\n.MuiButtonBase-root {\r\n    border-radius: 7px !important;\r\n}\r\n\r\ntable th {\r\n    color: #fff;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    text-align: start;\r\n}\r\n\r\ntable td {\r\n    font-weight: 400;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    color: #374151;\r\n    padding-top: 18px;\r\n    letter-spacing: -0.01em;\r\n    padding-bottom: 18px;\r\n}\r\n\r\ntable tbody tr {\r\n    border-bottom: 2px solid rgba(0, 82, 255, 0.1);\r\n}\r\n\r\nth:first-child {\r\n    border-top-left-radius: 15px;\r\n    border-bottom-left-radius: 15px;\r\n    padding-left: 48px;\r\n}\r\n\r\nth:last-child {\r\n    border-top-right-radius: 15px;\r\n    border-bottom-right-radius: 15px;\r\n    padding-right: 48px;\r\n}\r\n\r\ntd:first-child {\r\n    padding-left: 48px;\r\n}\r\n\r\ntd:last-child {\r\n    padding-right: 48px;\r\n}\r\n\r\n.label-style {\r\n    color: #4B5563;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 18px;\r\n    line-height: 22px;\r\n}\r\n\r\n.MuiInputBase-root {\r\n    border-radius: 7px !important;\r\n    height: 44px !important;\r\n}\r\n\r\n.MuiPickersToolbar-root {\r\n    display: none !important;\r\n}\r\n\r\n.MuiPaper-elevation24 {\r\n    background-color: #182233 !important;\r\n    border-radius: 12px !important;\r\n}\r\n\r\n.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {\r\n    background-color: #182233 !important;\r\n    border-radius: 50% !important;\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {\r\n    color: #fff !important;\r\n}\r\n\r\n.PrivatePickersYear-yearButton {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiIconButton-edgeEnd {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiIconButton-edgeStart {\r\n    color: #fff !important;\r\n}\r\n\r\n.Mui-selected {\r\n    background: #116ACC !important;\r\n}\r\n\r\n.MuiPickersDay-today {\r\n    background: rgba(243, 244, 246, 0.5) !important;\r\n    border-radius: 50% !important;\r\n}\r\n\r\n.css-1e6y48t-MuiButtonBase-root-MuiButton-root {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiTypography-root {\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n\r\n.MuiPickersCalendarHeader-label {\r\n    color: #F3F4F6 !important;\r\n}\r\n\r\n.MuiDialogActions-root {\r\n    justify-content: center !important;\r\n}\r\n\r\n.MuiButton-textPrimary {\r\n    width: 136px !important;\r\n    background-color: #116ACC !important;\r\n    border-radius: 8px !important;\r\n    height: 40px !important;\r\n    font-weight: 500 !important;\r\n    font-size: 14px !important;\r\n    line-height: 20px !important;\r\n}\r\n\r\n.back-contect {\r\n    background-image: url('/image/back.png');\r\n    background-repeat: no-repeat;\r\n    background-size: 60%;\r\n    /* background-position: right top; */\r\n    background-position-x: 670px;\r\n    background-position-y: -230px;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".css-13cymwt-control {\r\n    border-radius: 7px !important;\r\n}\r\n\r\n.MuiButtonBase-root {\r\n    border-radius: 7px !important;\r\n}\r\n\r\ntable th {\r\n    color: #fff;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    text-align: start;\r\n}\r\n\r\ntable td {\r\n    font-weight: 400;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    color: #374151;\r\n    padding-top: 18px;\r\n    letter-spacing: -0.01em;\r\n    padding-bottom: 18px;\r\n}\r\n\r\ntable tbody tr {\r\n    border-bottom: 2px solid rgba(0, 82, 255, 0.1);\r\n}\r\n\r\nth:first-child {\r\n    border-top-left-radius: 15px;\r\n    border-bottom-left-radius: 15px;\r\n    padding-left: 48px;\r\n}\r\n\r\nth:last-child {\r\n    border-top-right-radius: 15px;\r\n    border-bottom-right-radius: 15px;\r\n    padding-right: 48px;\r\n}\r\n\r\ntd:first-child {\r\n    padding-left: 48px;\r\n}\r\n\r\ntd:last-child {\r\n    padding-right: 48px;\r\n}\r\n\r\n.label-style {\r\n    color: #4B5563;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 18px;\r\n    line-height: 22px;\r\n}\r\n\r\n.MuiInputBase-root {\r\n    border-radius: 7px !important;\r\n    height: 44px !important;\r\n}\r\n\r\n.MuiPickersToolbar-root {\r\n    display: none !important;\r\n}\r\n\r\n.MuiPaper-elevation24 {\r\n    background-color: #182233 !important;\r\n    border-radius: 12px !important;\r\n}\r\n\r\n.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {\r\n    background-color: #182233 !important;\r\n    border-radius: 50% !important;\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n\r\n.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {\r\n    color: #fff !important;\r\n}\r\n\r\n.PrivatePickersYear-yearButton {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiIconButton-edgeEnd {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiIconButton-edgeStart {\r\n    color: #fff !important;\r\n}\r\n\r\n.Mui-selected {\r\n    background: #116ACC !important;\r\n}\r\n\r\n.MuiPickersDay-today {\r\n    background: rgba(243, 244, 246, 0.5) !important;\r\n    border-radius: 50% !important;\r\n}\r\n\r\n.css-1e6y48t-MuiButtonBase-root-MuiButton-root {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiTypography-root {\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n\r\n.MuiPickersCalendarHeader-label {\r\n    color: #F3F4F6 !important;\r\n}\r\n\r\n.MuiDialogActions-root {\r\n    justify-content: center !important;\r\n}\r\n\r\n.MuiButton-textPrimary {\r\n    width: 136px !important;\r\n    background-color: #116ACC !important;\r\n    border-radius: 8px !important;\r\n    height: 40px !important;\r\n    font-weight: 500 !important;\r\n    font-size: 14px !important;\r\n    line-height: 20px !important;\r\n}\r\n\r\n.back-contect {\r\n    background-image: url('/image/back.png');\r\n    background-repeat: no-repeat;\r\n    background-size: 60%;\r\n    background-position-x: 670px;\r\n    background-position-y: -230px;\r\n}\r\n\r\n.back-cv {\r\n    background-image: url('/image/back1.png');\r\n    background-repeat: no-repeat;\r\n    background-size: 60%;\r\n    background-position-x: 700px;\r\n    background-position-y: -350px;\r\n}\r\n\r\n#country-select-demo {\r\n    padding-bottom: 10px !important;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
