@@ -47866,6 +47866,7 @@ var AdapterDayjs_1 = __webpack_require__(/*! @mui/x-date-pickers/AdapterDayjs */
 var LocalizationProvider_1 = __webpack_require__(/*! @mui/x-date-pickers/LocalizationProvider */ "./node_modules/@mui/x-date-pickers/LocalizationProvider/index.js");
 var MobileDatePicker_1 = __webpack_require__(/*! @mui/x-date-pickers/MobileDatePicker */ "./node_modules/@mui/x-date-pickers/MobileDatePicker/index.js");
 var TextField_1 = __importDefault(__webpack_require__(/*! @mui/material/TextField */ "./node_modules/@mui/material/TextField/index.js"));
+var react_select_1 = __importDefault(__webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js"));
 function CV() {
   var _ref = (0, react_1.useState)(''),
     _ref2 = _slicedToArray(_ref, 2),
@@ -47881,6 +47882,16 @@ function CV() {
   function handleDateChange(date) {
     setSelectedDate(date);
   }
+  var options = [{
+    value: 'passport',
+    label: 'Passport / ID:'
+  }, {
+    value: 'seamna',
+    label: 'Seaman´s Book'
+  }, {
+    value: 'visa',
+    label: 'VISA'
+  }];
   return react_1["default"].createElement("div", {
     className: 'pt-[75px] mb-[90px]'
   }, react_1["default"].createElement("div", {
@@ -48084,12 +48095,126 @@ function CV() {
         }
       }, params));
     }
-  }))))))), react_1["default"].createElement("div", {
-    className: 'flex justify-center mt-[40px] mr-[80px]'
+  })))))))), react_1["default"].createElement("div", {
+    style: {
+      padding: "48px 58px"
+    },
+    className: 'flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("p", {
+    className: 'text-[48px] leading-[56px] font-[600] text-[#116ACC]'
+  }, "Documents"), react_1["default"].createElement(react_select_1["default"], {
+    className: 'w-[300px] rounded-[10px] ml-[60px] mt-[13px]',
+    placeholder: "All",
+    options: options
+  }), react_1["default"].createElement("button", {
+    style: {
+      padding: "4px 10px"
+    },
+    className: 'rounded-[8px] bg-[#116ACC] mt-[13px] ml-[23px] h-[38px]'
+  }, react_1["default"].createElement("img", {
+    src: '/image/plus_black.png',
+    alt: "x"
+  }))), react_1["default"].createElement("div", {
+    style: {
+      border: "1px dashed #7B61FF",
+      padding: "41px 37px"
+    },
+    className: 'flex flex-col gap-[83px] rounded-[5px] w-full box-border'
+  }, react_1["default"].createElement("div", {
+    className: "flex w-full"
+  }, react_1["default"].createElement("div", {
+    className: 'w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'
+  }, "Seamans's Book"), react_1["default"].createElement("div", {
+    className: 'flex justify-end w-[20%]'
   }, react_1["default"].createElement("button", {
-    type: "button",
-    className: 'bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'
-  }, "Register"))));
+    className: 'w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'
+  }, "ADD"))), react_1["default"].createElement("div", {
+    className: 'flex w-full'
+  }, react_1["default"].createElement("div", {
+    className: 'flex flex-col gap-[83px] w-[50%]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Number:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your name",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Country:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your citizenship",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  })))), react_1["default"].createElement("div", {
+    className: 'flex flex-col gap-[83px] w-[50%]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Issue Date:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement(LocalizationProvider_1.LocalizationProvider, {
+    dateAdapter: AdapterDayjs_1.AdapterDayjs
+  }, react_1["default"].createElement(MobileDatePicker_1.MobileDatePicker, {
+    value: selectedDate,
+    onChange: handleDateChange,
+    renderInput: function renderInput(params) {
+      return react_1["default"].createElement(TextField_1["default"], Object.assign({
+        onClick: function onClick() {
+          return console.log("asd");
+        },
+        sx: {
+          width: 300,
+          backgroundColor: "#fff",
+          marginLeft: '17px'
+        }
+      }, params));
+    }
+  })))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[30%] label-style pt-[10px] flex justify-end'
+  }, "Expiry Date:"), react_1["default"].createElement("div", {
+    className: 'w-[70%]'
+  }, react_1["default"].createElement(LocalizationProvider_1.LocalizationProvider, {
+    dateAdapter: AdapterDayjs_1.AdapterDayjs
+  }, react_1["default"].createElement(MobileDatePicker_1.MobileDatePicker, {
+    value: selectedDate,
+    onChange: handleDateChange,
+    renderInput: function renderInput(params) {
+      return react_1["default"].createElement(TextField_1["default"], Object.assign({
+        onClick: function onClick() {
+          return console.log("asd");
+        },
+        sx: {
+          width: 300,
+          backgroundColor: "#fff",
+          marginLeft: "17px"
+        }
+      }, params));
+    }
+  })))))))));
 }
 exports["default"] = CV;
 
