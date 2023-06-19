@@ -48,3 +48,69 @@ td:first-child {
 td:last-child {
     padding-right: 48px;
 }
+
+.label-style {
+    color: #4B5563;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.MuiInputBase-root {
+    border-radius: 7px !important;
+    height: 44px !important;
+}
+
+.MuiPickersToolbar-root {
+    display: none !important;
+}
+
+.MuiPaper-root {
+    background-color: #182233 !important;
+    border-radius: 12px !important;
+}
+
+.MuiButtonBase-root {
+    background-color: #182233 !important;
+    border-radius: 50% !important;
+    color: #F3F4F6 !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+}
+
+.Mui-selected {
+    background: #116ACC !important;
+}
+
+.MuiPickersDay-today {
+    background: rgba(243, 244, 246, 0.5) !important;
+}
+
+.MuiTypography-root {
+    color: #F3F4F6 !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+}
+
+.MuiPickersCalendarHeader-label {
+    color: #F3F4F6 !important;
+}
+
+.MuiDialogActions-root {
+    justify-content: center !important;
+}
+
+.MuiButton-textPrimary {
+    width: 136px !important;
+    background-color: #116ACC !important;
+    border-radius: 8px !important;
+    height: 40px !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+}
+
+.MuiDialogActions-root:first-child {
+    background-color: #fff !important;
+}
