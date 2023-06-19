@@ -151,3 +151,19 @@ td:last-child {
 #country-select-demo {
     padding-bottom: 10px !important;
 }
+
+#delete:hover {
+    background-color: #e6e6e6 !important;
+}
+
+#edit:hover {
+    background-color: #e6e6e6 !important;
+}
+
+#check:hover {
+    background-color: #e6e6e6;
+}
+
+#plus:hover {
+    background-color: #1279e7;
+}
