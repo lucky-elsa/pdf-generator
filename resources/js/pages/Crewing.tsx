@@ -18,7 +18,7 @@ export default function Crewing() {
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/">Crewings Board</Link>
             </div>
-            
+
             <div style={{ padding: "48px 58px" }} className='back-contect flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
 
                 <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Crewings Board Data</p>
@@ -27,7 +27,7 @@ export default function Crewing() {
                         <label className='mt-[7px] mr-[18px]'>Filter</label>
                         <Select className='w-[300px] mr-[56px] rounded-[10px]' placeholder="All" options={options} />
                     </div>
-
+                    {/* Crewing Table element */}
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
@@ -36,7 +36,7 @@ export default function Crewing() {
                                 <th className='w-[20%]'>How to Apply</th>
                                 <th className='w-[8%]'>Filled</th>
                                 <th className='w-[32%]'>Comment</th>
-                                <th className='w-[8.5%]'></th>
+                                <th className='w-[8.5%]'>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -198,7 +198,6 @@ export default function Crewing() {
                         </tbody>
                     </table>
                 </div>
-                {/* <div className="text-[1000px] font-[700] leading-[1149px] text-[#F9FAFB] absolute z-0 top-[-100px] left-[650px]">M</div> */}
             </div>
 
             <div className='mt-[49px] flex justify-center'>

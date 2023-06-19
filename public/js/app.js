@@ -47892,6 +47892,23 @@ function CV() {
     value: 'visa',
     label: 'VISA'
   }];
+  var experienceOptions = [{
+    value: 'job-1',
+    label: 'Job tilte 1'
+  }, {
+    value: 'job-2',
+    label: 'Job title 2'
+  }, {
+    value: 'custom',
+    label: 'CUSTOM'
+  }];
+  var vesselOptions = [{
+    value: 'vessel_1',
+    label: 'Vessel 1'
+  }, {
+    value: 'vessel_2',
+    label: 'Vessel 2'
+  }];
   return react_1["default"].createElement("div", {
     className: 'pt-[75px] mb-[90px]'
   }, react_1["default"].createElement("div", {
@@ -48121,7 +48138,7 @@ function CV() {
       border: "1px dashed #7B61FF",
       padding: "41px 37px"
     },
-    className: 'flex flex-col gap-[83px] rounded-[5px] w-full box-border'
+    className: 'flex flex-col gap-[53px] rounded-[5px] w-full box-border'
   }, react_1["default"].createElement("div", {
     className: "flex w-full"
   }, react_1["default"].createElement("div", {
@@ -48214,6 +48231,305 @@ function CV() {
         }
       }, params));
     }
+  }))))))), react_1["default"].createElement("div", {
+    className: 'flex flex-col gap-[25px] mt-[10px] mb-[40px]'
+  }, react_1["default"].createElement("div", {
+    className: 'text-[32px] leading-[36px] text-[#374151] font-[700] '
+  }, "Your Documents"), react_1["default"].createElement("table", null, react_1["default"].createElement("thead", {
+    className: 'bg-[#116ACC] h-[64px] '
+  }, react_1["default"].createElement("tr", {
+    className: 'rounded-[15px]'
+  }, react_1["default"].createElement("th", {
+    className: 'w-[20%]'
+  }, "Document Type"), react_1["default"].createElement("th", {
+    className: 'w-[16.7%]'
+  }, "Country"), react_1["default"].createElement("th", {
+    className: 'w-[16.7%]'
+  }, "Number"), react_1["default"].createElement("th", {
+    className: 'w-[16.6%]'
+  }, "Issue Date"), react_1["default"].createElement("th", {
+    className: 'w-[20%]'
+  }, "Expiration Date"), react_1["default"].createElement("th", {
+    className: 'w-[10%]'
+  }, "Actions"))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "passport"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Latvia"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "LV343435545645"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "20.05.2000."), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "20.05.2030."), react_1["default"].createElement("td", {
+    className: 'text-start flex gap-[10px]'
+  }, react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/delete.png",
+    alt: "delete"
+  })), react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/edit.png",
+    alt: "edit"
+  })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "passport"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Latvia"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "LV343435545645"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "20.05.2000."), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "20.05.2030."), react_1["default"].createElement("td", {
+    className: 'text-start flex gap-[10px]'
+  }, react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/delete.png",
+    alt: "delete"
+  })), react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/edit.png",
+    alt: "edit"
+  })))))))), react_1["default"].createElement("div", {
+    style: {
+      padding: "48px 58px"
+    },
+    className: 'flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("p", {
+    className: 'text-[48px] leading-[56px] font-[600] text-[#116ACC]'
+  }, "Maritime experience"), react_1["default"].createElement(react_select_1["default"], {
+    className: 'w-[300px] rounded-[10px] ml-[60px] mt-[13px]',
+    placeholder: "...",
+    options: experienceOptions
+  }), react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[38px] mt-[11px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your Vessel",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }), react_1["default"].createElement("button", {
+    style: {
+      padding: "4px 10px"
+    },
+    className: 'rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'
+  }, react_1["default"].createElement("img", {
+    src: '/image/check.png',
+    alt: "x"
+  })), react_1["default"].createElement("button", {
+    style: {
+      padding: "4px 10px"
+    },
+    className: 'rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'
+  }, react_1["default"].createElement("img", {
+    src: '/image/plus_black.png',
+    alt: "x"
+  }))), react_1["default"].createElement("div", {
+    style: {
+      border: "1px dashed #7B61FF",
+      padding: "41px 37px"
+    },
+    className: 'flex flex-col gap-[53px] rounded-[5px] w-full box-border'
+  }, react_1["default"].createElement("div", {
+    className: "flex w-full"
+  }, react_1["default"].createElement("div", {
+    className: 'w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'
+  }, "Job title 2"), react_1["default"].createElement("div", {
+    className: 'flex justify-end w-[20%]'
+  }, react_1["default"].createElement("button", {
+    className: 'w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'
+  }, "ADD"))), react_1["default"].createElement("div", {
+    className: 'flex flex-col gap-[83px] w-full'
+  }, react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[15%] label-style pt-[6px] flex justify-end'
+  }, "Types of vessels:"), react_1["default"].createElement("div", {
+    className: 'w-[85%] flex'
+  }, react_1["default"].createElement(react_select_1["default"], {
+    className: 'w-[300px] rounded-[10px] ml-[17px]',
+    placeholder: "...",
+    options: vesselOptions
+  }), react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type your Vessel",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }), react_1["default"].createElement("button", {
+    style: {
+      padding: "4px 10px"
+    },
+    className: 'rounded-[8px] bg-[#fff] ml-[23px] h-[38px]'
+  }, react_1["default"].createElement("img", {
+    src: '/image/check.png',
+    alt: "x"
+  })), react_1["default"].createElement("button", {
+    style: {
+      padding: "4px 10px"
+    },
+    className: 'rounded-[8px] bg-[#116ACC] ml-[10px] h-[38px]'
+  }, react_1["default"].createElement("img", {
+    src: '/image/plus_black.png',
+    alt: "x"
+  })))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[15%] label-style pt-[6px] flex justify-end'
+  }, "Crewing's, Employers:"), react_1["default"].createElement("div", {
+    className: 'w-[85%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type Crewing's, Employers",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))), react_1["default"].createElement("div", {
+    className: 'flex'
+  }, react_1["default"].createElement("div", {
+    className: 'w-[15%] label-style pt-[6px] flex justify-end'
+  }, "Crewing's, Employers:"), react_1["default"].createElement("div", {
+    className: 'w-[85%]'
+  }, react_1["default"].createElement("input", {
+    style: {
+      padding: "8px 10px 8px 16px",
+      border: "1px solid #9CA3AF"
+    },
+    className: 'w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out',
+    placeholder: "Type Crewing's, Employers",
+    type: "text",
+    value: name,
+    onChange: handleChange
+  }))))), react_1["default"].createElement("div", {
+    className: 'flex flex-col gap-[25px] mt-[10px] mb-[40px]'
+  }, react_1["default"].createElement("div", {
+    className: 'text-[32px] leading-[36px] text-[#374151] font-[700] '
+  }, "Your Documents"), react_1["default"].createElement("table", null, react_1["default"].createElement("thead", {
+    className: 'bg-[#116ACC] h-[64px] '
+  }, react_1["default"].createElement("tr", {
+    className: 'rounded-[15px]'
+  }, react_1["default"].createElement("th", {
+    className: 'w-[20%]'
+  }, "Job title"), react_1["default"].createElement("th", {
+    className: 'w-[16.7%]'
+  }, "Years"), react_1["default"].createElement("th", {
+    className: 'w-[16.7%]'
+  }, "Type of vessels"), react_1["default"].createElement("th", {
+    className: 'w-[16.6%]'
+  }, "Clients"), react_1["default"].createElement("th", {
+    className: 'w-[20%]'
+  }, "Crewing's Employers"), react_1["default"].createElement("th", {
+    className: 'w-[10%]'
+  }, "Actions"))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Job title 1"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "5"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Vessel 1 "), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Clients"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Crewing's, Employers"), react_1["default"].createElement("td", {
+    className: 'text-start flex gap-[10px]'
+  }, react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/delete.png",
+    alt: "delete"
+  })), react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/edit.png",
+    alt: "edit"
+  })))), react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "CUSTOM"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "5"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Vessel 2 "), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Clients"), react_1["default"].createElement("td", {
+    className: 'text-start'
+  }, "Crewing's, Employers"), react_1["default"].createElement("td", {
+    className: 'text-start flex gap-[10px]'
+  }, react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/delete.png",
+    alt: "delete"
+  })), react_1["default"].createElement("button", {
+    style: {
+      padding: "8px 14px",
+      borderRadius: "8px",
+      backgroundColor: "#fff",
+      width: "44px",
+      height: "44px"
+    }
+  }, react_1["default"].createElement("img", {
+    src: "/image/edit.png",
+    alt: "edit"
   })))))))));
 }
 exports["default"] = CV;
@@ -48299,7 +48615,7 @@ function Crewing() {
     className: 'w-[32%]'
   }, "Comment"), react_1["default"].createElement("th", {
     className: 'w-[8.5%]'
-  }))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
+  }, "Actions"))), react_1["default"].createElement("tbody", null, react_1["default"].createElement("tr", null, react_1["default"].createElement("td", {
     className: 'text-start'
   }, "Atlas International"), react_1["default"].createElement("td", {
     className: 'text-start'
