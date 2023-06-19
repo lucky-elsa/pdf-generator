@@ -47752,7 +47752,7 @@ function Add_crewing() {
   }))), react_1["default"].createElement("div", {
     className: 'flex'
   }, react_1["default"].createElement("label", {
-    className: 'mt-[13px] ml-[63px]'
+    className: 'mt-[7px] ml-[63px]'
   }, "Country:"), react_1["default"].createElement(Autocomplete_1["default"], {
     id: "country-select-demo",
     sx: {
@@ -47836,7 +47836,7 @@ function Crewing() {
     label: 'Orange'
   }];
   return react_1["default"].createElement("div", {
-    className: 'pt-[75px] mb-[90px]'
+    className: 'pt-[75px] mb-[90px] '
   }, react_1["default"].createElement("div", {
     className: 'flex justify-between w-[183px] ml-[23px]'
   }, react_1["default"].createElement(react_router_dom_1.Link, {
@@ -47852,7 +47852,7 @@ function Crewing() {
     style: {
       padding: "48px 58px"
     },
-    className: 'flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'
+    className: 'back-contect flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'
   }, react_1["default"].createElement("p", {
     className: 'text-[48px] leading-[56px] font-[600] text-[#116ACC]'
   }, "Crewings Board Data"), react_1["default"].createElement("div", {
@@ -47866,7 +47866,7 @@ function Crewing() {
     placeholder: "All",
     options: options
   })), react_1["default"].createElement("table", null, react_1["default"].createElement("thead", {
-    className: 'bg-[#116ACC] h-[64px]'
+    className: 'bg-[#116ACC] h-[64px] '
   }, react_1["default"].createElement("tr", {
     className: 'rounded-[15px]'
   }, react_1["default"].createElement("th", {
@@ -49320,7 +49320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".css-13cymwt-control {\r\n    border-radius: 7px !important;\r\n}\r\n\r\n.MuiButtonBase-root {\r\n    border-radius: 7px !important;\r\n}\r\n\r\ntable th {\r\n    color: #fff;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    text-align: start;\r\n}\r\n\r\ntable td {\r\n    font-weight: 400;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    color: #374151;\r\n    padding-top: 18px;\r\n    letter-spacing: -0.01em;\r\n    padding-bottom: 18px;\r\n}\r\n\r\ntable tbody tr {\r\n    border-bottom: 2px solid rgba(0, 82, 255, 0.1);\r\n}\r\n\r\nth:first-child {\r\n    border-top-left-radius: 15px;\r\n    border-bottom-left-radius: 15px;\r\n    padding-left: 48px;\r\n}\r\n\r\nth:last-child {\r\n    border-top-right-radius: 15px;\r\n    border-bottom-right-radius: 15px;\r\n    padding-right: 48px;\r\n}\r\n\r\ntd:first-child {\r\n    padding-left: 48px;\r\n}\r\n\r\ntd:last-child {\r\n    padding-right: 48px;\r\n}\r\n\r\n.label-style {\r\n    color: #4B5563;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 18px;\r\n    line-height: 22px;\r\n}\r\n\r\n.MuiInputBase-root {\r\n    border-radius: 7px !important;\r\n    height: 44px !important;\r\n}\r\n\r\n.MuiPickersToolbar-root {\r\n    display: none !important;\r\n}\r\n\r\n.MuiPaper-root {\r\n    background-color: #182233 !important;\r\n    border-radius: 12px !important;\r\n}\r\n\r\n.MuiButtonBase-root {\r\n    background-color: #182233 !important;\r\n    border-radius: 50% !important;\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n\r\n.Mui-selected {\r\n    background: #116ACC !important;\r\n}\r\n\r\n.MuiPickersDay-today {\r\n    background: rgba(243, 244, 246, 0.5) !important;\r\n}\r\n\r\n.MuiTypography-root {\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n\r\n.MuiPickersCalendarHeader-label {\r\n    color: #F3F4F6 !important;\r\n}\r\n\r\n.MuiDialogActions-root {\r\n    justify-content: center !important;\r\n}\r\n\r\n.MuiButton-textPrimary {\r\n    width: 136px !important;\r\n    background-color: #116ACC !important;\r\n    border-radius: 8px !important;\r\n    height: 40px !important;\r\n    font-weight: 500 !important;\r\n    font-size: 14px !important;\r\n    line-height: 20px !important;\r\n}\r\n\r\n.MuiDialogActions-root:first-child {\r\n    background-color: #fff !important;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".css-13cymwt-control {\r\n    border-radius: 7px !important;\r\n}\r\n\r\n.MuiButtonBase-root {\r\n    border-radius: 7px !important;\r\n}\r\n\r\ntable th {\r\n    color: #fff;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 20px;\r\n    line-height: 24px;\r\n    text-align: start;\r\n}\r\n\r\ntable td {\r\n    font-weight: 400;\r\n    font-size: 16px;\r\n    line-height: 24px;\r\n    color: #374151;\r\n    padding-top: 18px;\r\n    letter-spacing: -0.01em;\r\n    padding-bottom: 18px;\r\n}\r\n\r\ntable tbody tr {\r\n    border-bottom: 2px solid rgba(0, 82, 255, 0.1);\r\n}\r\n\r\nth:first-child {\r\n    border-top-left-radius: 15px;\r\n    border-bottom-left-radius: 15px;\r\n    padding-left: 48px;\r\n}\r\n\r\nth:last-child {\r\n    border-top-right-radius: 15px;\r\n    border-bottom-right-radius: 15px;\r\n    padding-right: 48px;\r\n}\r\n\r\ntd:first-child {\r\n    padding-left: 48px;\r\n}\r\n\r\ntd:last-child {\r\n    padding-right: 48px;\r\n}\r\n\r\n.label-style {\r\n    color: #4B5563;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    font-size: 18px;\r\n    line-height: 22px;\r\n}\r\n\r\n.MuiInputBase-root {\r\n    border-radius: 7px !important;\r\n    height: 44px !important;\r\n}\r\n\r\n.MuiPickersToolbar-root {\r\n    display: none !important;\r\n}\r\n\r\n.MuiPaper-elevation24 {\r\n    background-color: #182233 !important;\r\n    border-radius: 12px !important;\r\n}\r\n\r\n.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {\r\n    background-color: #182233 !important;\r\n    border-radius: 50% !important;\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {\r\n    color: #fff !important;\r\n}\r\n\r\n.PrivatePickersYear-yearButton {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiIconButton-edgeEnd {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiIconButton-edgeStart {\r\n    color: #fff !important;\r\n}\r\n\r\n.Mui-selected {\r\n    background: #116ACC !important;\r\n}\r\n\r\n.MuiPickersDay-today {\r\n    background: rgba(243, 244, 246, 0.5) !important;\r\n    border-radius: 50% !important;\r\n}\r\n\r\n.css-1e6y48t-MuiButtonBase-root-MuiButton-root {\r\n    color: #fff !important;\r\n}\r\n\r\n.MuiTypography-root {\r\n    color: #F3F4F6 !important;\r\n    font-weight: 500 !important;\r\n    font-size: 13px !important;\r\n}\r\n\r\n.MuiPickersCalendarHeader-label {\r\n    color: #F3F4F6 !important;\r\n}\r\n\r\n.MuiDialogActions-root {\r\n    justify-content: center !important;\r\n}\r\n\r\n.MuiButton-textPrimary {\r\n    width: 136px !important;\r\n    background-color: #116ACC !important;\r\n    border-radius: 8px !important;\r\n    height: 40px !important;\r\n    font-weight: 500 !important;\r\n    font-size: 14px !important;\r\n    line-height: 20px !important;\r\n}\r\n\r\n.back-contect {\r\n    background-image: url('/image/back.png');\r\n    background-repeat: no-repeat;\r\n    background-size: 60%;\r\n    /* background-position: right top; */\r\n    background-position-x: 670px;\r\n    background-position-y: -230px;\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

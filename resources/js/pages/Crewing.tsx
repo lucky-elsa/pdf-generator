@@ -12,14 +12,15 @@ export default function Crewing() {
     ];
 
     return (
-        <div className='pt-[75px] mb-[90px]'>
+        <div className='pt-[75px] mb-[90px] '>
             <div className='flex justify-between w-[183px] ml-[23px]'>
                 <Link className='text-[16px] font-[600] text-[#9CA3AF]' to="/">Home</Link>
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/">Crewings Board</Link>
             </div>
+            
+            <div style={{ padding: "48px 58px" }} className='back-contect flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
 
-            <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Crewings Board Data</p>
                 <div className='mt-[44px] flex flex-col gap-[23px]'>
                     <div className='flex justify-end'>
@@ -28,7 +29,7 @@ export default function Crewing() {
                     </div>
 
                     <table>
-                        <thead className='bg-[#116ACC] h-[64px]'>
+                        <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
                                 <th className='w-[14%]'>Company Name</th>
                                 <th className='w-[17.5%]'>Country</th>
@@ -197,6 +198,7 @@ export default function Crewing() {
                         </tbody>
                     </table>
                 </div>
+                {/* <div className="text-[1000px] font-[700] leading-[1149px] text-[#F9FAFB] absolute z-0 top-[-100px] left-[650px]">M</div> */}
             </div>
 
             <div className='mt-[49px] flex justify-center'>

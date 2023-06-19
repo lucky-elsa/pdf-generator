@@ -66,17 +66,32 @@ td:last-child {
     display: none !important;
 }
 
-.MuiPaper-root {
+.MuiPaper-elevation24 {
     background-color: #182233 !important;
     border-radius: 12px !important;
 }
 
-.MuiButtonBase-root {
+.css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
     background-color: #182233 !important;
     border-radius: 50% !important;
     color: #F3F4F6 !important;
     font-weight: 500 !important;
     font-size: 13px !important;
+}
+.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {
+    color: #fff !important;
+}
+
+.PrivatePickersYear-yearButton {
+    color: #fff !important;
+}
+
+.MuiIconButton-edgeEnd {
+    color: #fff !important;
+}
+
+.MuiIconButton-edgeStart {
+    color: #fff !important;
 }
 
 .Mui-selected {
@@ -85,6 +100,11 @@ td:last-child {
 
 .MuiPickersDay-today {
     background: rgba(243, 244, 246, 0.5) !important;
+    border-radius: 50% !important;
+}
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color: #fff !important;
 }
 
 .MuiTypography-root {
@@ -111,6 +131,11 @@ td:last-child {
     line-height: 20px !important;
 }
 
-.MuiDialogActions-root:first-child {
-    background-color: #fff !important;
+.back-contect {
+    background-image: url('/image/back.png');
+    background-repeat: no-repeat;
+    background-size: 60%;
+    /* background-position: right top; */
+    background-position-x: 670px;
+    background-position-y: -230px;
 }
