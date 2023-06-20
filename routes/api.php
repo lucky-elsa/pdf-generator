@@ -27,42 +27,42 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->input('a');
 // });
 // Route::post('/clientusers', [ClientAuthController::class,'register']);
-Route ::group(['prefix'=>'client'],function (){
-    Route::post('/login', [ClientAuthController::class,'login']);
-    Route::group(["middleware"=>'auth:sanctum'],function(){
-        Route::post('/bresh',[ClientAuthController::class,"bresh"]);
-        Route::get('/me',[DataController::class,"me"]);
-        Route::post('/resetpass',[ClientAuthController::class,"resetpass"]);
-        Route::get('/logout',[DataController::class,"logout"]);
-        Route::post('/create',[DataController::class,"create"]);
-        Route::post('/createfile',[DataController::class,"createfile"]);
-        Route::post('/createself',[DataController::class,"createself"]);
-        Route::post('/createsleep',[DataController::class,"createsleep"]);
-        Route::post('/isregister',[DataController::class,"isregister"]);
-        Route::get('/loaddata',[DataController::class,"loaddata"]);
-        Route::post('/update',[DataController::class,"update"]);
-        Route::post('/updatemeal',[DataController::class,"updatemeal"]);
-        Route::post('/notification',[NotificationController::class,"notification"]);
-        Route::get('/onlynotification',[NotificationController::class,"onlynotification"]);
-        Route::post('/createbreshtime',[NotificationController::class,"createbreshtime"]);
-        Route::get('/loadbreshtime',[NotificationController::class,"loadbreshtime"]);
-        Route::post('/updatebreshtime',[NotificationController::class,"updatebreshtime"]);
-        Route::get('/deletebreshtime',[NotificationController::class,"deletebreshtime"]);
-        Route::post('/invited',[NotificationController::class,"invited"]);
+Route::group(['prefix' => 'client'], function () {
+    Route::post('/login', [ClientAuthController::class, 'login']);
+    Route::group(["middleware" => 'auth:sanctum'], function () {
+        Route::post('/bresh', [ClientAuthController::class, "bresh"]);
+        Route::get('/me', [DataController::class, "me"]);
+        Route::post('/resetpass', [ClientAuthController::class, "resetpass"]);
+        Route::get('/logout', [DataController::class, "logout"]);
+        Route::post('/create', [DataController::class, "create"]);
+        Route::post('/createfile', [DataController::class, "createfile"]);
+        Route::post('/createself', [DataController::class, "createself"]);
+        Route::post('/createsleep', [DataController::class, "createsleep"]);
+        Route::post('/isregister', [DataController::class, "isregister"]);
+        Route::get('/loaddata', [DataController::class, "loaddata"]);
+        Route::post('/update', [DataController::class, "update"]);
+        Route::post('/updatemeal', [DataController::class, "updatemeal"]);
+        Route::post('/notification', [NotificationController::class, "notification"]);
+        Route::get('/onlynotification', [NotificationController::class, "onlynotification"]);
+        Route::post('/createbreshtime', [NotificationController::class, "createbreshtime"]);
+        Route::get('/loadbreshtime', [NotificationController::class, "loadbreshtime"]);
+        Route::post('/updatebreshtime', [NotificationController::class, "updatebreshtime"]);
+        Route::get('/deletebreshtime', [NotificationController::class, "deletebreshtime"]);
+        Route::post('/invited', [NotificationController::class, "invited"]);
     });
 });
-Route ::group(['prefix'=>'admin'],function (){
-    Route::post('/register', [ClientAuthController::class,'register']);
-    Route::post('/login', [AdminAuthController::class,'login']);
-    Route::group(["middleware"=>'auth:sanctum'],function(){
-        Route::get('/loadusers', [ClientAuthController::class,'loadusers']);
-        Route::post('/searchusers', [ClientAuthController::class,'searchusers']);
-        Route::post('/registerclient', [ClientAuthController::class,'register']);
-        Route::post('/clientresetname', [ClientAuthController::class,'clientresetname']);
-        Route::post('/clientresetpass', [ClientAuthController::class,'clientresetpass']);
-        Route::post('/clientresetInfo', [ClientAuthController::class,'clientresetInfo']);
-        Route::post('/resettreat', [ClientAuthController::class,'resettreat']);
-        Route::get('/getuserdata',[DataController::class,"getuserdata"]);
-        Route::get('/loadvideo',[VideoController::class,"loadvideo"]);
+Route::group(['prefix' => 'admin'], function () {
+    Route::post('/register', [ClientAuthController::class, 'register']);
+    Route::post('/login', [AdminAuthController::class, 'login']);
+    Route::group(["middleware" => 'auth:sanctum'], function () {
+        Route::get('/loadusers', [ClientAuthController::class, 'loadusers']);
+        Route::post('/searchusers', [ClientAuthController::class, 'searchusers']);
+        Route::post('/registerclient', [ClientAuthController::class, 'register']);
+        Route::post('/clientresetname', [ClientAuthController::class, 'clientresetname']);
+        Route::post('/clientresetpass', [ClientAuthController::class, 'clientresetpass']);
+        Route::post('/clientresetInfo', [ClientAuthController::class, 'clientresetInfo']);
+        Route::post('/resettreat', [ClientAuthController::class, 'resettreat']);
+        Route::get('/getuserdata', [DataController::class, "getuserdata"]);
+        Route::get('/loadvideo', [VideoController::class, "loadvideo"]);
     });
 });

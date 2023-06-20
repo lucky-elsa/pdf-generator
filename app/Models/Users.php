@@ -17,14 +17,16 @@ class Users extends Authenticatable
      *
      * @var array<int, string>
      */
+    
     protected $fillable = [
-        'userid',
-        "clinic_id",
-        "ticketid",
-        "midpassword",
-        "LineId",
-        "name",
-        'password',
+        'name',
+        "surname",
+        "citizenship",
+        "country_residence",
+        "phone",
+        "email",
+        'birthday',
+        'avatar'
     ];
 
     /**
