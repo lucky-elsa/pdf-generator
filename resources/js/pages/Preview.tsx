@@ -161,8 +161,8 @@ export default function Preview() {
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
                                     PDF link:
                                 </div>
-                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
-                                    <button>CREATE PDF</button>
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[-2px] ml-[45px] text-[#4B5563]'>
+                                    <button className='rounded-[7px] h-[52px] pl-[24px] pr-[24px] font-[500] text-[16px] leading-[20px] text-[#fff] bg-[#116ACC]'>CREATE PDF</button>
                                 </div>
                             </div>
 
@@ -199,12 +199,11 @@ export default function Preview() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[20%]'>Document Type</th>
-                                <th className='w-[16.7%]'>Country</th>
-                                <th className='w-[16.7%]'>Number</th>
-                                <th className='w-[16.6%]'>Issue Date</th>
-                                <th className='w-[20%]'>Expiration Date</th>
-                                <th className='w-[10%]'>Actions</th>
+                                <th className='w-[24%]'>Document Type</th>
+                                <th className='w-[20.7%]'>Country</th>
+                                <th className='w-[20.7%]'>Number</th>
+                                <th className='w-[20.6%]'>Issue Date</th>
+                                <th className='w-[18%]'>Expiration Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -214,14 +213,6 @@ export default function Preview() {
                                 <td className='text-start'>LV343435545645</td>
                                 <td className='text-start'>20.05.2000.</td>
                                 <td className='text-start'>20.05.2030.</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
 
                             <tr>
@@ -230,14 +221,6 @@ export default function Preview() {
                                 <td className='text-start'>LV343435545645</td>
                                 <td className='text-start'>20.05.2000.</td>
                                 <td className='text-start'>20.05.2030.</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -253,12 +236,11 @@ export default function Preview() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[20%]'>Job title</th>
-                                <th className='w-[16.7%]'>Years</th>
-                                <th className='w-[16.7%]'>Type of vessels</th>
-                                <th className='w-[16.6%]'>Clients</th>
-                                <th className='w-[20%]'>Crewing's Employers</th>
-                                <th className='w-[10%]'>Actions</th>
+                                <th className='w-[25%]'>Job title</th>
+                                <th className='w-[19.7%]'>Years</th>
+                                <th className='w-[19.7%]'>Type of vessels</th>
+                                <th className='w-[19.6%]'>Clients</th>
+                                <th className='w-[16%]'>Crewing's Employers</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -268,14 +250,6 @@ export default function Preview() {
                                 <td className='text-start'>Vessel 1 </td>
                                 <td className='text-start'>Clients</td>
                                 <td className='text-start'>Crewing's, Employers</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
 
                             <tr>
@@ -284,14 +258,6 @@ export default function Preview() {
                                 <td className='text-start'>Vessel 2 </td>
                                 <td className='text-start'>Clients</td>
                                 <td className='text-start'>Crewing's, Employers</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -309,11 +275,10 @@ export default function Preview() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[20%]'>Name</th>
-                                <th className='w-[20%]'>Number</th>
-                                <th className='w-[20%]'>Issue Date</th>
-                                <th className='w-[30%]'>Expiry Date</th>
-                                <th className='w-[10%]'>Actions</th>
+                                <th className='w-[25.5%]'>Name</th>
+                                <th className='w-[25.5%]'>Number</th>
+                                <th className='w-[37%]'>Issue Date</th>
+                                <th className='w-[12%]'>Expiry Date</th>
                             </tr>
                         </thead>
 
@@ -323,28 +288,12 @@ export default function Preview() {
                                 <td className='text-start'>HACPP122324324325</td>
                                 <td className='text-start'>20.05.2020</td>
                                 <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                             <tr>
                                 <td className='text-start'>Food Safety and HACPP </td>
                                 <td className='text-start'>HACPP122324324325</td>
                                 <td className='text-start'>20.05.2020</td>
                                 <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -362,11 +311,10 @@ export default function Preview() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[20%]'>Name</th>
-                                <th className='w-[20%]'>Number</th>
-                                <th className='w-[20%]'>Issue Date</th>
-                                <th className='w-[30%]'>Expiry Date</th>
-                                <th className='w-[10%]'>Actions</th>
+                                <th className='w-[25.5%]'>Name</th>
+                                <th className='w-[25.5%]'>Number</th>
+                                <th className='w-[37%]'>Issue Date</th>
+                                <th className='w-[12%]'>Expiry Date</th>
                             </tr>
                         </thead>
 
@@ -376,28 +324,12 @@ export default function Preview() {
                                 <td className='text-start'>HACPP122324324325</td>
                                 <td className='text-start'>20.05.2020</td>
                                 <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                             <tr>
                                 <td className='text-start'>OGUK</td>
                                 <td className='text-start'>24214325436567</td>
                                 <td className='text-start'>20.05.2020</td>
                                 <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -415,11 +347,10 @@ export default function Preview() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[20%]'>Name</th>
-                                <th className='w-[20%]'>Number</th>
-                                <th className='w-[20%]'>Issue Date</th>
-                                <th className='w-[30%]'>Expiry Date</th>
-                                <th className='w-[10%]'>Actions</th>
+                                <th className='w-[25.5%]'>Name</th>
+                                <th className='w-[25.5%]'>Number</th>
+                                <th className='w-[37%]'>Issue Date</th>
+                                <th className='w-[12%]'>Expiry Date</th>
                             </tr>
                         </thead>
 
@@ -429,28 +360,12 @@ export default function Preview() {
                                 <td className='text-start'>HACPP122324324325</td>
                                 <td className='text-start'>20.05.2020</td>
                                 <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                             <tr>
                                 <td className='text-start'>CUSTOM</td>
                                 <td className='text-start'>24214325436567</td>
                                 <td className='text-start'>20.05.2020</td>
                                 <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -468,13 +383,12 @@ export default function Preview() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[14%]'>Vessel</th>
-                                <th className='w-[14%]'>Vessel Type</th>
-                                <th className='w-[12%]'>Rank</th>
-                                <th className='w-[14%]'>Contracts</th>
-                                <th className='w-[18%]'>Contract Duration</th>
+                                <th className='w-[16%]'>Vessel</th>
+                                <th className='w-[16%]'>Vessel Type</th>
+                                <th className='w-[14%]'>Rank</th>
+                                <th className='w-[16%]'>Contracts</th>
+                                <th className='w-[20%]'>Contract Duration</th>
                                 <th className='w-[18%]'>Description</th>
-                                <th className='w-[10%]'>Actions</th>
                             </tr>
                         </thead>
 
@@ -486,14 +400,6 @@ export default function Preview() {
                                 <td className='text-start'>20</td>
                                 <td className='text-start'>6 months</td>
                                 <td className='text-start'>I was the main on the board</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                             <tr>
                                 <td className='text-start'>Vessel Name</td>
@@ -502,14 +408,6 @@ export default function Preview() {
                                 <td className='text-start'>20</td>
                                 <td className='text-start'>6 months</td>
                                 <td className='text-start'>I was the main on the board</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -527,10 +425,9 @@ export default function Preview() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[25%]'>Languages</th>
-                                <th className='w-[25%]'>Computer</th>
-                                <th className='w-[40%]'>Additional trainings and skills</th>
-                                <th className='w-[10%]'>Actions</th>
+                                <th className='w-[37.5%]'>Languages</th>
+                                <th className='w-[37.5%]'>Computer</th>
+                                <th className='w-[25%]'>Additional trainings and skills</th>
                             </tr>
                         </thead>
 
@@ -539,22 +436,19 @@ export default function Preview() {
                                 <td className='text-start'>LV/ENG/RUS</td>
                                 <td className='text-start'>Word/Excel/Explorer</td>
                                 <td className='text-start'>I am very trained </td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-            <div className='flex justify-end mr-[100px] mt-[96px] pt-[96x]'>
-                <button className='mt-[96x] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]' type='button'>PREVIEW</button>
+            <div className='flex w-full mt-[60px] pt-[96x]'>
+                <div className='flex justify-start w-[50%]'>
+                    <Link className='ml-[120px] pt-[14px] pl-[24px] bg-[#116ACC] rounded-[7px] w-[90px] h-[52px] text-[16px] font-[500] text-[#fff]' to="/cv">BACK</Link>
+                </div>
+                <div className="flex justify-end w-[50%]">
+                    <button className='mr-[120px] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]' type='button'>SAVE</button>
+                </div>
             </div>
         </div>
     )
