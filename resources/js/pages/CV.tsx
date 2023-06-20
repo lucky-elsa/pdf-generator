@@ -1246,9 +1246,8 @@ export default function CV() {
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
+            
             <div className='flex justify-end mr-[100px] mt-[96px] pt-[96x]'>
                 <button className='mt-[96x] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]' type='button'>PREVIEW</button>
             </div>

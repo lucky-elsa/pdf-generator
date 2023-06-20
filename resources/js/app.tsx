@@ -9,6 +9,7 @@ import setAuthToken from "./redux/utils/setauthtoken";
 import Register from "./pages/Register";
 import Add from "./pages/Add_crewing";
 import Crewing from "./pages/Crewing";
+import Preview from "./pages/Preview";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import About from "./pages/About";
@@ -36,6 +37,7 @@ export default function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/about_project" element={<About />} />
                         <Route path="/cv" element={<CV />} />
+                        <Route path="/preview" element={<Preview />} />
                         <Route path="/term" element={<Term />} />
                         <Route path="/add_crewing" element={<Add />} />
                     </Routes>
