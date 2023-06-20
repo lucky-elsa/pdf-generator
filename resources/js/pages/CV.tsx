@@ -68,6 +68,12 @@ export default function CV() {
         { value: 'custom', label: 'CUSTOM' }
     ]
 
+    const langOptions = [
+        { value: 'latvian', label: 'Latvian' },
+        { value: 'russian', label: 'Russian' },
+        { value: 'english', label: 'English' }
+    ]
+
     return (
         <div className='pt-[75px] mb-[90px]'>
             <div className='flex justify-between w-[148px] ml-[23px]'>
@@ -997,104 +1003,94 @@ export default function CV() {
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC]'>Sea experience </p>
                 </div>
-                <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex rounded-[5px] w-full box-border'>
-
-                    <div className='flex flex-col gap-[83px] w-[50%]'>
-                        <div className='flex'>
-                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                Vessel:
-                            </div>
-                            <div className='w-[70%]'>
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your name"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-
-                        <div className='flex'>
-                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                Vessel Type:
-                            </div>
-                            <div className='w-[70%]'>
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your citizenship"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-
-                        <div className='flex'>
-                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                Rank:
-                            </div>
-                            <div className='w-[70%]'>
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your name"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
+                <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex flex-col rounded-[5px] w-full box-border'>
+                    <div className='flex justify-end mb-[50px]'>
+                        <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
                     </div>
-
-                    <div className='flex flex-col gap-[83px] w-[50%]'>
-                        <div className='flex'>
-                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                Amount of Contratcs:
+                    <div className='flex'>
+                        <div className='flex flex-col gap-[83px] w-[50%]'>
+                            <div className='flex'>
+                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    Vessel:
+                                </div>
+                                <div className='w-[70%]'>
+                                    <input
+                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                        placeholder="Type your name"
+                                        type="text"
+                                        value={name}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
-                            <div className='w-[70%]'>
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your phone number"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
+
+                            <div className='flex'>
+                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    Vessel Type:
+                                </div>
+                                <div className='w-[70%]'>
+                                    <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
+                                </div>
+                            </div>
+
+                            <div className='flex'>
+                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    Rank:
+                                </div>
+                                <div className='w-[70%]'>
+                                    <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
+                                </div>
                             </div>
                         </div>
 
-                        <div className='flex'>
-                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                Each Contract duration (average):
+                        <div className='flex flex-col gap-[83px] w-[50%]'>
+                            <div className='flex'>
+                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    Amount of Contratcs:
+                                </div>
+                                <div className='w-[70%]'>
+                                    <input
+                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                        placeholder="Type your phone number"
+                                        type="text"
+                                        value={name}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
-                            <div className='w-[70%]'>
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your phone number"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
 
-                        <div className='flex'>
-                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                Description of Job Performed:
+                            <div className='flex'>
+                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    Each Contract duration (average):
+                                </div>
+                                <div className='w-[70%]'>
+                                    <input
+                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                        placeholder="Type your phone number"
+                                        type="text"
+                                        value={name}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
-                            <div className='w-[70%]'>
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your email"
-                                    type="email"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
+
+                            <div className='flex'>
+                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    Description of Job Performed:
+                                </div>
+                                <div className='w-[70%]'>
+                                    <input
+                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                        placeholder="Type your email"
+                                        type="email"
+                                        value={name}
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1156,13 +1152,13 @@ export default function CV() {
                 </div>
             </div>
 
-            {/* Certificates STCW and Offshore  */}
+            {/* Additional information   */}
 
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Additional information</p>
                 </div>
-                {/* BOSIET 5700 element */}
+
                 <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
                     <div className="flex w-full">
                         <div className='flex justify-end w-full'>
@@ -1178,10 +1174,37 @@ export default function CV() {
                                         Languages:
                                     </div>
                                     <div className='w-[70%]'>
+                                        <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='flex flex-col gap-[83px] w-[50%]'>
+                                <div className='flex'>
+                                    <div className='w-[40%] label-style pt-[10px] flex justify-end'>
+                                        Computer:
+                                    </div>
+                                    <div className='w-[60%]'>
                                         <input
                                             style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                                             className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                            placeholder="Type your name"
+                                            placeholder="Type your Computer Skills"
+                                            type="text"
+                                            value={name}
+                                            onChange={handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className='flex'>
+                                    <div className='w-[40%] label-style pt-[10px] flex justify-end'>
+                                        Additional Training and Skills:
+                                    </div>
+                                    <div className='w-[60%]'>
+                                        <input
+                                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                            className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                            placeholder="Type your Skills"
                                             type="text"
                                             value={name}
                                             onChange={handleChange}
@@ -1189,57 +1212,10 @@ export default function CV() {
                                     </div>
                                 </div>
                             </div>
-
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Computer:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: '17px'
-                                                    }}
-                                                    {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Additional Training and Skills::
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: "17px"
-                                                    }} {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-                {/* Your Certificates STCW and Offshore element */}
+                {/* Your Additional Information element */}
                 <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
                     <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Additional Information</div>
 
@@ -1270,8 +1246,12 @@ export default function CV() {
                         </tbody>
                     </table>
                 </div>
-            </div>
 
+
+            </div>
+            <div className='flex justify-end mr-[100px] mt-[96px] pt-[96x]'>
+                <button className='mt-[96x] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]' type='button'>PREVIEW</button>
+            </div>
         </div>
     )
 }
