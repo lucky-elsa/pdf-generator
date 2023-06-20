@@ -103,33 +103,10 @@ export default function Preview() {
 
                             <div className='flex'>
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Surname:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your citizenship"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
                                     Citizenship:
                                 </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    Latvian
                                 </div>
                             </div>
 
@@ -137,15 +114,8 @@ export default function Preview() {
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
                                     Country of residence:
                                 </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    Latvia
                                 </div>
                             </div>
 
@@ -153,15 +123,17 @@ export default function Preview() {
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
                                     Nearest Airport:
                                 </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    Riga RIX
+                                </div>
+                            </div>
+
+                            <div className='flex'>
+                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    Gender:
+                                </div>
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    Male
                                 </div>
                             </div>
                         </div>
@@ -169,33 +141,10 @@ export default function Preview() {
                         <div className='flex flex-col gap-[83px] w-[50%]'>
                             <div className='flex'>
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Gender:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
                                     Phone number:
                                 </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    (+371) 2222 2222
                                 </div>
                             </div>
 
@@ -203,31 +152,26 @@ export default function Preview() {
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
                                     E-mail:
                                 </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your email"
-                                        type="email"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    email@email.lv
                                 </div>
                             </div>
 
                             <div className='flex'>
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                    PDF link:
+                                </div>
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    <button>CREATE PDF</button>
+                                </div>
+                            </div>
+
+                            <div className='flex'>
+                                <div className='w-[30%] font-[500] label-style pt-[10px] flex justify-end'>
                                     Other links:
                                 </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    LinkedIn
                                 </div>
                             </div>
 
@@ -235,20 +179,8 @@ export default function Preview() {
                                 <div className='w-[30%] label-style pt-[10px] flex justify-end'>
                                     Date of Birth:
                                 </div>
-                                <div className='w-[70%] ml-[22px]'>
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <MobileDatePicker
-                                            value={selectedDate}
-                                            onChange={handleDateChange}
-                                            renderInput={(params) => <TextField
-                                                onClick={() => console.log("asd")}
-                                                sx={{
-                                                    width: 300,
-                                                    backgroundColor: "#fff",
-                                                }} {...params}
-                                            />}
-                                        />
-                                    </LocalizationProvider>
+                                <div className='w-[70%] font-[500] text-[32px] leading-[36px] mt-[3px] ml-[45px] text-[#4B5563]'>
+                                    20.09.1955
                                 </div>
                             </div>
                         </div>
@@ -261,106 +193,9 @@ export default function Preview() {
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Documents</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="All" options={options} />
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[23px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
-                    </button>
-                </div>
-                {/* Seamans's Book element */}
-                <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
-                    <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Seamans's Book</div>
-                        <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
-                        </div>
-                    </div>
-                    <div className='flex w-full'>
-                        <div className='flex flex-col gap-[83px] w-[50%]'>
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Number:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Country:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your citizenship"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='flex flex-col gap-[83px] w-[50%]'>
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Issue Date:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <MobileDatePicker
-                                            value={selectedDate}
-                                            onChange={handleDateChange}
-                                            renderInput={(params) => <TextField
-                                                onClick={() => console.log("asd")}
-                                                sx={{
-                                                    width: 300,
-                                                    backgroundColor: "#fff",
-                                                    marginLeft: '17px'
-                                                }}
-                                                {...params}
-                                            />}
-                                        />
-                                    </LocalizationProvider>
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Expiry Date:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <MobileDatePicker
-                                            value={selectedDate}
-                                            onChange={handleDateChange}
-                                            renderInput={(params) => <TextField
-                                                onClick={() => console.log("asd")}
-                                                sx={{
-                                                    width: 300,
-                                                    backgroundColor: "#fff",
-                                                    marginLeft: "17px"
-                                                }} {...params}
-                                            />}
-                                        />
-                                    </LocalizationProvider>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 {/* Your Document element */}
-                <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
-                    <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Documents</div>
-
+                <div className='flex flex-col gap-[25px] mt-[30px] mb-[40px]'>
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
@@ -412,104 +247,9 @@ export default function Preview() {
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Maritime experience</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={experienceOptions} />
-                    <input
-                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                        className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        placeholder="Type your Vessel"
-                        type="text"
-                        value={name}
-                        onChange={handleChange}
-                    />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
-                        <img src='/image/check.png' alt="x" />
-                    </button>
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
-                    </button>
-                </div>
-                {/* Job title element */}
-                <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
-                    <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Job title 2</div>
-                        <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
-                        </div>
-                    </div>
-
-                    <div className='flex flex-col gap-[83px] w-full'>
-                        <div className='flex'>
-                            <div className='w-[15%] label-style pt-[6px] flex justify-end'>
-                                Types of vessels:
-                            </div>
-                            <div className='w-[85%] flex'>
-                                <Select className='w-[300px] rounded-[10px] ml-[17px]' placeholder="..." options={vesselOptions} />
-
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your Vessel"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
-
-                                <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] ml-[23px] h-[38px]'>
-                                    <img src='/image/check.png' alt="x" />
-                                </button>
-                                <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] ml-[10px] h-[38px]'>
-                                    <img src='/image/plus_black.png' alt="x" />
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className='flex'>
-                            <div className='w-[57%] flex'>
-                                <div className='w-[26.5%] label-style pt-[6px] flex justify-end'>
-                                    Clients:
-                                </div>
-                                <div className='w-[73.5%] flex'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type Clients"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-                            <div className='w-[43%] flex'>
-                                <div className='w-[30%] label-style pt-[6px] flex justify-end'>
-                                    Years:
-                                </div>
-                                <div className='w-[70%] flex'>
-                                    <Select className='w-[300px] rounded-[10px] ml-[17px]' placeholder="Please select" options={yearsOptions} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='flex'>
-                            <div className='w-[15%] label-style pt-[6px] flex justify-end'>
-                                Crewing's, Employers:
-                            </div>
-                            <div className='w-[85%]'>
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type Crewing's, Employers"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 {/* Your Experience element */}
-                <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
-                    <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Experience</div>
-
+                <div className='flex flex-col gap-[25px] mt-[30px] mb-[40px]'>
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
@@ -563,104 +303,9 @@ export default function Preview() {
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Certificate of Competency</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={certificateOptions} />
-                    <input
-                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                        className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        placeholder="Type your Vessel"
-                        type="text"
-                        value={name}
-                        onChange={handleChange}
-                    />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
-                        <img src='/image/check.png' alt="x" />
-                    </button>
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
-                    </button>
-                </div>
-                {/* Onshore Cooks Certificate element */}
-                <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
-                    <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Onshore Cooks Certificate</div>
-                        <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
-                        </div>
-                    </div>
-
-                    <div className='flex flex-col gap-[83px] w-full'>
-                        <div className='flex w-full'>
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Number:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <input
-                                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                            className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                            placeholder="Type your name"
-                                            type="text"
-                                            value={name}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Issue Date:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: '17px'
-                                                    }}
-                                                    {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Expiry Date:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: "17px"
-                                                    }} {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 {/* Your Certificates of Competency element */}
-                <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
-                    <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Certificates of Competency</div>
-
+                <div className='flex flex-col gap-[25px] mt-[30px] mb-[40px]'>
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
@@ -710,94 +355,10 @@ export default function Preview() {
 
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
-                    <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Medical Certificate </p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={medicalOptions} />
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
-                    </button>
-                </div>
-                {/* Seafarers Medical element */}
-                <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
-                    <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Seafarers Medical</div>
-                        <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
-                        </div>
-                    </div>
-
-                    <div className='flex flex-col gap-[83px] w-full'>
-                        <div className='flex w-full'>
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Number:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <input
-                                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                            className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                            placeholder="Type your name"
-                                            type="text"
-                                            value={name}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Issue Date:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: '17px'
-                                                    }}
-                                                    {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Expiry Date:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: "17px"
-                                                    }} {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Medical Certificate</p>
                 </div>
                 {/* Your Medical Certificates element */}
-                <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
-                    <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Certificates of Competency</div>
-
+                <div className='flex flex-col gap-[25px] mt-[30px] mb-[40px]'>
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
@@ -848,104 +409,9 @@ export default function Preview() {
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Certificates STCW and Offshore</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={offshoreOptions} />
-                    <input
-                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                        className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        placeholder="Type your Vessel"
-                        type="text"
-                        value={name}
-                        onChange={handleChange}
-                    />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
-                        <img src='/image/check.png' alt="x" />
-                    </button>
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
-                    </button>
-                </div>
-                {/* BOSIET 5700 element */}
-                <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
-                    <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>BOSIET 5700</div>
-                        <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
-                        </div>
-                    </div>
-
-                    <div className='flex flex-col gap-[83px] w-full'>
-                        <div className='flex w-full'>
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Number:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <input
-                                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                            className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                            placeholder="Type your name"
-                                            type="text"
-                                            value={name}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Issue Date:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: '17px'
-                                                    }}
-                                                    {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Expiry Date:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                            <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
-                                                renderInput={(params) => <TextField
-                                                    onClick={() => console.log("asd")}
-                                                    sx={{
-                                                        width: 300,
-                                                        backgroundColor: "#fff",
-                                                        marginLeft: "17px"
-                                                    }} {...params}
-                                                />}
-                                            />
-                                        </LocalizationProvider>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 {/* Your Certificates STCW and Offshore element */}
-                <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
-                    <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Certificates STCW and Offshore</div>
-
+                <div className='flex flex-col gap-[25px] mt-[30px] mb-[40px]'>
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
@@ -997,104 +463,8 @@ export default function Preview() {
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC]'>Sea experience </p>
                 </div>
-                <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex flex-col rounded-[5px] w-full box-border'>
-                    <div className='flex justify-end mb-[50px]'>
-                        <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
-                    </div>
-                    <div className='flex'>
-                        <div className='flex flex-col gap-[83px] w-[50%]'>
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Vessel:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Vessel Type:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Rank:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='flex flex-col gap-[83px] w-[50%]'>
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Amount of Contratcs:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Each Contract duration (average):
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Description of Job Performed:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your email"
-                                        type="email"
-                                        value={name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 {/* Your Sea Experience element */}
-
-                <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
-                    <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Certificates STCW and Offshore</div>
-
+                <div className='flex flex-col gap-[25px] mt-[30px] mb-[40px]'>
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
@@ -1152,67 +522,8 @@ export default function Preview() {
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Additional information</p>
                 </div>
-
-                <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
-                    <div className="flex w-full">
-                        <div className='flex justify-end w-full'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
-                        </div>
-                    </div>
-
-                    <div className='flex flex-col gap-[83px] w-full'>
-                        <div className='flex w-full'>
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                        Languages:
-                                    </div>
-                                    <div className='w-[70%]'>
-                                        <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='flex flex-col gap-[83px] w-[50%]'>
-                                <div className='flex'>
-                                    <div className='w-[40%] label-style pt-[10px] flex justify-end'>
-                                        Computer:
-                                    </div>
-                                    <div className='w-[60%]'>
-                                        <input
-                                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                            className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                            placeholder="Type your Computer Skills"
-                                            type="text"
-                                            value={name}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className='flex'>
-                                    <div className='w-[40%] label-style pt-[10px] flex justify-end'>
-                                        Additional Training and Skills:
-                                    </div>
-                                    <div className='w-[60%]'>
-                                        <input
-                                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                            className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                            placeholder="Type your Skills"
-                                            type="text"
-                                            value={name}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 {/* Your Additional Information element */}
-                <div className='flex flex-col gap-[25px] mt-[10px] mb-[40px]'>
-                    <div className='text-[32px] leading-[36px] text-[#374151] font-[700] '>Your Additional Information</div>
-
+                <div className='flex flex-col gap-[25px] mt-[30px] mb-[40px]'>
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
