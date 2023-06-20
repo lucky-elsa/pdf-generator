@@ -6,6 +6,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import TextField from '@mui/material/TextField';
 
+import ImageUpload from '../components/ImageUpload';
+
 export default function Register() {
     const [name, setName] = useState('');
 
@@ -24,6 +26,17 @@ export default function Register() {
         console.log(text)
     }
 
+    const handleCropping = (dataUrl: string) => {
+        console.log(dataUrl);
+    };
+
+    const croppingProps = {
+        imageSrc: "your-image-url",
+        width: 300,
+        height: 200,
+        onChange: handleCropping,
+    };
+
     return (
         <div className='pt-[75px] mb-[90px]'>
             <div className='flex justify-between w-[163px] ml-[23px]'>
@@ -31,12 +44,13 @@ export default function Register() {
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">Add Crewing</Link>
             </div>
+
             <form>
                 <div style={{ padding: "50px 58px 80px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[67px] pl-[58px] gap-[47px] mt-[80px]'>
                     <div className='flex'>
                         <p className='text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC] mt-[120px]'>Register</p>
                         <div className='w-[60%] flex justify-end mr-[30px]'>
-                            <img src='/image/avatar.png' alt='avatar' />
+                            <ImageUpload />
                         </div>
                     </div>
                     <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex rounded-[5px] w-full box-border'>

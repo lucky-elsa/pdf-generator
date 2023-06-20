@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import AboutComponent  from '../components/about'
+import AboutComponent from '../components/about'
+import ImageUpload from '../components/ImageUpload'
 
 export default function About() {
     return (
