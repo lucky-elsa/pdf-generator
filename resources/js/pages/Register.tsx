@@ -11,7 +11,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { AutocompleteChangeReason, AutocompleteChangeDetails } from '@mui/lab';
 import '../components/style.css'
 
-import dayjs from 'dayjs';
+import axios, { AxiosResponse } from 'axios';
 
 interface CountryType {
     code: string;
@@ -38,16 +38,16 @@ interface EditProps {
 }
 
 export default function Register() {
-    const [name, setName] = useState<string>('');
+    const [name, setName] = useState<string | undefined>('');
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-    const [surname, setSurname] = useState<string>('');
+    const [surname, setSurname] = useState<string | undefined>('');
     const [citizen, setCitizen] = useState<string | undefined>('');
     const [country, setCountry] = useState<string | undefined>('');
-    const [airport, setAirport] = useState<string>('');
-    const [phone, setPhone] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [repassword, setRepassword] = useState<string>('');
+    const [airport, setAirport] = useState<string | undefined>('');
+    const [phone, setPhone] = useState<string | undefined>('');
+    const [email, setEmail] = useState<string | undefined>('');
+    const [password, setPassword] = useState<string | undefined>('');
+    const [repassword, setRepassword] = useState<string | undefined>('');
 
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
@@ -97,8 +97,6 @@ export default function Register() {
     const [active, setActive] = useState<'edit' | 'profile'>('edit');
 
     const ImageUpload: React.FC = () => {
-
-
         const photoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
             e.preventDefault();
             if (!e.target.files) return;
@@ -137,22 +135,28 @@ export default function Register() {
         )
     };
 
-    const userDate = [
-        name,
-        selectedDate,
-        surname,
-        citizen,
-        country,
-        airport,
-        phone,
-        email,
-        password,
-        repassword,
-        image
-    ]
+
 
     const registerUser = () => {
-        
+        const userData = new FormData();
+        name ? userData.append('name', name) : userData.append('name', '');
+        selectedDate ? userData.append('selectedDate', selectedDate.toISOString()) : userData.append('selectedDate', '  ');
+        surname ? userData.append('surname', surname) : userData.append('surname', '');
+        citizen ? userData.append('citizen', citizen) : userData.append('citizen', '');
+        country ? userData.append('country', country) : userData.append('country', '');
+        airport ? userData.append('airport', airport) : userData.append('airport', '');
+        phone ? userData.append('phone', phone) : userData.append('phone', '');
+        email ? userData.append('email', email) : userData.append('email', '');
+        password ? userData.append('password', password) : userData.append('password', '');
+        image ? userData.append('image', image) : userData.append('image', '');
+
+        axios.post('/api/user/register', userData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((res: AxiosResponse) => {
+            console.log(res.data);
+        })
     };
 
     const countries: readonly CountryType[] = [

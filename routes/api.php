@@ -51,6 +51,7 @@ Route::group(['prefix' => 'client'], function () {
         Route::post('/invited', [NotificationController::class, "invited"]);
     });
 });
+
 Route::group(['prefix' => 'admin'], function () {
     Route::post('/register', [ClientAuthController::class, 'register']);
     Route::post('/login', [AdminAuthController::class, 'login']);
@@ -66,3 +67,5 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/loadvideo', [VideoController::class, "loadvideo"]);
     });
 });
+
+Route::post('/user/register', [ClientAuthController::class, 'register']);

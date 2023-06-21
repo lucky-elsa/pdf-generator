@@ -16,13 +16,15 @@ return new class extends Migration {
             $table->id()->autoIncrement();
             $table->string('name');
             $table->string('surname');
-            $table->string('citizenship');
-            $table->string('country_residence');
+            $table->string('citizen');
+            $table->string('country');
             $table->string('phone');
-            $table->string('email');
-            $table->date('birthday')->format('m/d/y');
+            $table->string('airport');
+            $table->string('email')->unique();
+            $table->string('birthday');
             $table->string('password', 255);
             $table->string('avatar');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
