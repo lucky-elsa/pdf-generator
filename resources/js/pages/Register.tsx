@@ -161,7 +161,7 @@ export default function Register() {
                 }
             } else {
                 console.log('success');
-                
+
                 axios.post('/api/user/register', userData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'

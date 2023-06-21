@@ -3,7 +3,7 @@ import { Box, ButtonBase, InputBase } from "@mui/material";
 import DefaultButton from "../../../components/button";
 import axios, { AxiosResponse } from 'axios';
 import {useNavigate } from 'react-router-dom';
-import {  setclient,setid,setname } from '../../.././redux/reducers/authentication'
+import {  setAuthentication,setid,setname } from '../../.././redux/reducers/authentication'
 import {  useAppDispatch } from '../../.././redux/hooks'
 import  setAuthToken from '../../.././redux/utils/setauthtoken'
 import MuiButton from '@mui/material/Button';
@@ -52,7 +52,7 @@ const Login = () => {
                     localStorage.setItem("token",response.data["data"]["token"]);
                     localStorage.setItem("username",response.data["data"]["username"]);
                     setAuthToken(response.data["data"]["token"]);
-                    dispatch(setclient(true));
+                    dispatch(setAuthentication(true));
                     dispatch(setname(response.data["data"]["username"]));
                     dispatch(setid(response.data["data"]["id"]));
                     if(response.data["data"]["LineId"]=='0')

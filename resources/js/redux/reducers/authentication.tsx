@@ -3,18 +3,18 @@ import type { RootState } from '../store'
 
 // Define a type for the slice state
 interface CounterState {
-    id:number,
+    id: number,
     name: string,
-    admin: boolean,
-    client: boolean
+    avatar: string,
+    authentication: boolean
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
-    id:0,
+    id: 0,
     name: "",
-    admin: false,
-    client: false
+    avatar: "",
+    authentication: false
 }
 
 export const authenticationSlide = createSlice({
@@ -28,15 +28,15 @@ export const authenticationSlide = createSlice({
         setname: (state, action: PayloadAction<string>) => {
             state.name = action.payload;
         },
-        setadmin: (state, action: PayloadAction<boolean>) => {
-            state.admin = action.payload;
+        setAvatar: (state, action: PayloadAction<string>) => {
+            state.avatar = action.payload;
         },
-        setclient: (state, action: PayloadAction<boolean>) => {
-            state.client = action.payload;
+        setAuthentication: (state, action: PayloadAction<boolean>) => {
+            state.authentication = action.payload;
         },
     },
 })
 
-export const { setadmin, setclient,setname,setid } = authenticationSlide.actions
+export const { setAvatar, setAuthentication, setname, setid } = authenticationSlide.actions
 
 export default authenticationSlide.reducer

@@ -875,9 +875,6 @@ video {
 .grid {
   display: grid;
 }
-.contents {
-  display: contents;
-}
 .h-0 {
   height: 0px;
 }
@@ -2249,6 +2246,20 @@ input:focus {
 
 .hover\:bg-\[\#116bccc5\]:hover {
   background-color: #116bccc5;
+}
+
+.hover\:bg-\[\#116bccd0\]:hover {
+  background-color: #116bccd0;
+}
+
+.hover\:bg-\[\#166ada\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 106 218 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#f0f0f0\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(240 240 240 / var(--tw-bg-opacity));
 }
 
 .hover\:text-mainColor:hover {

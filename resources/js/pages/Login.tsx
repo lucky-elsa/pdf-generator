@@ -2,10 +2,18 @@ import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
+import { setAvatar, setAuthentication, setid, setname } from '../redux/reducers/authentication'
+import { useAppDispatch } from '../redux/hooks'
+import setAuthToken from '../redux/utils/setauthtoken'
+import axios, { AxiosResponse } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -14,6 +22,34 @@ export default function Login() {
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
     };
+
+    const userData = {
+        "email": email,
+        "password": password
+    }
+
+    const handleLogin = () => {
+        axios.post('/api/user/login', userData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response: AxiosResponse) => {
+            if (response.data["success"] == true) {
+                console.log(response.data["data"]["token"]);
+                localStorage.setItem("token", response.data["data"]["token"]);
+                localStorage.setItem("username", response.data["data"]["name"]);
+                setAuthToken(response.data["data"]["token"]);
+                dispatch(setAuthentication(true));
+                dispatch(setname(response.data["data"]["name"]));
+                dispatch(setid(response.data["data"]["id"]));
+                dispatch(setAvatar(response.data["data"]["avatar"]));
+                navigate('/');
+            } else {
+                alert('Something is wrong')
+            }
+        }).catch((err) => console.log(err));
+    }
+
     return (
         <div>
             <Box className="mt-[135px] mb-[162px]"
@@ -55,21 +91,22 @@ export default function Login() {
 
                     <button
                         style={{ padding: "16px 24px" }}
-                        className='w-[89px] ml-auto mr-auto bg-[#116ACC] rounded-[7px] text-white text-[16px] leading-[20px] font-[500]'>
+                        onClick={handleLogin}
+                        className='w-[89px] ml-auto mr-auto hover:bg-[#116bccd0] bg-[#116ACC] rounded-[7px] text-white text-[16px] leading-[20px] font-[500]'>
                         Login
                     </button>
 
                     <div className='font-[400] text-[14px] leading-[20px] text-[#182233]'>Or login with</div>
 
                     <button
-                        className='p-[15px] w-full rounded-[10px] bg-[#1877F2] flex gap-[15px] text-[20px] leading-[23px] text-white font-[700]'>
+                        className='p-[15px] w-full rounded-[10px] hover:bg-[#166ada] bg-[#1877F2] flex gap-[15px] text-[20px] leading-[23px] text-white font-[700]'>
                         <img src="/image/facebook.png" />
                         Sign In with Facebook
                     </button>
 
                     <button
                         style={{ boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.084), 0px 2px 3px rgba(0, 0, 0, 0.168)" }}
-                        className='p-[15px] w-full rounded-[10px] bg-[#fff] flex gap-[15px] text-[20px] leading-[23px] text-[#787878] font-[600]'>
+                        className='p-[15px] w-full rounded-[10px] hover:bg-[#f0f0f0] bg-[#fff] flex gap-[15px] text-[20px] leading-[23px] text-[#787878] font-[600]'>
                         <img src="/image/google.png" />
                         Sign In with Google
                     </button>

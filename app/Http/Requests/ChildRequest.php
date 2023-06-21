@@ -24,7 +24,6 @@ class ChildRequest extends FormRequest
     public function rules()
     {
         return [
-            'userid'    => ['required', 'string'],
             'password'  =>  ['nullable'],
             "test"=>["nullable"]
         ];

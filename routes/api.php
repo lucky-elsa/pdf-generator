@@ -69,3 +69,4 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::post('/user/register', [ClientAuthController::class, 'register']);
+Route::post('/user/login', [ClientAuthController::class, 'login']);
