@@ -10,18 +10,74 @@ import Autocomplete from '@mui/material/Autocomplete';
 import ImageUpload from '../components/ImageUpload';
 
 export default function Register() {
-    const [name, setName] = useState('');
+    const [name, setName] = useState<string>('');
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [surname, setSurname] = useState<string>('');
+    const [citizen, setCitizen] = useState<string>('');
+    const [country, setCountry] = useState<string>('');
+    const [airport, setAirport] = useState<string>('');
+    const [phone, setPhone] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [repassword, setRepassword] = useState<string>('');
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
 
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const handleSurNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSurname(event.target.value);
+    };
+
+    const handleCitizenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCitizen(event.target.value);
+    };
+
+    const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCountry(event.target.value);
+    };
+
+    const handleAirPortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAirport(event.target.value);
+    };
+
+    const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPhone(event.target.value);
+    };
+
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+    };
+
+    const handleRepasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRepassword(event.target.value);
+    };
 
     function handleDateChange(date: Date | null) {
         setSelectedDate(date);
     }
 
+    const userDate = [
+        name,
+        selectedDate,
+        surname,
+        citizen,
+        country,
+        airport,
+        phone,
+        email,
+        password,
+        repassword
+    ]
+
+    const registerUser = () => {
+        console.log(userDate);
+    }
+    
     interface CountryType {
         code: string;
         label: string;
@@ -463,7 +519,7 @@ export default function Register() {
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">Add Crewing</Link>
             </div>
 
-            <form>
+            <form className=''>
                 <div style={{ padding: "50px 58px 80px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[67px] pl-[58px] gap-[47px] mt-[80px]'>
                     <div className='flex'>
                         <p className='text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC] mt-[120px]'>Register</p>
@@ -484,7 +540,7 @@ export default function Register() {
                                         placeholder="Type your name"
                                         type="text"
                                         value={name}
-                                        onChange={handleChange}
+                                        onChange={handleNameChange}
                                     />
                                 </div>
                             </div>
@@ -499,8 +555,8 @@ export default function Register() {
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Type your citizenship"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={surname}
+                                        onChange={handleSurNameChange}
                                     />
                                 </div>
                             </div>
@@ -536,6 +592,8 @@ export default function Register() {
                                         renderInput={(params) => (
                                             <TextField
                                                 {...params}
+                                                value={citizen}
+                                                onChange={handleCitizenChange}
                                                 label="Please, select"
                                                 inputProps={{
                                                     ...params.inputProps,
@@ -578,6 +636,8 @@ export default function Register() {
                                         renderInput={(params) => (
                                             <TextField
                                                 {...params}
+                                                value={country}
+                                                onChange={handleCountryChange}
                                                 label="Please, select"
                                                 inputProps={{
                                                     ...params.inputProps,
@@ -599,8 +659,8 @@ export default function Register() {
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Type your name"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={airport}
+                                        onChange={handleAirPortChange}
                                     />
                                 </div>
                             </div>
@@ -617,8 +677,8 @@ export default function Register() {
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Type your phone number"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={phone}
+                                        onChange={handlePhoneChange}
                                     />
                                 </div>
                             </div>
@@ -633,8 +693,8 @@ export default function Register() {
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Type your email"
                                         type="email"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={email}
+                                        onChange={handleEmailChange}
                                     />
                                 </div>
                             </div>
@@ -670,8 +730,8 @@ export default function Register() {
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Type your Password"
                                         type="password"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={password}
+                                        onChange={handlePasswordChange}
                                     />
                                 </div>
                             </div>
@@ -686,8 +746,8 @@ export default function Register() {
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Confirm your password"
                                         type="password"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={repassword}
+                                        onChange={handleRepasswordChange}
                                     />
                                 </div>
                             </div>
@@ -696,7 +756,11 @@ export default function Register() {
                 </div>
 
                 <div className='flex justify-center mt-[40px] mr-[80px]'>
-                    <button type="button" className='bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'>
+                    <button 
+                        type="button" 
+                        className='bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'
+                        onClick={registerUser}
+                    >
                         Register
                     </button>
                 </div>
