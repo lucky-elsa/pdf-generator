@@ -2,6 +2,7 @@ import React, { useState, ReactNode } from 'react';
 import './style.css';
 
 interface ImgUploadProps {
+    file?: File,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     src: string
 }
@@ -75,7 +76,6 @@ const Profile: React.FC<ProfileProps> = ({ onSubmit, src, name, status }) => {
 }
 
 const Edit: React.FC<EditProps> = ({ onSubmit, children }) => (
-
     <form onSubmit={onSubmit}>
         {children}
     </form>
@@ -97,6 +97,7 @@ const ImageUpload: React.FC = () => {
             setFile(file);
             setImagePreviewUrl(reader.result as string);
         }
+
         reader.readAsDataURL(file);
     };
 
@@ -112,7 +113,7 @@ const ImageUpload: React.FC = () => {
         <div>
             {active === 'edit' ? (
                 <Edit onSubmit={handleSubmit}>
-                    <ImgUpload onChange={photoUpload} src={imagePreviewUrl} />
+                    <ImgUpload file={file || undefined} onChange={photoUpload} src={imagePreviewUrl} />
                 </Edit>
             ) : (
                 <Profile

@@ -4,17 +4,45 @@ import { Link } from 'react-router-dom'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import TextField from '@mui/material/TextField';
+import { TextField } from "@mui/material";
 import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
-import ImageUpload from '../components/ImageUpload';
+// import ImageUpload from '../components/ImageUpload';
+import { AutocompleteChangeReason, AutocompleteChangeDetails } from '@mui/lab';
+import '../components/style.css'
+
+import dayjs from 'dayjs';
+
+interface CountryType {
+    code: string;
+    label: string;
+    phone: string;
+    suggested?: boolean;
+}
+
+interface ImgUploadProps {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    src: string
+}
+
+interface ProfileProps {
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+    src: string,
+    name?: string,
+    status?: string,
+}
+
+interface EditProps {
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    children?: React.ReactNode;
+}
 
 export default function Register() {
     const [name, setName] = useState<string>('');
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [surname, setSurname] = useState<string>('');
-    const [citizen, setCitizen] = useState<string>('');
-    const [country, setCountry] = useState<string>('');
+    const [citizen, setCitizen] = useState<string | undefined>('');
+    const [country, setCountry] = useState<string | undefined>('');
     const [airport, setAirport] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -29,12 +57,13 @@ export default function Register() {
         setSurname(event.target.value);
     };
 
-    const handleCitizenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCitizen(event.target.value);
+    const handleCitizenChange = (event: React.SyntheticEvent<Element, Event>, value: CountryType | null, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails<any>) => {
+        setCitizen(value?.label);
     };
 
-    const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCountry(event.target.value);
+    const handleCountryChange = (event: React.SyntheticEvent<Element, Event>, value: CountryType | null, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails<any>) => {
+        setCountry(value?.label)
+        console.log(value?.label)
     };
 
     const handleAirPortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +88,54 @@ export default function Register() {
 
     function handleDateChange(date: Date | null) {
         setSelectedDate(date);
+        console.log(selectedDate);
     }
+
+    const [image, setImage] = useState<File | undefined>();
+    const [imagePreviewUrl, setImagePreviewUrl] = useState<string>('/image/profile.jpg');
+    const [status, setStatus] = useState<string | undefined>('');
+    const [active, setActive] = useState<'edit' | 'profile'>('edit');
+
+    const ImageUpload: React.FC = () => {
+
+
+        const photoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+            e.preventDefault();
+            if (!e.target.files) return;
+            const reader = new FileReader();
+            const file = e.target.files[0];
+            reader.onloadend = () => {
+                setImage(file);
+                setImagePreviewUrl(reader.result as string);
+            }
+
+            reader.readAsDataURL(file);
+        };
+
+        const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+            let activeP = (active === 'edit' ? 'profile' : 'edit') as "edit" | "profile";
+            setActive(activeP);
+            setStatus(undefined);
+        }
+
+        return (
+            <div>
+                {active === 'edit' ? (
+                    <Edit onSubmit={handleSubmit}>
+                        <ImgUpload onChange={photoUpload} src={imagePreviewUrl} />
+                    </Edit>
+                ) : (
+                    <Profile
+                        onSubmit={handleSubmit}
+                        src={imagePreviewUrl}
+                        name={name}
+                        status={status}
+                    />
+                )}
+            </div>
+        )
+    };
 
     const userDate = [
         name,
@@ -71,19 +147,13 @@ export default function Register() {
         phone,
         email,
         password,
-        repassword
+        repassword,
+        image
     ]
 
     const registerUser = () => {
-        console.log(userDate);
-    }
-    
-    interface CountryType {
-        code: string;
-        label: string;
-        phone: string;
-        suggested?: boolean;
-    }
+        
+    };
 
     const countries: readonly CountryType[] = [
         { code: 'AD', label: 'Andorra', phone: '376' },
@@ -510,6 +580,68 @@ export default function Register() {
         { code: 'ZW', label: 'Zimbabwe', phone: '263' },
     ];
 
+    const ImgUpload: React.FC<ImgUploadProps> = ({ onChange, src }) => (
+        <label htmlFor="photo-upload" className="custom-file-upload fas">
+            <div className="img-wrap img-upload" >
+                <img className='avatar' src={src} alt="preview" />
+            </div>
+            <input
+                id="photo-upload"
+                type="file"
+                onChange={onChange}
+            />
+        </label>
+    );
+
+    const Profile: React.FC<ProfileProps> = ({ onSubmit, src, name, status }) => {
+        const [inputName, setInputName] = useState<string | undefined>(name);
+        const [inputStatus, setInputStatus] = useState<string | undefined>(status);
+
+        const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            setInputName(e.target.value);
+        }
+
+        const handleStatusChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+            setInputStatus(e.target.value);
+        }
+
+        return (
+
+            <form onSubmit={onSubmit}>
+                <h1>Profile Card</h1>
+                <label className="custom-file-upload fas">
+                    <div className="img-wrap" >
+                        <img src={src} alt="preview" />
+                    </div>
+                </label>
+                <div className="name">
+                    <input
+                        type="text"
+                        placeholder="Your Name"
+                        value={inputName}
+                        onChange={handleNameChange}
+                    />
+                </div>
+                <div className="status">
+                    <textarea
+                        placeholder="Your Status"
+                        rows={4}
+                        value={inputStatus}
+                        onChange={handleStatusChange}
+                    />
+                </div>
+                <button type="submit" className="edit_1">Edit Profile </button>
+            </form>
+
+        );
+    }
+
+    const Edit: React.FC<EditProps> = ({ onSubmit, children }) => (
+        <form onSubmit={onSubmit}>
+            {children}
+        </form>
+    );
+
 
     return (
         <div className='pt-[75px] mb-[90px]'>
@@ -519,252 +651,250 @@ export default function Register() {
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">Add Crewing</Link>
             </div>
 
-            <form className=''>
-                <div style={{ padding: "50px 58px 80px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[67px] pl-[58px] gap-[47px] mt-[80px]'>
-                    <div className='flex'>
-                        <p className='text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC] mt-[120px]'>Register</p>
-                        <div className='w-[60%] flex justify-end mr-[30px]'>
-                            <ImageUpload />
-                        </div>
+            <div style={{ padding: "50px 58px 80px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[67px] pl-[58px] gap-[47px] mt-[80px]'>
+                <div className='flex'>
+                    <p className='text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC] mt-[120px]'>Register</p>
+                    <div className='w-[60%] flex justify-end mr-[30px]'>
+                        <ImageUpload />
                     </div>
-                    <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex rounded-[5px] w-full box-border'>
-                        <div className='flex flex-col gap-[83px] w-[50%]'>
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Name:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
-                                        type="text"
-                                        value={name}
-                                        onChange={handleNameChange}
-                                    />
-                                </div>
+                </div>
+                <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex rounded-[5px] w-full box-border'>
+                    <div className='flex flex-col gap-[83px] w-[50%]'>
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Name:
                             </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Surname:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your citizenship"
-                                        type="text"
-                                        value={surname}
-                                        onChange={handleSurNameChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Citizenship:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <Autocomplete
-                                        id="country-select-demo"
-                                        sx={{
-                                            width: 300,
-                                            backgroundColor: "#fff",
-                                            borderRadius: '7px',
-                                            marginLeft: "17px"
-                                        }}
-                                        options={countries}
-                                        autoHighlight
-                                        getOptionLabel={(option) => option.label}
-                                        renderOption={(props, option) => (
-                                            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                                                <img
-                                                    loading="lazy"
-                                                    width="20"
-                                                    src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                                    srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                                    alt=""
-                                                />
-                                                {option.label} ({option.code}) +{option.phone}
-                                            </Box>
-                                        )}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                value={citizen}
-                                                onChange={handleCitizenChange}
-                                                label="Please, select"
-                                                inputProps={{
-                                                    ...params.inputProps,
-                                                    autoComplete: 'new-password', // disable autocomplete and autofill
-                                                }}
-                                            />
-                                        )}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Country of residence:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <Autocomplete
-                                        id="country-select-demo"
-                                        sx={{
-                                            width: 300,
-                                            backgroundColor: "#fff",
-                                            borderRadius: '7px',
-                                            marginLeft: "17px"
-                                        }}
-                                        options={countries}
-                                        autoHighlight
-                                        getOptionLabel={(option) => option.label}
-                                        renderOption={(props, option) => (
-                                            <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                                                <img
-                                                    loading="lazy"
-                                                    width="20"
-                                                    src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                                    srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                                    alt=""
-                                                />
-                                                {option.label} ({option.code}) +{option.phone}
-                                            </Box>
-                                        )}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                {...params}
-                                                value={country}
-                                                onChange={handleCountryChange}
-                                                label="Please, select"
-                                                inputProps={{
-                                                    ...params.inputProps,
-                                                    autoComplete: 'new-password', // disable autocomplete and autofill
-                                                }}
-                                            />
-                                        )}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Nearest Airport:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
-                                        type="text"
-                                        value={airport}
-                                        onChange={handleAirPortChange}
-                                    />
-                                </div>
+                            <div className='w-[70%]'>
+                                <input
+                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                    placeholder="Type your name"
+                                    type="text"
+                                    value={name}
+                                    onChange={handleNameChange}
+                                />
                             </div>
                         </div>
 
-                        <div className='flex flex-col gap-[83px] w-[50%]'>
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Phone number:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
-                                        type="text"
-                                        value={phone}
-                                        onChange={handlePhoneChange}
-                                    />
-                                </div>
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Surname:
                             </div>
-
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    E-mail:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your email"
-                                        type="email"
-                                        value={email}
-                                        onChange={handleEmailChange}
-                                    />
-                                </div>
+                            <div className='w-[70%]'>
+                                <input
+                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                    placeholder="Type your citizenship"
+                                    type="text"
+                                    value={surname}
+                                    onChange={handleSurNameChange}
+                                />
                             </div>
+                        </div>
 
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Date of Birth:
-                                </div>
-                                <div className='w-[70%] ml-[22px]'>
-                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <MobileDatePicker
-                                            value={selectedDate}
-                                            onChange={handleDateChange}
-                                            renderInput={(params) => <TextField
-                                                onClick={() => console.log("asd")}
-                                                sx={{
-                                                    width: 300,
-                                                    backgroundColor: "#fff",
-                                                }} {...params}
-                                            />}
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Citizenship:
+                            </div>
+                            <div className='w-[70%]'>
+                                <Autocomplete
+                                    id="citizen"
+                                    sx={{
+                                        width: 300,
+                                        backgroundColor: "#fff",
+                                        borderRadius: '7px',
+                                        marginLeft: "17px"
+                                    }}
+                                    onChange={handleCitizenChange}
+                                    options={countries}
+                                    autoHighlight
+                                    getOptionLabel={(option) => option.label}
+                                    renderOption={(props, option) => (
+                                        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                                            <img
+                                                loading="lazy"
+                                                width="20"
+                                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                                alt=""
+                                            />
+                                            {option.label} ({option.code}) +{option.phone}
+                                        </Box>
+                                    )}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            value={citizen}
+                                            label="Please, select"
+                                            inputProps={{
+                                                ...params.inputProps,
+                                                autoComplete: 'new-password', // disable autocomplete and autofill
+                                            }}
                                         />
-                                    </LocalizationProvider>
-                                </div>
+                                    )}
+                                />
                             </div>
+                        </div>
 
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Password:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your Password"
-                                        type="password"
-                                        value={password}
-                                        onChange={handlePasswordChange}
-                                    />
-                                </div>
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Country of residence:
                             </div>
+                            <div className='w-[70%]'>
+                                <Autocomplete
+                                    id="country"
+                                    onChange={handleCountryChange}
+                                    sx={{
+                                        width: 300,
+                                        backgroundColor: "#fff",
+                                        borderRadius: '7px',
+                                        marginLeft: "17px"
+                                    }}
+                                    options={countries}
+                                    autoHighlight
+                                    getOptionLabel={(option) => option.label}
+                                    renderOption={(props, option) => (
+                                        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                                            <img
+                                                loading="lazy"
+                                                width="20"
+                                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                                alt=""
+                                            />
+                                            {option.label} ({option.code}) +{option.phone}
+                                        </Box>
+                                    )}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            value={country}
+                                            label="Please, select"
+                                            inputProps={{
+                                                ...params.inputProps,
+                                                autoComplete: 'new-password', // disable autocomplete and autofill
+                                            }}
+                                        />
+                                    )}
+                                />
+                            </div>
+                        </div>
 
-                            <div className='flex'>
-                                <div className='w-[30%] label-style pt-[10px] flex justify-end'>
-                                    Confirm Password:
-                                </div>
-                                <div className='w-[70%]'>
-                                    <input
-                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Confirm your password"
-                                        type="password"
-                                        value={repassword}
-                                        onChange={handleRepasswordChange}
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Nearest Airport:
+                            </div>
+                            <div className='w-[70%]'>
+                                <input
+                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                    placeholder="Type your name"
+                                    type="text"
+                                    value={airport}
+                                    onChange={handleAirPortChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col gap-[83px] w-[50%]'>
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Phone number:
+                            </div>
+                            <div className='w-[70%]'>
+                                <input
+                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                    placeholder="Type your phone number"
+                                    type="text"
+                                    value={phone}
+                                    onChange={handlePhoneChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                E-mail:
+                            </div>
+                            <div className='w-[70%]'>
+                                <input
+                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                    placeholder="Type your email"
+                                    type="email"
+                                    value={email}
+                                    onChange={handleEmailChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Date of Birth:
+                            </div>
+                            <div className='w-[70%] ml-[22px]'>
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <MobileDatePicker
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        renderInput={(params) => <TextField
+                                            onClick={() => console.log("asd")}
+                                            sx={{
+                                                width: 300,
+                                                backgroundColor: "#fff",
+                                            }} {...params}
+                                        />}
                                     />
-                                </div>
+                                </LocalizationProvider>
+                            </div>
+                        </div>
+
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Password:
+                            </div>
+                            <div className='w-[70%]'>
+                                <input
+                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                    placeholder="Type your Password"
+                                    type="password"
+                                    value={password}
+                                    onChange={handlePasswordChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className='flex'>
+                            <div className='w-[30%] label-style pt-[10px] flex justify-end'>
+                                Confirm Password:
+                            </div>
+                            <div className='w-[70%]'>
+                                <input
+                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                    className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                    placeholder="Confirm your password"
+                                    type="password"
+                                    value={repassword}
+                                    onChange={handleRepasswordChange}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div className='flex justify-center mt-[40px] mr-[80px]'>
-                    <button 
-                        type="button" 
-                        className='bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'
-                        onClick={registerUser}
-                    >
-                        Register
-                    </button>
-                </div>
-            </form>
+            <div className='flex justify-center mt-[40px] mr-[80px]'>
+                <button
+                    type="button"
+                    className='bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'
+                    onClick={registerUser}
+                >
+                    Register
+                </button>
+            </div>
         </div>
     )
 }
