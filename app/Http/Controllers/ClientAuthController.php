@@ -129,10 +129,9 @@ class ClientAuthController extends Controller
                 "birthday" => $request->selectedDate,
                 "password" => Hash::make($password)
             ]);
-            var_dump(Hash::make($password));
-            
+            return response()->json(['success' => true, 'message' => 'Successful Register'], 200);    
         }
-        return response()->json(['success' => true, 'password' => Hash::make($password), 'response' => $request], 200);
+        
     }
     public function clientresetpass(Request $request)
     {

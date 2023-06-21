@@ -150,13 +150,27 @@ export default function Register() {
         password ? userData.append('password', password) : userData.append('password', '');
         image ? userData.append('image', image) : userData.append('image', '');
 
-        axios.post('/api/user/register', userData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+        if (password) {
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters');
+            } else if (password != repassword) {
+                if (!repassword) {
+                    return
+                } else {
+                    alert('Password does not match');
+                }
+            } else {
+                console.log('success');
+                
+                axios.post('/api/user/register', userData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then((res: AxiosResponse) => {
+                    window.location.href = '/login';
+                })
             }
-        }).then((res: AxiosResponse) => {
-            console.log(res.data);
-        })
+        }
     };
 
     const countries: readonly CountryType[] = [
