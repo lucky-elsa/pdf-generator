@@ -5,15 +5,25 @@ import InputArea from '../components/InputArea';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import { AutocompleteChangeReason, AutocompleteChangeDetails } from '@mui/lab';
+import axios from 'axios';
 
 export default function Add_crewing() {
-    const [name, setName] = useState('');
+    const [company, setCompany] = useState<string>('');
+    const [country, setCountry] = useState<string | undefined>('');
+    const [how, setHow] = useState<string>('');
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
+    const handleCompanyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCompany(event.target.value);
     };
 
+    const handleHowChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setHow(event.target.value);
+    };
+
+    const handleCountryChange = (event: React.SyntheticEvent<Element, Event>, value: CountryType | null, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails<any>) => {
+        setCountry(value?.label)
+    };
     interface CountryType {
         code: string;
         label: string;
@@ -445,6 +455,16 @@ export default function Add_crewing() {
         { code: 'ZM', label: 'Zambia', phone: '260' },
         { code: 'ZW', label: 'Zimbabwe', phone: '263' },
     ];
+
+    const crewingData = {
+        "company" : company,
+        "how" : how,
+        "country" : country
+    }
+
+    const handleSubmit = () => {
+        console.log(crewingData);
+    }
     return (
         <div className='pt-[75px] mb-[90px]'>
             <div className='flex justify-between w-[163px] ml-[23px]'>
@@ -452,74 +472,78 @@ export default function Add_crewing() {
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">Add Crewing</Link>
             </div>
-            <form>
-                <div style={{ padding: "48px 58px" }} className='flex flex-col h-[620px] bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
-                    <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Crewings Board Data</p>
-                    <div style={{ border: "1px dashed #7B61FF", height: '351px', padding: "58px 130px" }} className='flex flex-col gap-[83px] rounded-[5px] w-full box-border'>
-                        <div className='flex'>
-                            <div className='w-[50%] h-[45px] flex]'>
-                                <label>Company Name:</label>
-                                <InputArea
-                                    onChange={handleChange}
-                                    value={name}
-                                    placeholder='Type company name'
-                                    type='text'
-                                />
-                            </div>
-                            <div className='w-[50%] h-[45px]'>
-                                <label>How to Apply:</label>
-                                <InputArea
-                                    onChange={handleChange}
-                                    value={name}
-                                    placeholder='Info how to apply'
-                                    type='text'
-                                />
-                            </div>
+            <div style={{ padding: "48px 58px" }} className='flex flex-col h-[620px] bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
+                <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Crewings Board Data</p>
+                <div style={{ border: "1px dashed #7B61FF", height: '351px', padding: "58px 130px" }} className='flex flex-col gap-[83px] rounded-[5px] w-full box-border'>
+                    <div className='flex'>
+                        <div className='w-[50%] h-[45px] flex]'>
+                            <label>Company Name:</label>
+                            <InputArea
+                                onChange={handleCompanyChange}
+                                value={company}
+                                placeholder='Type company name'
+                                type='text'
+                            />
                         </div>
-                        <div className='flex'>
-                            <label className='mt-[7px] ml-[63px]'>Country:</label>
-                            <Autocomplete
-                                id="country-select-demo"
-                                sx={{
-                                    width: 300,
-                                    backgroundColor: "#fff",
-                                    borderRadius: '7px',
-                                    marginLeft: "17px"
-                                }}
-                                options={countries}
-                                autoHighlight
-                                getOptionLabel={(option) => option.label}
-                                renderOption={(props, option) => (
-                                    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
-                                        <img
-                                            loading="lazy"
-                                            width="20"
-                                            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                            srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-                                            alt=""
-                                        />
-                                        {option.label} ({option.code}) +{option.phone}
-                                    </Box>
-                                )}
-                                renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        label="Please, select"
-                                        inputProps={{
-                                            ...params.inputProps,
-                                            autoComplete: 'new-password', // disable autocomplete and autofill
-                                        }}
-                                    />
-                                )}
+                        <div className='w-[50%] h-[45px]'>
+                            <label>How to Apply:</label>
+                            <InputArea
+                                onChange={handleHowChange}
+                                value={how}
+                                placeholder='Info how to apply'
+                                type='text'
                             />
                         </div>
                     </div>
+                    <div className='flex'>
+                        <label className='mt-[7px] ml-[63px]'>Country:</label>
+                        <Autocomplete
+                            id="country-select-demo"
+                            sx={{
+                                width: 300,
+                                backgroundColor: "#fff",
+                                borderRadius: '7px',
+                                marginLeft: "17px"
+                            }}
+                            options={countries}
+                            autoHighlight
+                            onChange={handleCountryChange}
+                            getOptionLabel={(option) => option.label}
+                            renderOption={(props, option) => (
+                                <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                                    <img
+                                        loading="lazy"
+                                        width="20"
+                                        src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                        srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                        alt=""
+                                    />
+                                    {option.label} ({option.code}) +{option.phone}
+                                </Box>
+                            )}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Please, select"
+                                    inputProps={{
+                                        ...params.inputProps,
+                                        autoComplete: 'new-password', // disable autocomplete and autofill
+                                    }}
+                                />
+                            )}
+                        />
+                    </div>
                 </div>
+            </div>
 
-                <div className='flex justify-end mt-[85px] mr-[80px]'>
-                    <button type="button" className='bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'>SAVE</button>
-                </div>
-            </form>
+            <div className='flex justify-end mt-[85px] mr-[80px]'>
+                <button
+                    type="button"
+                    onClick={handleSubmit}
+                    className='bg-[#116ACC] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] text-center hover:bg-[#116bccc5] active:bg-[#116bcca6]'>
+                    SAVE
+                </button>
+            </div>
         </div>
     )
 }

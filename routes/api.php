@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CrewingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientAuthController;
@@ -70,3 +71,4 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::post('/user/register', [ClientAuthController::class, 'register']);
 Route::post('/user/login', [ClientAuthController::class, 'login']);
+Route::post('/crewing/create', [CrewingController::class, 'create']);

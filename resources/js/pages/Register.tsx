@@ -63,7 +63,6 @@ export default function Register() {
 
     const handleCountryChange = (event: React.SyntheticEvent<Element, Event>, value: CountryType | null, reason: AutocompleteChangeReason, details?: AutocompleteChangeDetails<any>) => {
         setCountry(value?.label)
-        console.log(value?.label)
     };
 
     const handleAirPortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
