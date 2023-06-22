@@ -26,7 +26,7 @@ export default function Header() {
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
     localStorage.removeItem('avatar');
-    navigate('/');
+    window.location.href = "/";
   }
 
   return (

@@ -100,13 +100,13 @@ class ClientAuthController extends Controller
         if (!$user) {
             return response()->json([
                 'success' => false,
-                'message' => trans('auth.user_not_found')
+                'message' => "No User"
             ]);
         }
         if (!Hash::check($request->password, $user->password)) {
             return response()->json([
                 'success' => false,
-                'message' => trans('auth.failed')
+                'message' => "Wrong Password"
             ]);
         }
 

@@ -43,7 +43,7 @@ export default function App() {
                         <Route path="/cv" element={
                             <PrivateRoute component={CV} />
                         } />
-                        <Route path="/preview" element={<PrivateRoute component={Preview} />} />
+                        <Route path="/preview" element={<Preview />} />
                         <Route path="/term" element={<Term />} />
                         <Route path="/add_crewing" element={<PrivateRoute component={Add} />} />
                     </Routes>

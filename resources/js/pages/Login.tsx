@@ -46,7 +46,7 @@ export default function Login() {
                 dispatch(setAvatar(response.data["data"]["avatar"]));
                 navigate('/');
             } else {
-                alert('Something is wrong')
+                alert(response.data["message"]);
             }
         }).catch((err) => console.log(err));
     }
