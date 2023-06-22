@@ -463,11 +463,13 @@ export default function Add_crewing() {
     }
 
     const handleSubmit = () => {
-        axios.post('/api/crewing/create', crewingData)
-            .then((res: AxiosResponse) => {
-                
-            })
-            .catch((err) => console.log(err))
+        axios.post('/api/crewing/create', crewingData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res: AxiosResponse) => {
+            console.log(res);
+        })
     }
     return (
         <div className='pt-[75px] mb-[90px]'>

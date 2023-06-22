@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Crewings extends Model
 {
     use HasFactory;
+    protected $table = "add_crewing";
     protected $fillable = [
         'company',
         "how",
