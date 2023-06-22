@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import Select from 'react-select';
+import { useSelector } from "react-redux";
 import './style.css'
 import Pagination from '@mui/material/Pagination';
+import { RootState } from '../redux/store';
 
 export default function Crewing() {
     const options = [
@@ -10,7 +12,8 @@ export default function Crewing() {
         { value: 'banana', label: 'Banana' },
         { value: 'orange', label: 'Orange' }
     ];
-
+    const authentication = useSelector((state: RootState) => state.authenticater.authentication)
+    console.log(authentication);
     return (
         <div className='pt-[75px] mb-[90px] '>
             <div className='flex justify-between w-[183px] ml-[23px]'>
@@ -18,7 +21,7 @@ export default function Crewing() {
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/">Crewings Board</Link>
             </div>
-
+            
             <div style={{ padding: "48px 58px" }} className='back-contect flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
 
                 <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Crewings Board Data</p>
