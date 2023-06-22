@@ -4,6 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../css/app.css"
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { useAppDispatch } from './redux/hooks'
+import PrivateRoute from "./routes/PrivateRoute";
+
+import { setAvatar, setAuthentication, setid, setname } from './redux/reducers/authentication'
 
 import setAuthToken from "./redux/utils/setauthtoken";
 import Register from "./pages/Register";
@@ -36,10 +40,12 @@ export default function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/about_project" element={<About />} />
-                        <Route path="/cv" element={<CV />} />
-                        <Route path="/preview" element={<Preview />} />
+                        <Route path="/cv" element={
+                            <PrivateRoute component={CV} />
+                        } />
+                        <Route path="/preview" element={<PrivateRoute component={Preview} />} />
                         <Route path="/term" element={<Term />} />
-                        <Route path="/add_crewing" element={<Add />} />
+                        <Route path="/add_crewing" element={<PrivateRoute component={Add} />} />
                     </Routes>
                 </BrowserRouter>
                 <Footer />

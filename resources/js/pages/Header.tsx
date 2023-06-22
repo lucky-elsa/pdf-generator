@@ -5,17 +5,30 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('avatar');
+    navigate('/');
+  }
+
   return (
     <div className='flex pt-[27px] w-full'>
       <img src="/image/Logo.png" />
@@ -82,7 +95,7 @@ export default function Header() {
           <MenuItem>
             <Link to="/add_crewing">Add Crewing Board(Admin Only)</Link>
           </MenuItem>
-          <MenuItem>
+          <MenuItem onClick={handleLogout}>
             LOG OUT
           </MenuItem>
         </Menu>
