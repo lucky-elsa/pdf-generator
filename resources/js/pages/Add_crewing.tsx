@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { AutocompleteChangeReason, AutocompleteChangeDetails } from '@mui/lab';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export default function Add_crewing() {
     const [company, setCompany] = useState<string>('');
@@ -457,13 +457,17 @@ export default function Add_crewing() {
     ];
 
     const crewingData = {
-        "company" : company,
-        "how" : how,
-        "country" : country
+        "company": company,
+        "how": how,
+        "country": country
     }
 
     const handleSubmit = () => {
-        console.log(crewingData);
+        axios.post('/api/crewing/create', crewingData)
+            .then((res: AxiosResponse) => {
+                
+            })
+            .catch((err) => console.log(err))
     }
     return (
         <div className='pt-[75px] mb-[90px]'>
