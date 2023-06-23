@@ -80,6 +80,7 @@ export default function Header() {
                 right: 14,
                 width: 10,
                 height: 10,
+                borderRadius: "50%",
                 bgcolor: 'background.paper',
                 transform: 'translateY(-50%) rotate(45deg)',
                 zIndex: 0,
@@ -89,15 +90,18 @@ export default function Header() {
           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem>
-            <Link to="/profile">Your Profile</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to="/add_crewing">Add Crewing Board(Admin Only)</Link>
-          </MenuItem>
-          <MenuItem onClick={handleLogout}>
-            LOG OUT
-          </MenuItem>
+          {
+            localStorage.getItem('username') ? <MenuItem><Link to="/profile">Your Profile</Link></MenuItem> : null
+          }
+          {
+            (localStorage.getItem('username') === 'admin') ? <MenuItem><Link to="/add_crewing">Add Crewing Board(Admin Only)</Link></MenuItem> : null
+          }
+          {
+            localStorage.getItem('username') ?
+              <MenuItem onClick={handleLogout}>LOG OUT</MenuItem>
+              :
+              <MenuItem sx={{ width: 120 }}><Link style={{ paddingLeft: 25, fontWeight: 'bold' }} to="/login">login</Link></MenuItem>
+          }
         </Menu>
       </div>
     </div>
