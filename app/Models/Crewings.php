@@ -14,5 +14,4 @@ class Crewings extends Model
         "how",
         "country"
     ];
-
 }

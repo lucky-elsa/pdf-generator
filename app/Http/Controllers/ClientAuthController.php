@@ -41,7 +41,7 @@ class ClientAuthController extends Controller
             $desticationPath = 'avatar';
             $file->move($desticationPath, $name);
             $password = $request->password;
-
+            $birth = substr($request->selectedDate, 0, 10);
             Users::create([
                 "name" => $request->name,
                 "surname" => $request->surname,
@@ -51,7 +51,7 @@ class ClientAuthController extends Controller
                 "phone" => $request->phone,
                 "email" => $request->email,
                 "avatar" => $name,
-                "birthday" => $request->selectedDate,
+                "birthday" => $birth,
                 "password" => Hash::make($password)
             ]);
             return response()->json(['success' => true, 'message' => 'Successful Register'], 200);
@@ -92,7 +92,7 @@ class ClientAuthController extends Controller
         return response()->json(['success' => true], 200);
     }
     public function login(Request $request)
-    {           
+    {
         $user = Users::Where([
             'email' => $request->email
         ])->first();

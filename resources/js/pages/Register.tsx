@@ -105,7 +105,6 @@ export default function Register() {
                 setImage(file);
                 setImagePreviewUrl(reader.result as string);
             }
-
             reader.readAsDataURL(file);
         };
 

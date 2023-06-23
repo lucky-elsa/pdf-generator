@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('company');
             $table->string('how');
             $table->string('country');
+            $table->string('comment')->nullable();
+            $table->string('filled')->nullable();
             $table->timestamps();
         });
     }
