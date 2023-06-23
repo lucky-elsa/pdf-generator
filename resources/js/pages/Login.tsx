@@ -83,31 +83,32 @@ export default function Login() {
             >
                 <Paper sx={{ padding: "60px 99.5px" }} className='flex flex-col gap-[20px]'>
                     <div className='font-[500] text-[18px] leading-[22px] text-[#182233]'>Log-in</div>
+                    <form className='flex flex-col gap-[20px]' onSubmit={handleLogin}>
+                        <input
+                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                            className='w-[300px] ml-auto mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                            type="email"
+                            placeholder='Username'
+                            value={email}
+                            onChange={handleEmailChange}
+                        />
 
-                    <input
-                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                        className='w-[300px] ml-auto mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        type="email"
-                        placeholder='Username'
-                        value={email}
-                        onChange={handleEmailChange}
-                    />
+                        <input
+                            style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                            className='w-[300px] ml-auto mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                            type="password"
+                            placeholder='Password'
+                            value={password}
+                            onChange={handlePasswordChange}
+                        />
 
-                    <input
-                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                        className='w-[300px] ml-auto mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        type="password"
-                        placeholder='Password'
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
-
-                    <button
-                        style={{ padding: "16px 24px" }}
-                        onClick={handleLogin}
-                        className='w-[89px] ml-auto mr-auto hover:bg-[#116bccd0] bg-[#116ACC] rounded-[7px] text-white text-[16px] leading-[20px] font-[500]'>
-                        Login
-                    </button>
+                        <button
+                            style={{ padding: "16px 24px" }}
+                            onClick={handleLogin}
+                            className='w-[89px] ml-auto mr-auto hover:bg-[#116bccd0] bg-[#116ACC] rounded-[7px] text-white text-[16px] leading-[20px] font-[500]'>
+                            Login
+                        </button>
+                    </form>
 
                     <div className='font-[400] text-[14px] leading-[20px] text-[#182233]'>Or login with</div>
 

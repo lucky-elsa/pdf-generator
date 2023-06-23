@@ -100,7 +100,7 @@ export default function Header() {
             localStorage.getItem('username') ?
               <MenuItem onClick={handleLogout}>LOG OUT</MenuItem>
               :
-              <MenuItem sx={{ width: 120 }}><Link style={{ paddingLeft: 25, fontWeight: 'bold' }} to="/login">login</Link></MenuItem>
+              <MenuItem sx={{ width: 120 }}><Link style={{ paddingLeft: 23, fontWeight: 'bold' }} to="/login">Login</Link></MenuItem>
           }
         </Menu>
       </div>
