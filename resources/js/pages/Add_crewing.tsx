@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import InputArea from '../components/InputArea';
 
 import Box from '@mui/material/Box';
@@ -12,6 +12,8 @@ export default function Add_crewing() {
     const [company, setCompany] = useState<string>('');
     const [country, setCountry] = useState<string | undefined>('');
     const [how, setHow] = useState<string>('');
+
+    const Navigate = useNavigate();
 
     const handleCompanyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCompany(event.target.value);
@@ -468,8 +470,9 @@ export default function Add_crewing() {
                 'Content-Type': 'application/json'
             }
         }).then((res: AxiosResponse) => {
-            console.log(res);
+            alert(res.data["message"]);
         })
+        Navigate('/');
     }
     return (
         <div className='pt-[75px] mb-[90px]'>
