@@ -24,6 +24,14 @@ export default function Crewing() {
     const [updateId, setUpdateId] = useState<number>(0);
     const [comment, setComment] = useState<string>('');
     const [fixComment, setFixComment] = useState<string>('');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+
+    const crewings = useSelector((state: RootState) => state.crewings.crewing);
+
+    const pageCount = Math.ceil(crewings.length / 10);      //  pageCount is total page
+    const firstItemIndex = (currentPage - 1) * 10;          //  firstItemIndex is previous page index
+    const lastItemIndex = firstItemIndex + 10;              //  lastItemIndex is previous page + item_count
+    const currentItems = crewings.slice(firstItemIndex, lastItemIndex);     // currentItems is total array cut item_count
 
     const handleCheckboxChange = async (id: number, filled: boolean) => {
         const data = {
@@ -46,8 +54,6 @@ export default function Crewing() {
     const handleFixChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFixComment(event.target.value);
     };
-
-    const crewings = useSelector((state: RootState) => state.crewings.crewing);
 
     useEffect(() => {
         axios.get('/api/crewing/getCrewing')
@@ -137,7 +143,7 @@ export default function Crewing() {
                             </tr>
                         </thead>
                         <tbody>
-                            {crewings.map((item, i) => (
+                            {currentItems.map((item, i) => (
                                 <tr key={i}>
                                     <td className='text-start'>{item.company}</td>
                                     <td className='text-start'>{item.country}</td>
@@ -236,7 +242,12 @@ export default function Crewing() {
             </div>
 
             <div className="relative top-[37px] flex justify-center">
-                <Pagination count={10} color="primary" />
+                <Pagination
+                    color="primary"
+                    count={pageCount}
+                    page={currentPage}
+                    onChange={(event, page) => setCurrentPage(page)}
+                />
             </div>
         </div>
     )
