@@ -75,3 +75,4 @@ Route::post('/crewing/create', [CrewingController::class, 'create']);
 Route::get('/crewing/getCrewing', [CrewingController::class, 'getCrewing']);
 Route::put('/crewing/filled/{id}', [CrewingController::class, 'filled']);
 Route::put('/crewing/comment/{id}', [CrewingController::class, 'comment']);
+Route::post('/crewing/deletecomment/{id}', [CrewingController::class, 'deletecomment']);

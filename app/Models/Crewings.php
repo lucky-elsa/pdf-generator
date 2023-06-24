@@ -19,7 +19,8 @@ class Crewings extends Model
         'company',
         "how",
         "country",
-        "filled"
+        "filled",
+        "comment"
     ];
 
     /**

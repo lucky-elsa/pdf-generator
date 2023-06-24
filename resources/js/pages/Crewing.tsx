@@ -50,32 +50,40 @@ export default function Crewing() {
             })
     }, [dispatch])
 
-    const deleteCrewing = (id: number) => {
-
+    const deleteComment = (id: number) => {
+        axios.post(`/api/crewing/deletecomment/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(updateCrweing(res.data.data))
+            })
     }
 
-    const updateCrewing = (id: number) => {
+    const updateComment = (id: number) => {
 
     }
 
     const inputElement = (id: number) => {
+        setComment('');
         setCreateId(id);
     }
     const cancelElement = () => {
         setCreateId(0);
     }
 
-    const updateComment = (id: number) => {
-        if (comment) {
+    const createComment = (id: number) => {
+        if (!comment) {
             alert('Type your comment');
         }
-        axios.put(`/api/crewing/comment/${id}`, { comment }, {
+        const data = {
+            "comment": comment
+        }
+        axios.put(`/api/crewing/comment/${id}`, data, {
             headers: {
                 'Content-Type': 'application/json',
             }
         }).then((res: AxiosResponse) => {
-            console.log(res.data.data);
+            dispatch(updateCrweing(res.data.data))
         })
+        setCreateId(0)
     }
 
     return (
@@ -124,7 +132,6 @@ export default function Crewing() {
                                     <td className='text-start'>
                                         {
                                             createId === item.id ?
-
                                                 <input type="text"
                                                     className='pl-[13px] w-[85%] ml-auto border-[#b9b9b9] border-[1px] border-solid mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                                     value={comment}
@@ -137,12 +144,12 @@ export default function Crewing() {
                                         <td className='text-start flex gap-[10px]'>
                                             <button id="delete"
                                                 style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                onClick={() => deleteCrewing(item.id)}>
+                                                onClick={() => deleteComment(item.id)}>
                                                 <img src="/image/delete.png" alt="delete" />
                                             </button>
                                             <button id="edit"
                                                 style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                onClick={() => updateCrewing(item.id)}>
+                                                onClick={() => updateComment(item.id)}>
                                                 <img src="/image/edit.png" alt="edit" />
                                             </button>
                                         </td>
@@ -152,7 +159,7 @@ export default function Crewing() {
                                                 <div className="flex gap-[10px]">
                                                     <button id="edit"
                                                         style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                        onClick={() => updateComment(item.id)} >
+                                                        onClick={() => createComment(item.id)} >
                                                         <img src="/image/check.png" alt="check" />
                                                     </button>
                                                     <button id="edit"
