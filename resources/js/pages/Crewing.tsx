@@ -23,6 +23,7 @@ export default function Crewing() {
     const [createId, setCreateId] = useState<number>(0);
     const [updateId, setUpdateId] = useState<number>(0);
     const [comment, setComment] = useState<string>('');
+    const [fixComment, setFixComment] = useState<string>('');
 
     const handleCheckboxChange = async (id: number, filled: boolean) => {
         const data = {
@@ -42,6 +43,10 @@ export default function Crewing() {
         setComment(event.target.value);
     };
 
+    const handleFixChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFixComment(event.target.value);
+    };
+
     const crewings = useSelector((state: RootState) => state.crewings.crewing);
 
     useEffect(() => {
@@ -58,8 +63,9 @@ export default function Crewing() {
             })
     }
 
-    const updateComment = (id: number) => {
+    const editComment = (id: number, comment: string) => {
         setUpdateId(id);
+        setFixComment(comment);
     }
 
     const inputElement = (id: number) => {
@@ -86,6 +92,20 @@ export default function Crewing() {
             dispatch(updateCrweing(res.data.data))
         })
         setCreateId(0)
+    }
+
+    const updateComment = (id: number) => {
+        const data = {
+            "fixcomment": fixComment
+        }
+        axios.put(`/api/crewing/fixcomment/${id}`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((res: AxiosResponse) => {
+            dispatch(updateCrweing(res.data.data))
+        })
+        setUpdateId(0);
     }
 
     return (
@@ -126,8 +146,10 @@ export default function Crewing() {
                                         {
                                             item.filled
                                                 ?
+                                                // checked
                                                 <input className='w-[16px] h-[16px]' onChange={() => handleCheckboxChange(item.id, false)} type='checkbox' checked={true} />
                                                 :
+                                                // unchecked
                                                 <input className='w-[16px] h-[16px]' onChange={() => handleCheckboxChange(item.id, true)} type='checkbox' checked={false} />
                                         }
                                     </td>
@@ -139,22 +161,32 @@ export default function Crewing() {
                                                     value={comment}
                                                     onChange={handleChange}
                                                 />
-                                                : item.comment
+                                                :
+                                                updateId === item.id ?
+                                                    <input type="text"
+                                                        className='pl-[13px] w-[85%] ml-auto border-[#b9b9b9] border-[1px] border-solid mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                                        value={fixComment}
+                                                        onChange={handleFixChange}
+                                                    />
+                                                    :
+                                                    item.comment
                                         }
                                     </td>
                                     {item.comment ?
                                         <td className='text-start flex gap-[10px]'>
                                             {updateId === item.id ?
+                                                // update case
                                                 <div className="flex gap-[10px]">
                                                     <button id="edit"
                                                         style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                        onClick={() => createComment(item.id)} >
+                                                        onClick={() => updateComment(item.id)} >
                                                         <img src="/image/check.png" alt="check" />
                                                     </button>
                                                     <button id="edit"
                                                         style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
                                                         onClick={cancelElement} >X</button>
                                                 </div> :
+                                                // edit case
                                                 <div className="flex gap-[10px]">
                                                     <button id="delete"
                                                         style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
@@ -163,7 +195,7 @@ export default function Crewing() {
                                                     </button>
                                                     <button id="edit"
                                                         style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                        onClick={() => updateComment(item.id)}>
+                                                        onClick={() => editComment(item.id, item.comment)}>
                                                         <img src="/image/edit.png" alt="edit" />
                                                     </button>
                                                 </div>
@@ -172,6 +204,7 @@ export default function Crewing() {
                                         :
                                         <td className='text-start flex gap-[10px]'>
                                             {createId === item.id ?
+                                                // creat comment case
                                                 <div className="flex gap-[10px]">
                                                     <button id="edit"
                                                         style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
@@ -182,6 +215,7 @@ export default function Crewing() {
                                                         style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
                                                         onClick={cancelElement} >X</button>
                                                 </div> :
+                                                // create input case
                                                 <button id="edit"
                                                     style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
                                                     onClick={() => inputElement(item.id)} >

@@ -43,6 +43,14 @@ class CrewingController extends Controller
         return response()->json(['success' => true, 'data' => $crewings]);
     }
 
+    public function fixcomment(Request $request, $id)
+    {
+        $crewings = Crewings::find($id);
+        $crewings->update(['comment' => $request->fixcomment]);
+
+        return response()->json(['success' => true, 'data' => $crewings]);
+    }
+
     public function deletecomment($id)
     {
         $crewings = Crewings::find($id);
