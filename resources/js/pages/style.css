@@ -167,3 +167,7 @@ td:last-child {
 #plus:hover {
     background-color: #1279e7;
 }
+
+.css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root {
+    border-radius: 50% !important;
+}

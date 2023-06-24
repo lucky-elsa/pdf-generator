@@ -8,8 +8,6 @@ import { RootState } from '../redux/store';
 import { setCrweings, updateCrweing } from '../redux/reducers/crewingslice'
 import { useAppDispatch } from '../redux/hooks'
 import axios, { AxiosResponse } from "axios";
-import { create } from "@mui/material/styles/createTransitions";
-import { red } from "@mui/material/colors";
 
 export default function Crewing() {
     const dispatch = useAppDispatch();
@@ -238,7 +236,7 @@ export default function Crewing() {
             </div>
 
             <div className='mt-[49px] flex justify-center'>
-                <Link className='rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] font-[500] text-[16px] leading-[20px]  bg-[#116ACC]' to="/login">Login or Register to Load More</Link>
+                <Link className='hover:bg-[#116bcce3] rounded-[7px] pt-[16px] pb-[16px] pl-[24px] pr-[24px] text-[#fff] font-[500] text-[16px] leading-[20px]  bg-[#116ACC]' to="/login">Login or Register to Load More</Link>
             </div>
 
             <div className="relative top-[37px] flex justify-center">

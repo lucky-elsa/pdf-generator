@@ -2325,6 +2325,27 @@ input:focus {
   background-color: rgb(240 240 240 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\]:hover {
+  background-color: ;
+}
+
+.hover\:bg-\[\#116ACC\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 106 204 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#116bccc2\]:hover {
+  background-color: #116bccc2;
+}
+
+.hover\:bg-\[\#116bccda\]:hover {
+  background-color: #116bccda;
+}
+
+.hover\:bg-\[\#116bcce3\]:hover {
+  background-color: #116bcce3;
+}
+
 .hover\:text-mainColor:hover {
   --tw-text-opacity: 1;
   color: rgb(16 100 100 / var(--tw-text-opacity));
