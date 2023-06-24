@@ -10,13 +10,19 @@ import { useAppDispatch } from '../redux/hooks'
 import axios, { AxiosResponse } from "axios";
 
 export default function Crewing() {
+    const dispatch = useAppDispatch();
+
     const options = [
         { value: 'apple', label: 'Apple' },
         { value: 'banana', label: 'Banana' },
         { value: 'orange', label: 'Orange' }
     ];
-    const dispatch = useAppDispatch();
 
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(event.target.checked);
+    };
     const crewings = useSelector((state: RootState) => state.crewings.crewing);
 
     useEffect(() => {
@@ -25,6 +31,10 @@ export default function Crewing() {
                 dispatch(setCrweings(res.data.data))
             })
     }, [])
+
+    const deleteCrewing = (id: number) => {
+
+    }
 
     return (
         <div className='pt-[75px] mb-[90px] '>
@@ -56,29 +66,47 @@ export default function Crewing() {
                         </thead>
                         <tbody>
                             {crewings.map((item, i) => (
-                                <tr>
+                                <tr key={i}>
                                     <td className='text-start'>{item.company}</td>
                                     <td className='text-start'>{item.country}</td>
                                     <td className='text-start'>{item.how}</td>
                                     <td className='pl-[18px]'>
                                         {
                                             item.filled ?
-                                                <input className='w-[16px] h-[16px]' type='checkbox' checked  />
+                                                <input className='w-[16px] h-[16px]' onChange={handleCheckboxChange} type='checkbox' checked={true} />
                                                 :
-                                                <input className='w-[16px] h-[16px]' type='checkbox' />
+                                                <input className='w-[16px] h-[16px]' onChange={handleCheckboxChange} type='checkbox' checked={false} />
                                         }
                                     </td>
                                     <td className='text-start'>{item.comment}</td>
                                     <td className='text-start flex gap-[10px]'>
-                                        <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                        <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
                                             <img src="/image/delete.png" alt="delete" />
                                         </button>
-                                        <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                        <button id="edit"
+                                            style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                            onClick={() => deleteCrewing(item.id)}
+                                        >
                                             <img src="/image/edit.png" alt="edit" />
                                         </button>
                                     </td>
                                 </tr>
                             ))}
+
+                            <tr>
+                                <td className='text-start'>Atlas International</td>
+                                <td className='text-start'>Norway, Germany, Australia</td>
+                                <td className='text-start'>Send CV+Motivation via WebForm</td>
+                                <td className='pl-[18px]'>
+                                    <input className='w-[16px] h-[16px]' type='checkbox' />
+                                </td>
+                                <td className='text-start'>Test comment goes here / tut komment</td>
+                                <td className='text-start flex gap-[10px]'>
+                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                        <img src="/image/plus.png" alt="delete" />
+                                    </button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
