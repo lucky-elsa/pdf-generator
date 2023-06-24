@@ -21,6 +21,7 @@ export default function Crewing() {
     ];
 
     const [createId, setCreateId] = useState<number>(0);
+    const [updateId, setUpdateId] = useState<number>(0);
     const [comment, setComment] = useState<string>('');
 
     const handleCheckboxChange = async (id: number, filled: boolean) => {
@@ -58,7 +59,7 @@ export default function Crewing() {
     }
 
     const updateComment = (id: number) => {
-
+        setUpdateId(id);
     }
 
     const inputElement = (id: number) => {
@@ -67,6 +68,7 @@ export default function Crewing() {
     }
     const cancelElement = () => {
         setCreateId(0);
+        setUpdateId(0);
     }
 
     const createComment = (id: number) => {
@@ -142,16 +144,30 @@ export default function Crewing() {
                                     </td>
                                     {item.comment ?
                                         <td className='text-start flex gap-[10px]'>
-                                            <button id="delete"
-                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                onClick={() => deleteComment(item.id)}>
-                                                <img src="/image/delete.png" alt="delete" />
-                                            </button>
-                                            <button id="edit"
-                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                onClick={() => updateComment(item.id)}>
-                                                <img src="/image/edit.png" alt="edit" />
-                                            </button>
+                                            {updateId === item.id ?
+                                                <div className="flex gap-[10px]">
+                                                    <button id="edit"
+                                                        style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                        onClick={() => createComment(item.id)} >
+                                                        <img src="/image/check.png" alt="check" />
+                                                    </button>
+                                                    <button id="edit"
+                                                        style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                        onClick={cancelElement} >X</button>
+                                                </div> :
+                                                <div className="flex gap-[10px]">
+                                                    <button id="delete"
+                                                        style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                        onClick={() => deleteComment(item.id)}>
+                                                        <img src="/image/delete.png" alt="delete" />
+                                                    </button>
+                                                    <button id="edit"
+                                                        style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                        onClick={() => updateComment(item.id)}>
+                                                        <img src="/image/edit.png" alt="edit" />
+                                                    </button>
+                                                </div>
+                                            }
                                         </td>
                                         :
                                         <td className='text-start flex gap-[10px]'>
