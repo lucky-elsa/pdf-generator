@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 import Select from 'react-select';
 import { useSelector } from "react-redux";
 import './style.css'
 import Pagination from '@mui/material/Pagination';
 import { RootState } from '../redux/store';
-import { setAvatar, setAuthentication, setid, setname } from '../redux/reducers/authentication'
+import { getCrewings } from '../redux/reducers/crewingslice'
 import { useAppDispatch } from '../redux/hooks'
+import axios, { AxiosResponse } from "axios";
 
 export default function Crewing() {
     const options = [
@@ -15,10 +16,18 @@ export default function Crewing() {
         { value: 'orange', label: 'Orange' }
     ];
     const dispatch = useAppDispatch();
-    
 
     const authentication = useSelector((state: RootState) => state.authenticater.authentication)
-    console.log(authentication);
+
+    useEffect(() => {
+        axios.get('/api/crewing/getCrewing')
+            .then((res: AxiosResponse) => {
+                console.log('>>>>>>>>>>>', res.data);
+
+                dispatch(getCrewings(res.data["data"]))
+            })
+    }, [])
+
     return (
         <div className='pt-[75px] mb-[90px] '>
             <div className='flex justify-between w-[183px] ml-[23px]'>

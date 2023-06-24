@@ -72,3 +72,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/user/register', [ClientAuthController::class, 'register']);
 Route::post('/user/login', [ClientAuthController::class, 'login']);
 Route::post('/crewing/create', [CrewingController::class, 'create']);
+Route::get('/crewing/getCrewing', [CrewingController::class, 'getCrewing']);

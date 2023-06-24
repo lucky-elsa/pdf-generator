@@ -461,7 +461,8 @@ export default function Add_crewing() {
     const crewingData = {
         "company": company,
         "how": how,
-        "country": country
+        "country": country,
+        "filled": false
     }
 
     const handleSubmit = () => {

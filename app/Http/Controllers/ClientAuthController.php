@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ChildRequest;
-use Illuminate\Support\Facades\Crypt;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Notifications\Notification;
-use Carbon\Carbon;
-use App\Models\Videos;
-use App\Models\Notifications;
-use App\Http\Controllers\LineController;
+
 
 class ClientAuthController extends Controller
 {

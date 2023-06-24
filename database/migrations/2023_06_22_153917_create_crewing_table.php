@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('how');
             $table->string('country');
             $table->string('comment')->nullable();
-            $table->string('filled')->nullable();
+            $table->boolean('filled');
             $table->timestamps();
         });
     }
