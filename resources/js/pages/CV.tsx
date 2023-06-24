@@ -73,7 +73,7 @@ export default function CV() {
         { value: 'russian', label: 'Russian' },
         { value: 'english', label: 'English' }
     ]
-
+    const avatar = localStorage.getItem('avatar');
     return (
         <div className='pt-[75px] mb-[90px]'>
             <div className='flex justify-between w-[148px] ml-[23px]'>
@@ -86,7 +86,9 @@ export default function CV() {
                     <div className='flex'>
                         <p className='text-[48px] leading-[56px] font-[600] w-[40%] text-[#116ACC] mt-[120px]'>Personal Data</p>
                         <div className='w-[60%] flex justify-end mr-[30px]'>
-                            <img src='/image/avatar.png' alt='avatar' />
+                            {
+                                avatar ? <img className='w-[165px] h-[165px] rounded-[50%]' src={`/avatar/${avatar}`} alt="avatar" /> : <img src="/image/profile.png" />
+                            }
                         </div>
                     </div>
                     <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex rounded-[5px] w-full box-border'>
@@ -1247,7 +1249,7 @@ export default function CV() {
                     </table>
                 </div>
             </div>
-            
+
             <div className='flex justify-end mr-[100px] mt-[96px] pt-[96x]'>
                 <button className='mt-[96x] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]' type='button'>PREVIEW</button>
             </div>

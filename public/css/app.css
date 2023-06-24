@@ -956,6 +956,9 @@ video {
 .h-screen {
   height: 100vh;
 }
+.h-\[165px\] {
+  height: 165px;
+}
 .min-h-full {
   min-height: 100%;
 }
@@ -1154,6 +1157,12 @@ video {
 .w-full {
   width: 100%;
 }
+.w-\[\] {
+  width: ;
+}
+.w-\[165px\] {
+  width: 165px;
+}
 .shrink {
   flex-shrink: 1;
 }
@@ -1315,6 +1324,9 @@ video {
 }
 .rounded-xl {
   border-radius: 0.75rem;
+}
+.rounded-\[50\%6666\] {
+  border-radius: 50%6666;
 }
 .rounded-l-2xl {
   border-top-left-radius: 1rem;
