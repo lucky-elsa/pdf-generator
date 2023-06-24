@@ -8,6 +8,8 @@ import { RootState } from '../redux/store';
 import { setCrweings, updateCrweing } from '../redux/reducers/crewingslice'
 import { useAppDispatch } from '../redux/hooks'
 import axios, { AxiosResponse } from "axios";
+import { create } from "@mui/material/styles/createTransitions";
+import { red } from "@mui/material/colors";
 
 export default function Crewing() {
     const dispatch = useAppDispatch();
@@ -18,7 +20,8 @@ export default function Crewing() {
         { value: 'orange', label: 'Orange' }
     ];
 
-    const [selected, setSelected] = useState<boolean>(false);
+    const [createId, setCreateId] = useState<number>(0);
+    const [comment, setComment] = useState<string>('');
 
     const handleCheckboxChange = async (id: number, filled: boolean) => {
         const data = {
@@ -33,6 +36,11 @@ export default function Crewing() {
             dispatch(updateCrweing(res.data.data))
         })
     };
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setComment(event.target.value);
+    };
+
     const crewings = useSelector((state: RootState) => state.crewings.crewing);
 
     useEffect(() => {
@@ -50,8 +58,15 @@ export default function Crewing() {
 
     }
 
-    const inputElement = () => {
+    const inputElement = (id: number) => {
+        setCreateId(id);
+    }
+    const cancelElement = () => {
+        setCreateId(0);
+    }
 
+    const updateComment = () => {
+        alert(comment);
     }
 
     return (
@@ -97,7 +112,18 @@ export default function Crewing() {
                                                 <input className='w-[16px] h-[16px]' onChange={() => handleCheckboxChange(item.id, true)} type='checkbox' checked={false} />
                                         }
                                     </td>
-                                    <td className='text-start'>{item.comment}</td>
+                                    <td className='text-start'>
+                                        {
+                                            createId === item.id ?
+                                                <form onSubmit={updateComment}>
+                                                    <input type="text"
+                                                        className='pl-[10px] w-[85%] ml-auto border-[#b9b9b9] border-[1px] border-solid mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                                        value={comment}
+                                                        onChange={handleChange}
+                                                    />
+                                                </form> : item.comment
+                                        }
+                                    </td>
                                     {item.comment ?
                                         <td className='text-start flex gap-[10px]'>
                                             <button id="delete"
@@ -113,12 +139,16 @@ export default function Crewing() {
                                         </td>
                                         :
                                         <td className='text-start flex gap-[10px]'>
-                                            <button id="edit"
-                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                onClick={inputElement} >
-                                                <img src="/image/plus.png" alt="delete" />
-                                            </button>
-
+                                            {createId === item.id ?
+                                                <button id="edit"
+                                                    style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                    onClick={cancelElement} >X</button> :
+                                                <button id="edit"
+                                                    style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                    onClick={() => inputElement(item.id)} >
+                                                    <img src="/image/plus.png" alt="delete" />
+                                                </button>
+                                            }
                                         </td>
                                     }
                                 </tr>
