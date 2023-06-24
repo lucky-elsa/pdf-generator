@@ -96,7 +96,6 @@ export default function Crewing() {
                                                 :
                                                 <input className='w-[16px] h-[16px]' onChange={() => handleCheckboxChange(item.id, true)} type='checkbox' checked={false} />
                                         }
-
                                     </td>
                                     <td className='text-start'>{item.comment}</td>
                                     {item.comment ?
