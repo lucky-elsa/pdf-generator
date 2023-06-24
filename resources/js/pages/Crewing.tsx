@@ -18,15 +18,15 @@ export default function Crewing() {
     const dispatch = useAppDispatch();
 
     const authentication = useSelector((state: RootState) => state.authenticater.authentication)
+    axios.get('/api/crewing/getCrewing')
+        .then((res: AxiosResponse) => {
+            console.log('>>>>>>>>>>>', res.data);
 
-    useEffect(() => {
-        axios.get('/api/crewing/getCrewing')
-            .then((res: AxiosResponse) => {
-                console.log('>>>>>>>>>>>', res.data);
+            dispatch(getCrewings(res.data["data"]))
+        })
+    // useEffect(() => {
 
-                dispatch(getCrewings(res.data["data"]))
-            })
-    }, [])
+    // }, [])
 
     return (
         <div className='pt-[75px] mb-[90px] '>

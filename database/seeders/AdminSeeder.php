@@ -17,16 +17,17 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $i = 1;
-        DB::table('adminuser')->insert([
-            'userid' => 'admin',
-            'password' => Hash::make('admin'),
-            'clinic_id'=>1
-        ]);
-        DB::table('adminuser')->insert([
-            'userid' => 'admin-tmdu',
-            'password' => Hash::make('admin-tmdu'),
-            'clinic_id'=>1
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'surname' => 'admin',
+            'email' => 'admin@gmail.com',
+            'avatar' => 'admin.png',
+            'country' => 'Latvia',
+            'citizen' => 'Latvia',
+            'phone' => '123456789',
+            'birthday' => '1990-01-01',
+            'airport' => 'Riga Airport',
+            'password' => Hash::make('root123123'),
         ]);
     }
 }
