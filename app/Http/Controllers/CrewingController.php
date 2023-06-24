@@ -9,14 +9,14 @@ class CrewingController extends Controller
 {
     public function create(Request $request)
     {
-        Crewings::create([
+        $crewing = Crewings::create([
             "country" => $request->country,
             "company" => $request->company,
             "how" => $request->how,
             "filled" => $request->filled,
         ]);
 
-        return response()->json(['success' => true, 'message' => 'Successful Saved'], 200);
+        return response()->json(['success' => true, 'message' => 'Successful Saved', 'crewing' => $crewing], 200);
     }
 
     public function getCrewing(Request $request)

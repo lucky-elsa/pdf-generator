@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import InputArea from '../components/InputArea';
-
+import { addCrweing } from '../redux/reducers/crewingslice';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { AutocompleteChangeReason, AutocompleteChangeDetails } from '@mui/lab';
 import axios, { AxiosResponse } from 'axios';
+import { useAppDispatch } from '../redux/hooks'
 
 export default function Add_crewing() {
     const [company, setCompany] = useState<string>('');
@@ -14,6 +15,7 @@ export default function Add_crewing() {
     const [how, setHow] = useState<string>('');
 
     const Navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const handleCompanyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCompany(event.target.value);
@@ -462,7 +464,8 @@ export default function Add_crewing() {
         "company": company,
         "how": how,
         "country": country,
-        "filled": false
+        "filled": false,
+        "comment": null
     }
 
     const handleSubmit = () => {
@@ -471,6 +474,7 @@ export default function Add_crewing() {
                 'Content-Type': 'application/json'
             }
         }).then((res: AxiosResponse) => {
+            dispatch(addCrweing(res.data["crewing"]))
             alert(res.data["message"]);
         })
         Navigate('/');

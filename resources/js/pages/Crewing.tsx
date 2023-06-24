@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import './style.css'
 import Pagination from '@mui/material/Pagination';
 import { RootState } from '../redux/store';
-import { getCrewings } from '../redux/reducers/crewingslice'
+import { setCrweings } from '../redux/reducers/crewingslice'
 import { useAppDispatch } from '../redux/hooks'
 import axios, { AxiosResponse } from "axios";
 
@@ -18,15 +18,13 @@ export default function Crewing() {
     const dispatch = useAppDispatch();
 
     const authentication = useSelector((state: RootState) => state.authenticater.authentication)
-    axios.get('/api/crewing/getCrewing')
-        .then((res: AxiosResponse) => {
-            console.log('>>>>>>>>>>>', res.data);
 
-            dispatch(getCrewings(res.data["data"]))
-        })
-    // useEffect(() => {
-
-    // }, [])
+    useEffect(() => {
+        axios.get('/api/crewing/getCrewing')
+            .then((res: AxiosResponse) => {
+                dispatch(setCrweings(res.data["data"]))
+            })
+    }, [])
 
     return (
         <div className='pt-[75px] mb-[90px] '>
