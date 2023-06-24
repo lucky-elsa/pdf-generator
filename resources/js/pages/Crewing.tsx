@@ -18,10 +18,20 @@ export default function Crewing() {
         { value: 'orange', label: 'Orange' }
     ];
 
-    const [isChecked, setIsChecked] = useState<boolean>(false);
+    const [selected, setSelected] = useState<boolean>(false);
 
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
+    const handleCheckboxChange = async (id: number, filled: boolean) => {
+        const data = {
+            "filled": filled
+        }
+
+        axios.put(`/api/crewing/filled/${id}`, data, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((res: AxiosResponse) => {
+            console.log(res.data.data)
+        })
     };
     const crewings = useSelector((state: RootState) => state.crewings.crewing);
 
@@ -30,9 +40,17 @@ export default function Crewing() {
             .then((res: AxiosResponse) => {
                 dispatch(setCrweings(res.data.data))
             })
-    }, [])
+    }, [dispatch])
 
     const deleteCrewing = (id: number) => {
+
+    }
+
+    const updateCrewing = (id: number) => {
+
+    }
+
+    const inputElement = () => {
 
     }
 
@@ -72,41 +90,40 @@ export default function Crewing() {
                                     <td className='text-start'>{item.how}</td>
                                     <td className='pl-[18px]'>
                                         {
-                                            item.filled ?
-                                                <input className='w-[16px] h-[16px]' onChange={handleCheckboxChange} type='checkbox' checked={true} />
+                                            item.filled
+                                                ?
+                                                <input className='w-[16px] h-[16px]' onChange={() => handleCheckboxChange(item.id, false)} type='checkbox' checked={true} />
                                                 :
-                                                <input className='w-[16px] h-[16px]' onChange={handleCheckboxChange} type='checkbox' checked={false} />
+                                                <input className='w-[16px] h-[16px]' onChange={() => handleCheckboxChange(item.id, true)} type='checkbox' checked={false} />
                                         }
+
                                     </td>
                                     <td className='text-start'>{item.comment}</td>
-                                    <td className='text-start flex gap-[10px]'>
-                                        <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                            <img src="/image/delete.png" alt="delete" />
-                                        </button>
-                                        <button id="edit"
-                                            style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                            onClick={() => deleteCrewing(item.id)}
-                                        >
-                                            <img src="/image/edit.png" alt="edit" />
-                                        </button>
-                                    </td>
+                                    {item.comment ?
+                                        <td className='text-start flex gap-[10px]'>
+                                            <button id="delete"
+                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                onClick={() => deleteCrewing(item.id)}>
+                                                <img src="/image/delete.png" alt="delete" />
+                                            </button>
+                                            <button id="edit"
+                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                onClick={() => updateCrewing(item.id)}>
+                                                <img src="/image/edit.png" alt="edit" />
+                                            </button>
+                                        </td>
+                                        :
+                                        <td className='text-start flex gap-[10px]'>
+                                            <button id="edit"
+                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                onClick={inputElement} >
+                                                <img src="/image/plus.png" alt="delete" />
+                                            </button>
+
+                                        </td>
+                                    }
                                 </tr>
                             ))}
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/plus.png" alt="delete" />
-                                    </button>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

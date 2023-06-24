@@ -25,4 +25,13 @@ class CrewingController extends Controller
 
         return response()->json(['success' => true, 'data' => $crewings]);
     }
+
+    // , $id
+    public function filled(Request $request, $id)
+    {
+        $crewings = Crewings::find($id);
+        $crewings->update(['filled' => $request->filled]);
+
+        return response()->json(['success' => true, 'data' => $crewings]);
+    }
 }
