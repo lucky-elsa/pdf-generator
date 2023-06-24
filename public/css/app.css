@@ -1166,6 +1166,12 @@ video {
 .w-\[\%\] {
   width: %;
 }
+.w-\[15\.5\%\] {
+  width: 15.5%;
+}
+.w-\[28\%\] {
+  width: 28%;
+}
 .shrink {
   flex-shrink: 1;
 }
@@ -1279,6 +1285,9 @@ video {
 }
 .gap-\[95px\] {
   gap: 95px;
+}
+.gap-\[5px\] {
+  gap: 5px;
 }
 .place-self-center {
   place-self: center;
@@ -1828,6 +1837,12 @@ video {
 }
 .pl-\[10px\] {
   padding-left: 10px;
+}
+.pl-\[15px\] {
+  padding-left: 15px;
+}
+.pl-\[13px\] {
+  padding-left: 13px;
 }
 .text-left {
   text-align: left;

@@ -65,12 +65,21 @@ export default function Crewing() {
         setCreateId(0);
     }
 
-    const updateComment = () => {
-        alert(comment);
+    const updateComment = (id: number) => {
+        if (comment) {
+            alert('Type your comment');
+        }
+        axios.put(`/api/crewing/comment/${id}`, { comment }, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then((res: AxiosResponse) => {
+            console.log(res.data.data);
+        })
     }
 
     return (
-        <div className='pt-[75px] mb-[90px] '>
+        <div className='pt-[75px] mb-[90px]'>
             <div className='flex justify-between w-[183px] ml-[23px]'>
                 <Link className='text-[16px] font-[600] text-[#9CA3AF]' to="/">Home</Link>
                 <img src='/image/right.png' className='pt-[4px] w-3' />
@@ -89,12 +98,12 @@ export default function Crewing() {
                     <table>
                         <thead className='bg-[#116ACC] h-[64px] '>
                             <tr className='rounded-[15px]'>
-                                <th className='w-[14%]'>Company Name</th>
+                                <th className='w-[15.5%]'>Company Name</th>
                                 <th className='w-[17.5%]'>Country</th>
                                 <th className='w-[20%]'>How to Apply</th>
                                 <th className='w-[8%]'>Filled</th>
-                                <th className='w-[32%]'>Comment</th>
-                                <th className='w-[8.5%]'>Actions</th>
+                                <th className='w-[28%]'>Comment</th>
+                                <th className='w-[14%]'>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,13 +124,13 @@ export default function Crewing() {
                                     <td className='text-start'>
                                         {
                                             createId === item.id ?
-                                                <form onSubmit={updateComment}>
-                                                    <input type="text"
-                                                        className='pl-[10px] w-[85%] ml-auto border-[#b9b9b9] border-[1px] border-solid mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                                        value={comment}
-                                                        onChange={handleChange}
-                                                    />
-                                                </form> : item.comment
+
+                                                <input type="text"
+                                                    className='pl-[13px] w-[85%] ml-auto border-[#b9b9b9] border-[1px] border-solid mr-auto h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                                    value={comment}
+                                                    onChange={handleChange}
+                                                />
+                                                : item.comment
                                         }
                                     </td>
                                     {item.comment ?
@@ -140,9 +149,16 @@ export default function Crewing() {
                                         :
                                         <td className='text-start flex gap-[10px]'>
                                             {createId === item.id ?
-                                                <button id="edit"
-                                                    style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
-                                                    onClick={cancelElement} >X</button> :
+                                                <div className="flex gap-[10px]">
+                                                    <button id="edit"
+                                                        style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                        onClick={() => updateComment(item.id)} >
+                                                        <img src="/image/check.png" alt="check" />
+                                                    </button>
+                                                    <button id="edit"
+                                                        style={{ padding: "8px 14px", fontSize: "20px", color: "red", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                        onClick={cancelElement} >X</button>
+                                                </div> :
                                                 <button id="edit"
                                                     style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
                                                     onClick={() => inputElement(item.id)} >
