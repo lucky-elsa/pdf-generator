@@ -13,39 +13,33 @@ interface CrewingState {
     updated_at: string;
 }
 interface UsersState {
-    crweing: Array<CrewingState>
+    crewing: Array<CrewingState>
 }
 
 interface UsersState {
-    crweing: CrewingState[];
+    crewing: CrewingState[];
 }
 
 const initialState: UsersState = {
-    crweing: [],
+    crewing: [],
 };
 
 // Define the initial state using that type
 export const crewingSlice = createSlice({
-    name: 'crweing',
+    name: 'crewing',
     initialState,
     // `createSlice` will infer the state type from the `initialState` argument
     reducers: {
-        // createCrewings: (state, action: PayloadAction<CrewingState>) => {
-        //     state.crweing.push(action.payload);
-        // },
-        // getCewings: (state, action: PayloadAction<CrewingState>) => {
-        //     state.crweing.push(action.payload);
-        // },
         setCrweings: (state, action: PayloadAction<CrewingState[]>) => {
-            state.crweing = action.payload;
+            state.crewing = action.payload;
         },
         addCrweing: (state, action: PayloadAction<CrewingState>) => {
-            state.crweing.push(action.payload);
+            state.crewing.push(action.payload);
         },
         updateCrweing: (state, action: PayloadAction<CrewingState>) => {
-            const index = state.crweing.findIndex((todo) => todo.id === action.payload.id);
+            const index = state.crewing.findIndex((todo) => todo.id === action.payload.id);
             if (index !== -1) {
-                state.crweing[index] = action.payload;
+                state.crewing[index] = action.payload;
             }
         },
     },

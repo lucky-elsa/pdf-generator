@@ -17,12 +17,12 @@ export default function Crewing() {
     ];
     const dispatch = useAppDispatch();
 
-    const authentication = useSelector((state: RootState) => state.authenticater.authentication)
+    const crewings = useSelector((state: RootState) => state.crewings.crewing);
 
     useEffect(() => {
         axios.get('/api/crewing/getCrewing')
             .then((res: AxiosResponse) => {
-                dispatch(setCrweings(res.data["data"]))
+                dispatch(setCrweings(res.data.data))
             })
     }, [])
 
@@ -55,161 +55,30 @@ export default function Crewing() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' checked />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' checked />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' checked />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' checked />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/plus.png" alt="delete" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' checked />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' checked />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/plus.png" alt="delete" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>Atlas International</td>
-                                <td className='text-start'>Norway, Germany, Australia</td>
-                                <td className='text-start'>Send CV+Motivation via WebForm</td>
-                                <td className='pl-[18px]'>
-                                    <input className='w-[16px] h-[16px]' type='checkbox' checked />
-                                </td>
-                                <td className='text-start'>Test comment goes here / tut komment</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {crewings.map((item, i) => (
+                                <tr>
+                                    <td className='text-start'>{item.company}</td>
+                                    <td className='text-start'>{item.country}</td>
+                                    <td className='text-start'>{item.how}</td>
+                                    <td className='pl-[18px]'>
+                                        {
+                                            item.filled ?
+                                                <input className='w-[16px] h-[16px]' type='checkbox' checked  />
+                                                :
+                                                <input className='w-[16px] h-[16px]' type='checkbox' />
+                                        }
+                                    </td>
+                                    <td className='text-start'>{item.comment}</td>
+                                    <td className='text-start flex gap-[10px]'>
+                                        <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                            <img src="/image/delete.png" alt="delete" />
+                                        </button>
+                                        <button style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                            <img src="/image/edit.png" alt="edit" />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     authenticater: authenticationReducer,
     user: userReducer,
-    crewing: crewingReducer
+    crewings: crewingReducer
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
