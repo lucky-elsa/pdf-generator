@@ -36987,44 +36987,6 @@ exports["default"] = exports.userslice.reducer;
 
 /***/ }),
 
-/***/ "./resources/js/redux/reducers/videoslice.tsx":
-/*!****************************************************!*\
-  !*** ./resources/js/redux/reducers/videoslice.tsx ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.loadvideos = exports.videoslice = void 0;
-var toolkit_1 = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
-var initialState = {
-  value: new Array()
-};
-exports.videoslice = (0, toolkit_1.createSlice)({
-  name: 'video',
-  initialState: initialState,
-  reducers: {
-    loadvideos: function loadvideos(state, action) {
-      state.value.splice(0);
-      for (var i = 0; i < action.payload.length; i++) {
-        state.value.push({
-          image: action.payload[i]["value"],
-          title: action.payload[i]["title"],
-          type: action.payload[i]["type"]
-        });
-      }
-    }
-  }
-});
-exports.loadvideos = exports.videoslice.actions.loadvideos;
-exports["default"] = exports.videoslice.reducer;
-
-/***/ }),
-
 /***/ "./resources/js/redux/store.tsx":
 /*!**************************************!*\
   !*** ./resources/js/redux/store.tsx ***!
@@ -37049,7 +37011,7 @@ var dataslice_1 = __importDefault(__webpack_require__(/*! ./reducers/dataslice *
 var breshtimeslice_1 = __importDefault(__webpack_require__(/*! ./reducers/breshtimeslice */ "./resources/js/redux/reducers/breshtimeslice.tsx"));
 var userslice_1 = __importDefault(__webpack_require__(/*! ./reducers/userslice */ "./resources/js/redux/reducers/userslice.tsx"));
 var addslice_1 = __importDefault(__webpack_require__(/*! ./reducers/addslice */ "./resources/js/redux/reducers/addslice.tsx"));
-var videoslice_1 = __importDefault(__webpack_require__(/*! ./reducers/videoslice */ "./resources/js/redux/reducers/videoslice.tsx"));
+var videoslice_1 = __importDefault(__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './reducers/videoslice'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
 var notificationslice_1 = __importDefault(__webpack_require__(/*! ./reducers/notificationslice */ "./resources/js/redux/reducers/notificationslice.tsx"));
 var store = (0, toolkit_1.configureStore)({
   reducer: {
