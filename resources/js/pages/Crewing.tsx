@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import './style.css'
 import Pagination from '@mui/material/Pagination';
 import { RootState } from '../redux/store';
-import { setCrweings } from '../redux/reducers/crewingslice'
+import { setCrweings, updateCrweing } from '../redux/reducers/crewingslice'
 import { useAppDispatch } from '../redux/hooks'
 import axios, { AxiosResponse } from "axios";
 
@@ -30,7 +30,7 @@ export default function Crewing() {
                 'Content-Type': 'application/json',
             }
         }).then((res: AxiosResponse) => {
-            console.log(res.data.data)
+            dispatch(updateCrweing(res.data.data))
         })
     };
     const crewings = useSelector((state: RootState) => state.crewings.crewing);
