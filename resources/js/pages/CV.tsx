@@ -87,7 +87,7 @@ export default function CV() {
     const handleOffshoreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAddOffshore(event.target.value);
     };
-    //  Submit Input Data      
+    //  Category Data      
     const CategoryData = {
         'documents': addDocument,
         'maritime': addMarintime,
@@ -95,6 +95,7 @@ export default function CV() {
         'medical': addMedical,
         'offshore': addOffshore
     }
+    //  Submit Category Data
     const submitCategory = () => {
         axios.post('/api/category/addcategory', CategoryData, {
             headers: {
@@ -109,7 +110,6 @@ export default function CV() {
         setAddMedical('');
         setAddOffshore('');
     }
-
 
     const langOptions = [
         { value: 'latvian', label: 'Latvian' },
