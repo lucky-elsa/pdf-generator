@@ -2,12 +2,14 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import authenticationReducer from './reducers/authentication'
 import userReducer from './reducers/userslice'
 import crewingReducer from './reducers/crewingslice'
+import categoryslice from './reducers/categoryslice'
 
 const store = configureStore({
   reducer: {
     authenticater: authenticationReducer,
     user: userReducer,
-    crewings: crewingReducer
+    crewings: crewingReducer,
+    categories: categoryslice
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
