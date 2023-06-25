@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('contracts');
             $table->string('contract_duration');
             $table->string('description');
+            $table->timestamps();
         });
     }
 

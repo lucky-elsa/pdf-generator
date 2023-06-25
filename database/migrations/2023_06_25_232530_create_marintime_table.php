@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('vessel_type');
             $table->string('client');
             $table->string('employers');
+            $table->timestamps();
         });
     }
 

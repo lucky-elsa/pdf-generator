@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('number');
             $table->string('issue_date');
             $table->string('expiration_date');
+            $table->timestamps();
         });
     }
 

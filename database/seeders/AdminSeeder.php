@@ -29,5 +29,17 @@ class AdminSeeder extends Seeder
             'airport' => 'Riga Airport',
             'password' => Hash::make('root123123'),
         ]);
+        DB::table('users')->insert([
+            'name' => 'Edward William',
+            'surname' => 'Beauty Lotus',
+            'email' => 'beautylotus718@gmail.com',
+            'avatar' => 'Edward W (2).jfif',
+            'country' => 'Norway',
+            'citizen' => 'Norway',
+            'phone' => '123456789',
+            'birthday' => '1991-07-06',
+            'airport' => 'Riga Airport',
+            'password' => Hash::make('123123'),
+        ]);
     }
 }

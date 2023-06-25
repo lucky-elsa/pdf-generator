@@ -3,13 +3,15 @@ import authenticationReducer from './reducers/authentication'
 import userReducer from './reducers/userslice'
 import crewingReducer from './reducers/crewingslice'
 import categoryslice from './reducers/categoryslice'
+import documentslice from './reducers/documentslice'
 
 const store = configureStore({
   reducer: {
     authenticater: authenticationReducer,
     user: userReducer,
     crewings: crewingReducer,
-    categories: categoryslice
+    categories: categoryslice,
+    documents: documentslice
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

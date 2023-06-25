@@ -8,10 +8,13 @@ import TextField from '@mui/material/TextField';
 import { setCategory, addCategory } from '../redux/reducers/categoryslice';
 import { useAppDispatch } from '../redux/hooks';
 import { RootState } from '../redux/store';
-import Select, { ActionMeta, SingleValue } from 'react-select';
+import Select, { SingleValue } from 'react-select';
 import axios, { AxiosResponse } from 'axios';
 import { useSelector } from 'react-redux';
-import { event } from 'jquery';
+
+// slice part
+import { setDocument, createDocument, updateDocument, deleteDocument } from '../redux/reducers/documentslice';
+
 
 export default function CV() {
     const dispatch = useAppDispatch();
@@ -30,11 +33,10 @@ export default function CV() {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
-
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
     function handleDateChange(date: Date | null) {
         setSelectedDate(date);
+        console.log(selectedDate);
     }
 
     //  document options value 
@@ -110,6 +112,51 @@ export default function CV() {
         setAddMedical('');
         setAddOffshore('');
     }
+
+    /* Documents table state management */
+    // Inputs States
+    const [country, setCountry] = useState<string | undefined>('');
+    const [docNumber, setDocNumber] = useState<string | undefined>('');
+    const [docIssueDate, setDocIssueDate] = useState<Date | null>(new Date());
+    const [docExpirationDate, setDocExpirationDate] = useState<Date | null>(new Date());
+    // HandleChange functions
+    const handleDocNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDocNumber(event.target.value);
+    };
+    const handleCountryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCountry(event.target.value);
+    };
+    function handleDocIssueDateChange(date: Date | null) {
+        setDocIssueDate(date);
+    }
+    function handleDocExpirationDateChange(date: Date | null) {
+        setDocExpirationDate(date);
+    }
+    // Submit Documents table Data
+    const DocumentData = {
+        'userId': localStorage.getItem('userId'),
+        'document_type': selectedDocument,
+        'country': country,
+        'number': docNumber,
+        'issue_date': docIssueDate,
+        'expiration_date': docExpirationDate
+    }
+    useEffect(() => {
+        axios.get('/api/controller/getDocuments')
+            .then((res: AxiosResponse) => {
+                dispatch(setDocument(res.data.data))
+            })
+    }, [dispatch])
+    const submitDocument = () => {
+        axios.post('/api/controller/addDocument', DocumentData)
+            .then((res: AxiosResponse) => {
+                dispatch(createDocument(res.data.data))
+            })
+    }
+    //  Documents state value using useSelector
+    const document = useSelector((state: RootState) => state.documents.document);
+
+
 
     const langOptions = [
         { value: 'latvian', label: 'Latvian' },
@@ -352,7 +399,7 @@ export default function CV() {
                     <div className="flex w-full">
                         <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedDocument}</div>
                         <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
+                            <button onClick={submitDocument} className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
                         </div>
                     </div>
                     <div className='flex w-full'>
@@ -365,10 +412,10 @@ export default function CV() {
                                     <input
                                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
+                                        placeholder="Type your number"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={docNumber}
+                                        onChange={handleDocNumberChange}
                                     />
                                 </div>
                             </div>
@@ -383,8 +430,8 @@ export default function CV() {
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Type your citizenship"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={country}
+                                        onChange={handleCountryChange}
                                     />
                                 </div>
                             </div>
@@ -398,8 +445,8 @@ export default function CV() {
                                 <div className='w-[70%]'>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <MobileDatePicker
-                                            value={selectedDate}
-                                            onChange={handleDateChange}
+                                            value={docIssueDate}
+                                            onChange={handleDocIssueDateChange}
                                             renderInput={(params) => <TextField
                                                 onClick={() => console.log("asd")}
                                                 sx={{
@@ -421,8 +468,8 @@ export default function CV() {
                                 <div className='w-[70%]'>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <MobileDatePicker
-                                            value={selectedDate}
-                                            onChange={handleDateChange}
+                                            value={docExpirationDate}
+                                            onChange={handleDocExpirationDateChange}
                                             renderInput={(params) => <TextField
                                                 onClick={() => console.log("asd")}
                                                 sx={{
@@ -454,37 +501,25 @@ export default function CV() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className='text-start'>passport</td>
-                                <td className='text-start'>Latvia</td>
-                                <td className='text-start'>LV343435545645</td>
-                                <td className='text-start'>20.05.2000.</td>
-                                <td className='text-start'>20.05.2030.</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>passport</td>
-                                <td className='text-start'>Latvia</td>
-                                <td className='text-start'>LV343435545645</td>
-                                <td className='text-start'>20.05.2000.</td>
-                                <td className='text-start'>20.05.2030.</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {document.map((item, i) => {
+                                return (
+                                    <tr key={i}>
+                                        <td className='text-start'>{item.document_type}</td>
+                                        <td className='text-start'>{item.country}</td>
+                                        <td className='text-start'>{item.number}</td>
+                                        <td className='text-start'>{item.issue_date}</td>
+                                        <td className='text-start'>{item.expiration_date}</td>
+                                        <td className='text-start flex gap-[10px]'>
+                                            <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                <img src="/image/delete.png" alt="delete" />
+                                            </button>
+                                            <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                <img src="/image/edit.png" alt="edit" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>
