@@ -19,8 +19,6 @@ return new class extends Migration {
             $table->string('competency')->nullable();
             $table->string('medical')->nullable();
             $table->string('offshore')->nullable();
-            $table->string('sea')->nullable();
-            $table->string('add_info')->nullable();
             $table->timestamps();
         });
     }

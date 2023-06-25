@@ -14,8 +14,6 @@ class Categories extends Model
         'maritime',
         'competency',
         'medical',
-        'offshore',
-        'sea',
-        'add_info'
+        'offshore'
     ];
 }
