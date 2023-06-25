@@ -11,6 +11,7 @@ import { RootState } from '../redux/store';
 import Select, { ActionMeta, SingleValue } from 'react-select';
 import axios, { AxiosResponse } from 'axios';
 import { useSelector } from 'react-redux';
+import { event } from 'jquery';
 
 export default function CV() {
     const dispatch = useAppDispatch();
@@ -35,12 +36,16 @@ export default function CV() {
     function handleDateChange(date: Date | null) {
         setSelectedDate(date);
     }
-    
+
     //  document options value 
     const [selectedDocument, setSelectedDocument] = useState<string>('')
     const options = categories.filter((item) => item.documents !== '').map((item) => ({ value: item.documents, label: item.documents }))
     const selectDocument = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedDocument(option?.label ?? '');
+    };
+    const [addDocument, setAddDocument] = useState<string>('')      //  Add Document Input State
+    const handleDocumentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAddDocument(event.target.value);
     };
     //  marintime experience options  
     const [selectedMaritime, setSelectedMarintime] = useState<string>('')
@@ -48,11 +53,19 @@ export default function CV() {
     const selectMarintime = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedMarintime(option?.label ?? '');
     };
+    const [addMarintime, setAddMarintime] = useState<string>('')        //  Add Marintime Input State
+    const handleMarintimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAddMarintime(event.target.value);
+    };
     //  competency certification options
     const [selectedCompetency, setSelectedCompetency] = useState<string>('')
     const certificateOptions = categories.filter((item) => item.competency !== '').map((item) => ({ value: item.competency, label: item.competency }))
     const selectCompetency = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedCompetency(option?.label ?? '');
+    };
+    const [addCompetency, setAddCompetency] = useState<string>('')      //  Add Competency Input State
+    const handleCompetencyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAddCompetency(event.target.value);
     };
     //  mediacal certification options
     const [selectedMedical, setSelectedMedical] = useState<string>('')
@@ -60,11 +73,19 @@ export default function CV() {
     const selectMedical = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedMedical(option?.label ?? '');
     };
+    const [addMedical, setSetMedical] = useState<string>('')        //  Add Medical Input State
+    const handleMedicalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSetMedical(event.target.value);
+    };
     //  offshore certification options
     const [selectedOffshore, setSelectedOffshore] = useState<string>('')
     const offshoreOptions = categories.filter((item) => item.offshore !== '').map((item) => ({ value: item.offshore, label: item.offshore }))
     const selectOffshore = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedOffshore(option?.label ?? '');
+    };
+    const [addOffshore, setAddOffshore] = useState<string>('')      //  Add Offshore Input State
+    const handleOffshoreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAddOffshore(event.target.value);
     };
 
     const langOptions = [
@@ -291,8 +312,16 @@ export default function CV() {
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Documents</p>
                     <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="All" onChange={selectDocument} options={options} />
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[23px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
+                    <input
+                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                        className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                        placeholder="Type your Documents"
+                        type="text"
+                        value={addDocument}
+                        onChange={handleDocumentChange}
+                    />
+                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
+                        <img src='/image/check.png' alt="x" />
                     </button>
                 </div>
                 {/* Seamans's Book element */}
@@ -446,16 +475,13 @@ export default function CV() {
                     <input
                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                         className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        placeholder="Type your Vessel"
+                        placeholder="Type your Experience"
                         type="text"
-                        value={name}
-                        onChange={handleChange}
+                        value={addMarintime}
+                        onChange={handleMarintimeChange}
                     />
                     <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
-                    </button>
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
                     </button>
                 </div>
                 {/* Job title element */}
@@ -597,16 +623,13 @@ export default function CV() {
                     <input
                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                         className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        placeholder="Type your Vessel"
+                        placeholder="Type your Competency"
                         type="text"
-                        value={name}
-                        onChange={handleChange}
+                        value={addCompetency}
+                        onChange={handleCompetencyChange}
                     />
                     <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
-                    </button>
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
                     </button>
                 </div>
                 {/* Onshore Cooks Certificate element */}
@@ -742,8 +765,16 @@ export default function CV() {
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Medical Certificate</p>
                     <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" onChange={selectMedical} options={medicalOptions} />
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
+                    <input
+                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                        className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                        placeholder="Type your Medical Certifications"
+                        type="text"
+                        value={addMedical}
+                        onChange={handleMedicalChange}
+                    />
+                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
+                        <img src='/image/check.png' alt="x" />
                     </button>
                 </div>
                 {/* Seafarers Medical element */}
@@ -882,16 +913,13 @@ export default function CV() {
                     <input
                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                         className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                        placeholder="Type your Vessel"
+                        placeholder="Type your Certifications"
                         type="text"
-                        value={name}
-                        onChange={handleChange}
+                        value={addOffshore}
+                        onChange={handleOffshoreChange}
                     />
                     <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
-                    </button>
-                    <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
-                        <img src='/image/plus_black.png' alt="x" />
                     </button>
                 </div>
                 {/* BOSIET 5700 element */}
