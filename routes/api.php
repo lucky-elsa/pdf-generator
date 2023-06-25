@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CreateController;
 use App\Http\Controllers\CrewingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -77,3 +78,4 @@ Route::put('/crewing/filled/{id}', [CrewingController::class, 'filled']);
 Route::put('/crewing/comment/{id}', [CrewingController::class, 'comment']);
 Route::put('/crewing/fixcomment/{id}', [CrewingController::class, 'fixcomment']);
 Route::post('/crewing/deletecomment/{id}', [CrewingController::class, 'deletecomment']);
+Route::get('/category/getCategories', [CreateController::class, 'getCategories']);

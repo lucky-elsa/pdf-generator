@@ -1,14 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import TextField from '@mui/material/TextField';
-
-import Select from 'react-select';
+import { setCategory, addCategory } from '../redux/reducers/categoryslice';
+import { useAppDispatch } from '../redux/hooks';
+import { RootState } from '../redux/store';
+import Select, { ActionMeta, SingleValue } from 'react-select';
+import axios, { AxiosResponse } from 'axios';
+import { useSelector } from 'react-redux';
 
 export default function CV() {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        axios.get('/api/category/getCategories')
+            .then((res: AxiosResponse) => {
+                dispatch(setCategory(res.data.data))
+            })
+    }, [dispatch])
+
+    const categories = useSelector((state: RootState) => state.categories.category);      //    category items
+
     const [name, setName] = useState('');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,17 +35,42 @@ export default function CV() {
     function handleDateChange(date: Date | null) {
         setSelectedDate(date);
     }
+    
+    //  document options value 
+    const [selectedDocument, setSelectedDocument] = useState<string>('')
+    const options = categories.filter((item) => item.documents !== '').map((item) => ({ value: item.documents, label: item.documents }))
+    const selectDocument = (option: SingleValue<{ value: string; label: string; }>) => {
+        setSelectedDocument(option?.label ?? '');
+    };
+    //  marintime experience options  
+    const [selectedMaritime, setSelectedMarintime] = useState<string>('')
+    const experienceOptions = categories.filter((item) => item.maritime !== '').map((item) => ({ value: item.maritime, label: item.maritime }))
+    const selectMarintime = (option: SingleValue<{ value: string; label: string; }>) => {
+        setSelectedMarintime(option?.label ?? '');
+    };
+    //  competency certification options
+    const [selectedCompetency, setSelectedCompetency] = useState<string>('')
+    const certificateOptions = categories.filter((item) => item.competency !== '').map((item) => ({ value: item.competency, label: item.competency }))
+    const selectCompetency = (option: SingleValue<{ value: string; label: string; }>) => {
+        setSelectedCompetency(option?.label ?? '');
+    };
+    //  mediacal certification options
+    const [selectedMedical, setSelectedMedical] = useState<string>('')
+    const medicalOptions = categories.filter((item) => item.medical !== '').map((item) => ({ value: item.medical, label: item.medical }))
+    const selectMedical = (option: SingleValue<{ value: string; label: string; }>) => {
+        setSelectedMedical(option?.label ?? '');
+    };
+    //  offshore certification options
+    const [selectedOffshore, setSelectedOffshore] = useState<string>('')
+    const offshoreOptions = categories.filter((item) => item.offshore !== '').map((item) => ({ value: item.offshore, label: item.offshore }))
+    const selectOffshore = (option: SingleValue<{ value: string; label: string; }>) => {
+        setSelectedOffshore(option?.label ?? '');
+    };
 
-    const options = [
-        { value: 'passport', label: 'Passport / ID:' },
-        { value: 'seamna', label: 'Seaman´s Book' },
-        { value: 'visa', label: 'VISA' }
-    ];
-
-    const experienceOptions = [
-        { value: 'job-1', label: 'Job tilte 1' },
-        { value: 'job-2', label: 'Job title 2' },
-        { value: 'custom', label: 'CUSTOM' }
+    const langOptions = [
+        { value: 'latvian', label: 'Latvian' },
+        { value: 'russian', label: 'Russian' },
+        { value: 'english', label: 'English' }
     ]
 
     const vesselOptions = [
@@ -51,29 +91,8 @@ export default function CV() {
         { value: '10', label: '10 years' }
     ]
 
-    const certificateOptions = [
-        { value: 'food', label: 'Food Safety and HACPP ' },
-        { value: 'onshore_cook', label: 'Onshore Cooks Certificate ' },
-        { value: 'custom', label: 'CUSTOM' }
-    ]
-
-    const medicalOptions = [
-        { value: 'OGUK', label: 'OGUK' },
-        { value: 'medical', label: 'Seafarers Medical' }
-    ]
-
-    const offshoreOptions = [
-        { value: 'training', label: 'Basic Safety Training' },
-        { value: 'BOSIET_5700', label: 'BOSIET 5700' },
-        { value: 'custom', label: 'CUSTOM' }
-    ]
-
-    const langOptions = [
-        { value: 'latvian', label: 'Latvian' },
-        { value: 'russian', label: 'Russian' },
-        { value: 'english', label: 'English' }
-    ]
     const avatar = localStorage.getItem('avatar');
+
     return (
         <div className='pt-[75px] mb-[90px]'>
             <div className='flex justify-between w-[148px] ml-[23px]'>
@@ -81,6 +100,8 @@ export default function CV() {
                 <img src='/image/right.png' className='pt-[4px] w-3' />
                 <Link className='text-[16px] font-[600] text-[#116ACC]' to="/about_project">CV Creator</Link>
             </div>
+            {/* Personal Data */}
+
             <form>
                 <div style={{ padding: "50px 58px 80px 58px" }} className='back-cv flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[67px] pl-[58px] gap-[47px] mt-[80px]'>
                     <div className='flex'>
@@ -269,7 +290,7 @@ export default function CV() {
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Documents</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="All" options={options} />
+                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="All" onChange={selectDocument} options={options} />
                     <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/plus_black.png' alt="x" />
                     </button>
@@ -277,7 +298,7 @@ export default function CV() {
                 {/* Seamans's Book element */}
                 <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
                     <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Seamans's Book</div>
+                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedDocument}</div>
                         <div className='flex justify-end w-[20%]'>
                             <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
                         </div>
@@ -417,10 +438,11 @@ export default function CV() {
                 </div>
             </div>
             {/* Maritime experience element */}
+
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Maritime experience</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={experienceOptions} />
+                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" onChange={selectMarintime} options={experienceOptions} />
                     <input
                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                         className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
@@ -439,7 +461,7 @@ export default function CV() {
                 {/* Job title element */}
                 <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
                     <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Job title 2</div>
+                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedMaritime}</div>
                         <div className='flex justify-end w-[20%]'>
                             <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
                         </div>
@@ -571,7 +593,7 @@ export default function CV() {
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Certificate of Competency</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={certificateOptions} />
+                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" onChange={selectCompetency} options={certificateOptions} />
                     <input
                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                         className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
@@ -590,7 +612,7 @@ export default function CV() {
                 {/* Onshore Cooks Certificate element */}
                 <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
                     <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Onshore Cooks Certificate</div>
+                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedCompetency}</div>
                         <div className='flex justify-end w-[20%]'>
                             <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
                         </div>
@@ -718,8 +740,8 @@ export default function CV() {
 
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
-                    <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Medical Certificate </p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={medicalOptions} />
+                    <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Medical Certificate</p>
+                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" onChange={selectMedical} options={medicalOptions} />
                     <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] mt-[13px] ml-[10px] h-[38px]'>
                         <img src='/image/plus_black.png' alt="x" />
                     </button>
@@ -727,7 +749,7 @@ export default function CV() {
                 {/* Seafarers Medical element */}
                 <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
                     <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>Seafarers Medical</div>
+                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedMedical}</div>
                         <div className='flex justify-end w-[20%]'>
                             <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
                         </div>
@@ -856,7 +878,7 @@ export default function CV() {
             <div style={{ padding: "48px 58px" }} className='flex flex-col bg-[#F3F4F6] rounded-[56px] pt-[48px] pl-[58px] gap-[27px] mt-[80px]'>
                 <div className='flex'>
                     <p className='text-[48px] leading-[56px] font-[600] text-[#116ACC]'>Certificates STCW and Offshore</p>
-                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" options={offshoreOptions} />
+                    <Select className='w-[300px] rounded-[10px] ml-[60px] mt-[13px]' placeholder="Please select" onChange={selectOffshore} options={offshoreOptions} />
                     <input
                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                         className='w-[300px] ml-[17px] h-[38px] mt-[13px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
@@ -875,7 +897,7 @@ export default function CV() {
                 {/* BOSIET 5700 element */}
                 <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
                     <div className="flex w-full">
-                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>BOSIET 5700</div>
+                        <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedOffshore}</div>
                         <div className='flex justify-end w-[20%]'>
                             <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
                         </div>
