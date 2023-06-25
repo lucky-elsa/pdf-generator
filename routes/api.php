@@ -79,3 +79,4 @@ Route::put('/crewing/comment/{id}', [CrewingController::class, 'comment']);
 Route::put('/crewing/fixcomment/{id}', [CrewingController::class, 'fixcomment']);
 Route::post('/crewing/deletecomment/{id}', [CrewingController::class, 'deletecomment']);
 Route::get('/category/getCategories', [CreateController::class, 'getCategories']);
+Route::post('/category/addcategory', [CreateController::class, 'addCategories']);

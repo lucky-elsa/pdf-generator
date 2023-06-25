@@ -39,7 +39,7 @@ export default function CV() {
 
     //  document options value 
     const [selectedDocument, setSelectedDocument] = useState<string>('')
-    const options = categories.filter((item) => item.documents !== '').map((item) => ({ value: item.documents, label: item.documents }))
+    const options = categories.filter((item) => item.documents !== null).map((item) => ({ value: item.documents, label: item.documents }))
     const selectDocument = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedDocument(option?.label ?? '');
     };
@@ -49,7 +49,7 @@ export default function CV() {
     };
     //  marintime experience options  
     const [selectedMaritime, setSelectedMarintime] = useState<string>('')
-    const experienceOptions = categories.filter((item) => item.maritime !== '').map((item) => ({ value: item.maritime, label: item.maritime }))
+    const experienceOptions = categories.filter((item) => item.maritime !== null).map((item) => ({ value: item.maritime, label: item.maritime }))
     const selectMarintime = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedMarintime(option?.label ?? '');
     };
@@ -59,7 +59,7 @@ export default function CV() {
     };
     //  competency certification options
     const [selectedCompetency, setSelectedCompetency] = useState<string>('')
-    const certificateOptions = categories.filter((item) => item.competency !== '').map((item) => ({ value: item.competency, label: item.competency }))
+    const certificateOptions = categories.filter((item) => item.competency !== null).map((item) => ({ value: item.competency, label: item.competency }))
     const selectCompetency = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedCompetency(option?.label ?? '');
     };
@@ -69,17 +69,17 @@ export default function CV() {
     };
     //  mediacal certification options
     const [selectedMedical, setSelectedMedical] = useState<string>('')
-    const medicalOptions = categories.filter((item) => item.medical !== '').map((item) => ({ value: item.medical, label: item.medical }))
+    const medicalOptions = categories.filter((item) => item.medical !== null).map((item) => ({ value: item.medical, label: item.medical }))
     const selectMedical = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedMedical(option?.label ?? '');
     };
-    const [addMedical, setSetMedical] = useState<string>('')        //  Add Medical Input State
+    const [addMedical, setAddMedical] = useState<string>('')        //  Add Medical Input State
     const handleMedicalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSetMedical(event.target.value);
+        setAddMedical(event.target.value);
     };
     //  offshore certification options
     const [selectedOffshore, setSelectedOffshore] = useState<string>('')
-    const offshoreOptions = categories.filter((item) => item.offshore !== '').map((item) => ({ value: item.offshore, label: item.offshore }))
+    const offshoreOptions = categories.filter((item) => item.offshore !== null).map((item) => ({ value: item.offshore, label: item.offshore }))
     const selectOffshore = (option: SingleValue<{ value: string; label: string; }>) => {
         setSelectedOffshore(option?.label ?? '');
     };
@@ -87,6 +87,29 @@ export default function CV() {
     const handleOffshoreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAddOffshore(event.target.value);
     };
+    //  Submit Input Data      
+    const CategoryData = {
+        'documents': addDocument,
+        'maritime': addMarintime,
+        'competency': addCompetency,
+        'medical': addMedical,
+        'offshore': addOffshore
+    }
+    const submitCategory = () => {
+        axios.post('/api/category/addcategory', CategoryData, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res: AxiosResponse) => {
+            dispatch(addCategory(res.data.data))
+        })
+        setAddDocument('');
+        setAddMarintime('');
+        setAddCompetency('');
+        setAddMedical('');
+        setAddOffshore('');
+    }
+
 
     const langOptions = [
         { value: 'latvian', label: 'Latvian' },
@@ -320,7 +343,7 @@ export default function CV() {
                         value={addDocument}
                         onChange={handleDocumentChange}
                     />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
+                    <button id="check" onClick={submitCategory} style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
                     </button>
                 </div>
@@ -480,7 +503,7 @@ export default function CV() {
                         value={addMarintime}
                         onChange={handleMarintimeChange}
                     />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
+                    <button id="check" onClick={submitCategory} style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
                     </button>
                 </div>
@@ -628,7 +651,7 @@ export default function CV() {
                         value={addCompetency}
                         onChange={handleCompetencyChange}
                     />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
+                    <button id="check" onClick={submitCategory} style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
                     </button>
                 </div>
@@ -773,7 +796,7 @@ export default function CV() {
                         value={addMedical}
                         onChange={handleMedicalChange}
                     />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
+                    <button id="check" onClick={submitCategory} style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
                     </button>
                 </div>
@@ -918,7 +941,7 @@ export default function CV() {
                         value={addOffshore}
                         onChange={handleOffshoreChange}
                     />
-                    <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
+                    <button id="check" onClick={submitCategory} style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] mt-[13px] ml-[23px] h-[38px]'>
                         <img src='/image/check.png' alt="x" />
                     </button>
                 </div>

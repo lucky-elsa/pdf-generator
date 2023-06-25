@@ -31,10 +31,10 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('categories')->insert([
             'documents' => 'VISA',
-            'maritime' => '',
-            'competency' => '',
-            'medical' => '',
-            'offshore' => ''
+            'maritime' => null,
+            'competency' => null,
+            'medical' => null,
+            'offshore' => null
         ]);
     }
 }
