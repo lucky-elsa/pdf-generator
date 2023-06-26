@@ -10,6 +10,7 @@ use App\Models\Medical;
 use App\Models\Offshores;
 use App\Models\Seas;
 use App\Models\AddInformations;
+use App\Models\Personals;
 
 class CrudContoller extends Controller
 {
@@ -185,7 +186,7 @@ class CrudContoller extends Controller
         return response()->json(['success' => true, 'data' => $seas]);
     }
 
-    //  In Contoller
+    //  Information Contoller
     public function getInfo(Request $request)
     {
         $info = AddInformations::all();
@@ -210,5 +211,32 @@ class CrudContoller extends Controller
         $info = AddInformations::find($id)->delete();
 
         return response()->json(['success' => true, 'data' => $info]);
+    }
+
+    //  Personal Contoller
+    public function getPersonal(Request $request)
+    {
+        $personal = Personals::all();
+
+        return response()->json(['success' => true, 'data' => $personal]);
+    }
+
+    public function addPersonal(Request $request)
+    {
+        $personal = Personals::create([
+            "userId" => $request->userId,
+            "name" => $request->name,
+            "surname" => $request->surname,
+            "citizen" => $request->citizen,
+            "country" => $request->country,
+            "phone" => $request->phone,
+            "airport" => $request->airport,
+            "email" => $request->email,
+            "birthday" => $request->birthday,
+            "gender" => $request->gender,
+            "link" => $request->link
+        ]);
+
+        return response()->json(['success' => true, 'data' => $personal]);
     }
 }

@@ -7,7 +7,6 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { TextField } from "@mui/material";
 import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
-// import ImageUpload from '../components/ImageUpload';
 import { AutocompleteChangeReason, AutocompleteChangeDetails } from '@mui/lab';
 import '../components/style.css'
 
@@ -87,7 +86,6 @@ export default function Register() {
 
     function handleDateChange(date: Date | null) {
         setSelectedDate(date);
-        console.log(selectedDate);
     }
 
     const [image, setImage] = useState<File | undefined>();
