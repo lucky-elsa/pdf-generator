@@ -53,3 +53,11 @@ Route::delete('/controller/deleteMedical/{id}', [CrudContoller::class, 'deleteMe
 Route::get('/controller/getOffshore', [CrudContoller::class, 'getOffshore']);
 Route::post('/controller/addOffshore', [CrudContoller::class, 'addOffshore']);
 Route::delete('/controller/deleteOffshore/{id}', [CrudContoller::class, 'deleteOffshore']);
+
+Route::get('/controller/getSea', [CrudContoller::class, 'getSea']);
+Route::post('/controller/addSea', [CrudContoller::class, 'addSea']);
+Route::delete('/controller/deleteSea/{id}', [CrudContoller::class, 'deleteSea']);
+
+Route::get('/controller/getInfo', [CrudContoller::class, 'getInfo']);
+Route::post('/controller/addInfo', [CrudContoller::class, 'addInfo']);
+Route::delete('/controller/deleteInfo/{id}', [CrudContoller::class, 'deleteInfo']);

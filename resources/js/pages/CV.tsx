@@ -18,6 +18,8 @@ import { setMarintime, createMarintime, updateMarintime, deleteMarintime } from 
 import { setCompetency, createCompetency, updateCompetency, deleteCompetency } from '../redux/reducers/competencyslice';
 import { setMedical, createMedical, updateMedical, deleteMedical } from '../redux/reducers/medicalslice';
 import { setOffshore, createOffshore, updateOffshore, deleteOffshore } from '../redux/reducers/offshoreslice';
+import { setSea, createSea, updateSea, deleteSea } from '../redux/reducers/seaslice';
+import { setInfomation, createInfomation, updateInfomation, deleteInfomation } from '../redux/reducers/informationslice';
 
 export default function CV() {
     const dispatch = useAppDispatch();
@@ -365,6 +367,120 @@ export default function CV() {
                 dispatch(deleteOffshore(id))
             })
     }
+
+    /*  Sea Experience table state management */
+    // Inputs States
+    const [seaVessel, setSeaVessel] = useState<string | undefined>('');
+    const [seaRank, setSeaRank] = useState<string | undefined>('');
+    const [seaAmountContract, setSeaAmountContract] = useState<string | undefined>('');
+    const [seaContract, setSeaContract] = useState<string | undefined>('');
+    const [seaJob, setSeaJob] = useState<string | undefined>('');
+    const [seaVesselType, setSeaVesselType] = useState<string>('')
+    // HandleChange functions
+    const handleSeaVesselChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSeaVessel(event.target.value);
+    };
+    const handleSeaAmountContractChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSeaAmountContract(event.target.value);
+    };
+    const handleSeaRankChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSeaRank(event.target.value);
+    };
+    const handleSeaContractChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSeaContract(event.target.value);
+    };
+    const handleSeaJobChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSeaJob(event.target.value);
+    };
+    const handleSeaVesselTypeChange = (option: SingleValue<{ value: string; label: string; }>) => {
+        setSeaVesselType(option?.label ?? '');
+    };
+
+    //  Sea Data
+    const SeaData = {
+        'userId': localStorage.getItem('userId'),
+        'vessel': seaVessel,
+        'vessel_type': seaVesselType,
+        'rank': seaRank,
+        'contracts': seaAmountContract,
+        'contract_duration': seaContract,
+        'description': seaJob,
+    }
+    useEffect(() => {
+        axios.get('/api/controller/getSea')
+            .then((res: AxiosResponse) => {
+                dispatch(setSea(res.data.data))
+            })
+    }, [dispatch])
+    const submitSea = () => {
+        axios.post('/api/controller/addSea', SeaData)
+            .then((res: AxiosResponse) => {
+                dispatch(createSea(res.data.data))
+            })
+        setSeaVessel('');
+        setSeaAmountContract('');
+        setSeaRank('');
+        setSeaContract('');
+        setSeaJob('');
+        setSeaVesselType('');
+    }
+    //  Sea State Value
+    const sea = useSelector((state: RootState) => state.seas.sea)
+    //  Delete Sea table
+    const handleDeleteSea = (id: number) => {
+        axios.delete(`/api/controller/deleteSea/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(deleteSea(id))
+            })
+    }
+
+    /*  Sea Experience table state management */
+    //  Inputs States
+    const [language, setLanguage] = useState<string>('')
+    const [computer, setComputer] = useState<string | undefined>('');
+    const [training, setTraining] = useState<string | undefined>('');
+    //  HandleChange Functions
+    const handleTrainingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTraining(event.target.value);
+    };
+    const handleComputerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setComputer(event.target.value);
+    };
+    const handleLanuguageChange = (option: SingleValue<{ value: string; label: string; }>) => {
+        setLanguage(option?.label ?? '');
+    };
+    //  Add Informations Data
+    const InfoData = {
+        'userId': localStorage.getItem('userId'),
+        'languages': language,
+        'computer': computer,
+        'add_skills': training
+    }
+    useEffect(() => {
+        axios.get('/api/controller/getInfo')
+            .then((res: AxiosResponse) => {
+                dispatch(setInfomation(res.data.data))
+            })
+    }, [dispatch])
+    const submitInfo = () => {
+        axios.post('/api/controller/addInfo', InfoData)
+            .then((res: AxiosResponse) => {
+                dispatch(createInfomation(res.data.data))
+            })
+        setLanguage('');
+        setComputer('');
+        setTraining('');
+    }
+    //  Sea State Value
+    const information = useSelector((state: RootState) => state.informations.information)
+    //  Delete Sea table
+    const handleDeleteInfo = (id: number) => {
+        axios.delete(`/api/controller/deleteInfo/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(deleteInfomation(id))
+            })
+    }
+
 
 
 
@@ -1297,7 +1413,11 @@ export default function CV() {
                 </div>
                 <div style={{ border: "1px dashed #7B61FF", padding: "58px 71px" }} className='flex flex-col rounded-[5px] w-full box-border'>
                     <div className='flex justify-end mb-[50px]'>
-                        <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
+                        <button
+                            onClick={submitSea}
+                            className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>
+                            ADD
+                        </button>
                     </div>
                     <div className='flex'>
                         <div className='flex flex-col gap-[83px] w-[50%]'>
@@ -1309,10 +1429,10 @@ export default function CV() {
                                     <input
                                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your name"
+                                        placeholder="Type your Vessel"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={seaVessel}
+                                        onChange={handleSeaVesselChange}
                                     />
                                 </div>
                             </div>
@@ -1322,7 +1442,9 @@ export default function CV() {
                                     Vessel Type:
                                 </div>
                                 <div className='w-[70%]'>
-                                    <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
+                                    <Select
+                                        onChange={handleSeaVesselTypeChange}
+                                        className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={vesselOptions} />
                                 </div>
                             </div>
 
@@ -1331,7 +1453,14 @@ export default function CV() {
                                     Rank:
                                 </div>
                                 <div className='w-[70%]'>
-                                    <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
+                                    <input
+                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                        className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                        placeholder="Type your Rank"
+                                        type="text"
+                                        value={seaRank}
+                                        onChange={handleSeaRankChange}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -1345,10 +1474,10 @@ export default function CV() {
                                     <input
                                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
+                                        placeholder="Type your Amount of Contract"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={seaAmountContract}
+                                        onChange={handleSeaAmountContractChange}
                                     />
                                 </div>
                             </div>
@@ -1361,10 +1490,10 @@ export default function CV() {
                                     <input
                                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your phone number"
+                                        placeholder="Type your Contract Duration"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={seaContract}
+                                        onChange={handleSeaContractChange}
                                     />
                                 </div>
                             </div>
@@ -1377,10 +1506,10 @@ export default function CV() {
                                     <input
                                         style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                                         className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                        placeholder="Type your email"
+                                        placeholder="Type your Job Description"
                                         type="email"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={seaJob}
+                                        onChange={handleSeaJobChange}
                                     />
                                 </div>
                             </div>
@@ -1405,40 +1534,31 @@ export default function CV() {
                                 <th className='w-[10%]'>Actions</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr>
-                                <td className='text-start'>Vessel Name</td>
-                                <td className='text-start'>Vessel Type</td>
-                                <td className='text-start'>Captain</td>
-                                <td className='text-start'>20</td>
-                                <td className='text-start'>6 months</td>
-                                <td className='text-start'>I was the main on the board</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className='text-start'>Vessel Name</td>
-                                <td className='text-start'>Vessel Type</td>
-                                <td className='text-start'>Captain</td>
-                                <td className='text-start'>20</td>
-                                <td className='text-start'>6 months</td>
-                                <td className='text-start'>I was the main on the board</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {
+                                sea.map((item, i) => {
+                                    return (
+                                        <tr key={i}>
+                                            <td className='text-start'>{item.vessel}</td>
+                                            <td className='text-start'>{item.vessel_type}</td>
+                                            <td className='text-start'>{item.rank}</td>
+                                            <td className='text-start'>{item.contracts}</td>
+                                            <td className='text-start'>{item.contract_duration}</td>
+                                            <td className='text-start'>{item.description}</td>
+                                            <td className='text-start flex gap-[10px]'>
+                                                <button id="delete"
+                                                    onClick={() => handleDeleteSea(item.id)}
+                                                    style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/delete.png" alt="delete" />
+                                                </button>
+                                                <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/edit.png" alt="edit" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -1454,7 +1574,11 @@ export default function CV() {
                 <div style={{ border: "1px dashed #7B61FF", padding: "41px 37px" }} className='flex flex-col gap-[53px] rounded-[5px] w-full box-border'>
                     <div className="flex w-full">
                         <div className='flex justify-end w-full'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
+                            <button
+                                onClick={submitInfo}
+                                className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>
+                                ADD
+                            </button>
                         </div>
                     </div>
 
@@ -1466,7 +1590,9 @@ export default function CV() {
                                         Languages:
                                     </div>
                                     <div className='w-[70%]'>
-                                        <Select className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
+                                        <Select
+                                            onChange={handleLanuguageChange}
+                                            className='w-[300px] rounded-[10px] ml-[17px] mt-[3px]' placeholder="Please select" options={langOptions} />
                                     </div>
                                 </div>
                             </div>
@@ -1482,8 +1608,8 @@ export default function CV() {
                                             className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                             placeholder="Type your Computer Skills"
                                             type="text"
-                                            value={name}
-                                            onChange={handleChange}
+                                            value={computer}
+                                            onChange={handleComputerChange}
                                         />
                                     </div>
                                 </div>
@@ -1498,8 +1624,8 @@ export default function CV() {
                                             className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                             placeholder="Type your Skills"
                                             type="text"
-                                            value={name}
-                                            onChange={handleChange}
+                                            value={training}
+                                            onChange={handleTrainingChange}
                                         />
                                     </div>
                                 </div>
@@ -1522,27 +1648,36 @@ export default function CV() {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td className='text-start'>LV/ENG/RUS</td>
-                                <td className='text-start'>Word/Excel/Explorer</td>
-                                <td className='text-start'>I am very trained </td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {
+                                information.map((item, i) => {
+                                    return (
+                                        <tr key={i}>
+                                            <td className='text-start'>{item.languages}</td>
+                                            <td className='text-start'>{item.computer}</td>
+                                            <td className='text-start'>{item.add_skills}</td>
+                                            <td className='text-start flex gap-[10px]'>
+                                                <button id="delete"
+                                                    onClick={() => handleDeleteInfo(item.id)}
+                                                    style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/delete.png" alt="delete" />
+                                                </button>
+                                                <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/edit.png" alt="edit" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div >
 
             <div className='flex justify-end mr-[100px] mt-[96px] pt-[96x]'>
                 <button className='mt-[96x] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]' type='button'>PREVIEW</button>
             </div>
-        </div>
+        </div >
     )
 }

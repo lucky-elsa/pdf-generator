@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Marintimes;
 use Illuminate\Http\Request;
 use App\Models\Documents;
 use App\Models\Marintimes as Marin;
 use App\Models\Competency;
 use App\Models\Medical;
 use App\Models\Offshores;
+use App\Models\Seas;
+use App\Models\AddInformations;
 
 class CrudContoller extends Controller
 {
@@ -152,5 +153,62 @@ class CrudContoller extends Controller
         $offshore = Offshores::find($id)->delete();
 
         return response()->json(['success' => true, 'data' => $offshore]);
+    }
+
+    //  Sea Contoller
+    public function getSea(Request $request)
+    {
+        $seas = Seas::all();
+
+        return response()->json(['success' => true, 'data' => $seas]);
+    }
+
+    public function addSea(Request $request)
+    {
+        $seas = Seas::create([
+            "userId" => $request->userId,
+            "vessel" => $request->vessel,
+            "vessel_type" => $request->vessel_type,
+            "rank" => $request->rank,
+            "contracts" => $request->contracts,
+            "contract_duration" => $request->contract_duration,
+            "description" => $request->description
+        ]);
+
+        return response()->json(['success' => true, 'data' => $seas]);
+    }
+
+    public function deleteSea(Request $request, $id)
+    {
+        $seas = Seas::find($id)->delete();
+
+        return response()->json(['success' => true, 'data' => $seas]);
+    }
+
+    //  In Contoller
+    public function getInfo(Request $request)
+    {
+        $info = AddInformations::all();
+
+        return response()->json(['success' => true, 'data' => $info]);
+    }
+
+    public function addInfo(Request $request)
+    {
+        $info = AddInformations::create([
+            "userId" => $request->userId,
+            "languages" => $request->languages,
+            "computer" => $request->computer,
+            "add_skills" => $request->add_skills
+        ]);
+
+        return response()->json(['success' => true, 'data' => $info]);
+    }
+
+    public function deleteInfo(Request $request, $id)
+    {
+        $info = AddInformations::find($id)->delete();
+
+        return response()->json(['success' => true, 'data' => $info]);
     }
 }
