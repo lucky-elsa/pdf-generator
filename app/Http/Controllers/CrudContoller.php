@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Documents;
 use App\Models\Marintimes as Marin;
 use App\Models\Competency;
+use App\Models\Medical;
 
 class CrudContoller extends Controller
 {
@@ -94,5 +95,33 @@ class CrudContoller extends Controller
         $competency = Competency::find($id)->delete();
 
         return response()->json(['success' => true, 'data' => $competency]);
+    }
+
+    //  Medical Contoller
+    public function getMedical(Request $request)
+    {
+        $medical = Medical::all();
+
+        return response()->json(['success' => true, 'data' => $medical]);
+    }
+
+    public function addMedical(Request $request)
+    {
+        $medical = Medical::create([
+            "userId" => $request->userId,
+            "name" => $request->name,
+            "number" => $request->number,
+            "issue_date" => substr($request->issue_date, 0, 10),
+            "expiry_date" => substr($request->expiry_date, 0, 10)
+        ]);
+
+        return response()->json(['success' => true, 'data' => $medical]);
+    }
+
+    public function deleteMedical(Request $request, $id)
+    {
+        $medical = Medical::find($id)->delete();
+
+        return response()->json(['success' => true, 'data' => $medical]);
     }
 }

@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { setDocument, createDocument, updateDocument, deleteDocument } from '../redux/reducers/documentslice';
 import { setMarintime, createMarintime, updateMarintime, deleteMarintime } from '../redux/reducers/marintimeslice';
 import { setCompetency, createCompetency, updateCompetency, deleteCompetency } from '../redux/reducers/competencyslice';
+import { setMedical, createMedical, updateMedical, deleteMedical } from '../redux/reducers/medicalslice';
 
 export default function CV() {
     const dispatch = useAppDispatch();
@@ -270,7 +271,7 @@ export default function CV() {
             })
     }
 
-    /*  table state management */
+    /*  Medical table state management */
     // Inputs States
     const [medicalNumber, setMedicalNumber] = useState<string | undefined>('');
     const [medicalIssueDate, setMedicalIssueDate] = useState<Date | null>(new Date());
@@ -285,39 +286,86 @@ export default function CV() {
     function handleMedicalExpirationDateChange(date: Date | null) {
         setMedicalExpirationDate(date);
     }
-    //  Marintime Data
+    //  Medical Data
     const MedicalData = {
         'userId': localStorage.getItem('userId'),
-        'name': selectedCompetency,
-        'number': comNumber,
-        'issue_date': comIssueDate,
-        'expiry_date': comExpirationDate
+        'name': selectedMedical,
+        'number': medicalNumber,
+        'issue_date': medicalIssueDate,
+        'expiry_date': medicalExpirationDate
     }
     useEffect(() => {
-        axios.get('/api/controller/getCompetency')
+        axios.get('/api/controller/getMedical')
             .then((res: AxiosResponse) => {
-                dispatch(setCompetency(res.data.data))
+                dispatch(setMedical(res.data.data))
             })
     }, [dispatch])
     const submitMedical = () => {
-        axios.post('/api/controller/addCompetency', MedicalData)
+        axios.post('/api/controller/addMedical', MedicalData)
             .then((res: AxiosResponse) => {
-                dispatch(createCompetency(res.data.data))
+                dispatch(createMedical(res.data.data))
             })
-        setComNumber('');
-        setSelectedCompetency('');
+        setMedicalNumber('');
+        setSelectedMedical('');
     }
     //  Marintime State Value
-
-    // const competency = useSelector((state: RootState) => state.competencies.competency)
-
+    const medical = useSelector((state: RootState) => state.medicals.medical)
     //  Delete Marintime table
     const handleDeleteMedical = (id: number) => {
-        axios.delete(`/api/controller/deleteCompetency/${id}`)
+        axios.delete(`/api/controller/deleteMedical/${id}`)
             .then((res: AxiosResponse) => {
-                dispatch(deleteCompetency(id))
+                dispatch(deleteMedical(id))
             })
     }
+
+    /*   Offshore table state management */
+    // Inputs States
+    const [offshoreNumber, setOffshoreNumber] = useState<string | undefined>('');
+    const [offshoreIssueDate, setOffshoreIssueDate] = useState<Date | null>(new Date());
+    const [offshoreExpirationDate, setOffshoreExpirationDate] = useState<Date | null>(new Date());
+    // HandleChange functions
+    const handleOffshoreNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setOffshoreNumber(event.target.value);
+    };
+    function handleOffshoreIssueDateChange(date: Date | null) {
+        setOffshoreIssueDate(date);
+    }
+    function handleOffshoreExpirationDateChange(date: Date | null) {
+        setOffshoreExpirationDate(date);
+    }
+    //  Medical Data
+    const OffshoreData = {
+        'userId': localStorage.getItem('userId'),
+        'name': selectedOffshore,
+        'number': offshoreNumber,
+        'issue_date': offshoreIssueDate,
+        'expiry_date': offshoreExpirationDate
+    }
+    useEffect(() => {
+        axios.get('/api/controller/getOffshore')
+            .then((res: AxiosResponse) => {
+                dispatch(setMedical(res.data.data))
+            })
+    }, [dispatch])
+    const submitOffshore = () => {
+        axios.post('/api/controller/addOffshore', MedicalData)
+            .then((res: AxiosResponse) => {
+                dispatch(createMedical(res.data.data))
+            })
+        setMedicalNumber('');
+        setSelectedMedical('');
+    }
+    //  Marintime State Value
+    // const medical = useSelector((state: RootState) => state.medicals.medical)
+    //  Delete Marintime table
+    const handleDeleteOffshore = (id: number) => {
+        axios.delete(`/api/controller/deleteOffshore/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(deleteMedical(id))
+            })
+    }
+
+
 
     const langOptions = [
         { value: 'latvian', label: 'Latvian' },
@@ -1071,34 +1119,28 @@ export default function CV() {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td className='text-start'>Seafarers Medical</td>
-                                <td className='text-start'>HACPP122324324325</td>
-                                <td className='text-start'>20.05.2020</td>
-                                <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className='text-start'>OGUK</td>
-                                <td className='text-start'>24214325436567</td>
-                                <td className='text-start'>20.05.2020</td>
-                                <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {
+                                medical.map((item, i) => {
+                                    return (
+                                        <tr key={i}>
+                                            <td className='text-start'>{item.name}</td>
+                                            <td className='text-start'>{item.number}</td>
+                                            <td className='text-start'>{item.issue_date}</td>
+                                            <td className='text-start'>{item.expiry_date}</td>
+                                            <td className='text-start flex gap-[10px]'>
+                                                <button id="delete"
+                                                    onClick={() => handleDeleteMedical(item.id)}
+                                                    style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/delete.png" alt="delete" />
+                                                </button>
+                                                <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/edit.png" alt="edit" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
