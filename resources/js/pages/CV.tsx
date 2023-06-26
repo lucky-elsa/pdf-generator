@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 
 // slice part
 import { setDocument, createDocument, updateDocument, deleteDocument } from '../redux/reducers/documentslice';
+import { setMarintime, createMarintime, updateMarintime, deleteMarintime } from '../redux/reducers/marintimeslice';
 
 
 export default function CV() {
@@ -155,6 +156,73 @@ export default function CV() {
     }
     //  Documents state value using useSelector
     const document = useSelector((state: RootState) => state.documents.document);
+    //  Delete Document table
+    const handleDeleteDocument = (id: number) => {
+        axios.delete(`/api/controller/deleteDocument/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(deleteDocument(id))
+            })
+    }
+    //  Edit Document table
+    const editDocument = (id: number, type: string, country: string, number: string) => {
+        //
+    }
+
+
+    /* Marintime table state management */
+    // Inputs States
+    const [client, setClient] = useState<string | undefined>('');
+    const [employer, setEmployer] = useState<string | undefined>('');
+    const [vesselType, setVesselType] = useState<string>('');
+    const [year, setYear] = useState<string>('');
+    // Handle Change Functions
+    const handleVessecTypeChange = (option: SingleValue<{ value: string; label: string; }>) => {
+        setVesselType(option?.label ?? '');
+    };
+    const handleClientChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setClient(event.target.value);
+    };
+    const handleYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setYear(event.target.value);
+    };
+    const handleEmployerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmployer(event.target.value);
+    };
+    //  Marintime Data
+    const MarinData = {
+        'userId': localStorage.getItem('userId'),
+        'job_title': selectedMaritime,
+        'years': year,
+        'vessel_type': vesselType,
+        'client': client,
+        'employers': employer
+    }
+    useEffect(() => {
+        axios.get('/api/controller/getMarintime')
+            .then((res: AxiosResponse) => {
+                dispatch(setMarintime(res.data.data))
+            })
+    }, [dispatch])
+    const submitMaintime = () => {
+        axios.post('/api/controller/addMarintime', MarinData)
+            .then((res: AxiosResponse) => {
+                dispatch(createMarintime(res.data.data))
+            })
+        setYear('');
+        setClient('');
+        setEmployer('');
+        setVesselType('');
+    }
+    //  Marintime State Value
+    const marintime = useSelector((state: RootState) => state.marintimes.marintime)
+    //  Delete Marintime table
+    const handleDeleteMarintime = (id: number) => {
+        axios.delete(`/api/controller/deleteMarintime/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(deleteMarintime(id))
+            })
+    }
+
 
 
 
@@ -167,19 +235,6 @@ export default function CV() {
     const vesselOptions = [
         { value: 'vessel_1', label: 'Vessel 1' },
         { value: 'vessel_2', label: 'Vessel 2' }
-    ]
-
-    const yearsOptions = [
-        { value: '1', label: 'a year' },
-        { value: '2', label: '2 years' },
-        { value: '3', label: '3 years' },
-        { value: '4', label: '4 years' },
-        { value: '5', label: '5 years' },
-        { value: '6', label: '6 years' },
-        { value: '7', label: '7 years' },
-        { value: '8', label: '8 years' },
-        { value: '9', label: '9 years' },
-        { value: '10', label: '10 years' }
     ]
 
     const avatar = localStorage.getItem('avatar');
@@ -510,10 +565,16 @@ export default function CV() {
                                         <td className='text-start'>{item.issue_date}</td>
                                         <td className='text-start'>{item.expiration_date}</td>
                                         <td className='text-start flex gap-[10px]'>
-                                            <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                            <button id="delete"
+                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                onClick={() => handleDeleteDocument(item.id)}
+                                            >
                                                 <img src="/image/delete.png" alt="delete" />
                                             </button>
-                                            <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                            <button id="edit"
+                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                onClick={() => editDocument(item.id, item.document_type, item.country, item.number)}
+                                            >
                                                 <img src="/image/edit.png" alt="edit" />
                                             </button>
                                         </td>
@@ -547,7 +608,11 @@ export default function CV() {
                     <div className="flex w-full">
                         <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedMaritime}</div>
                         <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
+                            <button
+                                onClick={submitMaintime}
+                                className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>
+                                ADD
+                            </button>
                         </div>
                     </div>
 
@@ -557,23 +622,7 @@ export default function CV() {
                                 Types of vessels:
                             </div>
                             <div className='w-[85%] flex'>
-                                <Select className='w-[300px] rounded-[10px] ml-[17px]' placeholder="..." options={vesselOptions} />
-
-                                <input
-                                    style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
-                                    className='w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                    placeholder="Type your Vessel"
-                                    type="text"
-                                    value={name}
-                                    onChange={handleChange}
-                                />
-
-                                <button id="check" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#fff] ml-[23px] h-[38px]'>
-                                    <img src='/image/check.png' alt="x" />
-                                </button>
-                                <button id="plus" style={{ padding: "4px 10px" }} className='rounded-[8px] bg-[#116ACC] ml-[10px] h-[38px]'>
-                                    <img src='/image/plus_black.png' alt="x" />
-                                </button>
+                                <Select className='w-[300px] rounded-[10px] ml-[17px]' onChange={handleVessecTypeChange} placeholder="..." options={vesselOptions} />
                             </div>
                         </div>
 
@@ -588,8 +637,8 @@ export default function CV() {
                                         className='w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                         placeholder="Type Clients"
                                         type="text"
-                                        value={name}
-                                        onChange={handleChange}
+                                        value={client}
+                                        onChange={handleClientChange}
                                     />
                                 </div>
                             </div>
@@ -598,7 +647,14 @@ export default function CV() {
                                     Years:
                                 </div>
                                 <div className='w-[70%] flex'>
-                                    <Select className='w-[300px] rounded-[10px] ml-[17px]' placeholder="Please select" options={yearsOptions} />
+                                    <input
+                                        style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
+                                        className='w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
+                                        placeholder="Type Clients"
+                                        type="text"
+                                        value={year}
+                                        onChange={handleYearChange}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -613,8 +669,8 @@ export default function CV() {
                                     className='w-[300px] ml-[17px] h-[38px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                     placeholder="Type Crewing's, Employers"
                                     type="text"
-                                    value={name}
-                                    onChange={handleChange}
+                                    value={employer}
+                                    onChange={handleEmployerChange}
                                 />
                             </div>
                         </div>
@@ -636,37 +692,28 @@ export default function CV() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className='text-start'>Job title 1</td>
-                                <td className='text-start'>5</td>
-                                <td className='text-start'>Vessel 1 </td>
-                                <td className='text-start'>Clients</td>
-                                <td className='text-start'>Crewing's, Employers</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>CUSTOM</td>
-                                <td className='text-start'>5</td>
-                                <td className='text-start'>Vessel 2 </td>
-                                <td className='text-start'>Clients</td>
-                                <td className='text-start'>Crewing's, Employers</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {marintime.map((item, i) => {
+                                return (
+                                    <tr key={i}>
+                                        <td className='text-start'>{item.job_title}</td>
+                                        <td className='text-start'>{item.years}</td>
+                                        <td className='text-start'>{item.vessel_type}</td>
+                                        <td className='text-start'>{item.client}</td>
+                                        <td className='text-start'>{item.employers}</td>
+                                        <td className='text-start flex gap-[10px]'>
+                                            <button id="delete"
+                                                style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}
+                                                onClick={() => handleDeleteMarintime(item.id)}
+                                            >
+                                                <img src="/image/delete.png" alt="delete" />
+                                            </button>
+                                            <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                <img src="/image/edit.png" alt="edit" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>

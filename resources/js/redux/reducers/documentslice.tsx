@@ -43,8 +43,8 @@ export const documentSlice = createSlice({
                 state.document[index] = action.payload;
             }
         },
-        deleteDocument: (state, action: PayloadAction<DocumentState>) => {
-            const index = state.document.findIndex((todo) => todo.id === action.payload.id);
+        deleteDocument: (state, action: PayloadAction<number>) => {
+            const index = state.document.findIndex((todo) => todo.id === action.payload);
             if (index !== -1) {
                 state.document.splice(index, 1);
             }

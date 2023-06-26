@@ -1,16 +1,11 @@
 <?php
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\CrewingController;
 use App\Http\Controllers\CrudContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientAuthController;
-use App\Http\Controllers\AdminAuthController;
-use App\Http\Controllers\DataController;
-use App\Http\Controllers\VideoController;
-use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +36,8 @@ Route::post('/category/addcategory', [CreateController::class, 'addCategories'])
 
 Route::get('/controller/getDocuments', [CrudContoller::class, 'getDocuments']);
 Route::post('/controller/addDocument', [CrudContoller::class, 'addDocument']);
+Route::delete('/controller/deleteDocument/{id}', [CrudContoller::class, 'deleteDocument']);
+
+Route::get('/controller/getMarintime', [CrudContoller::class, 'getMarintime']);
+Route::post('/controller/addMarintime', [CrudContoller::class, 'addMarintime']);
+Route::delete('/controller/deleteMarintime/{id}', [CrudContoller::class, 'deleteMarintime']);

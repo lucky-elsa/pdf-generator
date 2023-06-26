@@ -4,6 +4,7 @@ import userReducer from './reducers/userslice'
 import crewingReducer from './reducers/crewingslice'
 import categoryslice from './reducers/categoryslice'
 import documentslice from './reducers/documentslice'
+import marintimeslice from './reducers/marintimeslice'
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     user: userReducer,
     crewings: crewingReducer,
     categories: categoryslice,
-    documents: documentslice
+    documents: documentslice,
+    marintimes: marintimeslice
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

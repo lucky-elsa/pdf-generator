@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marintimes;
 use Illuminate\Http\Request;
 use App\Models\Documents;
+use App\Models\Marintimes as Marin;
 
 class CrudContoller extends Controller
 {
@@ -26,5 +28,40 @@ class CrudContoller extends Controller
         ]);
 
         return response()->json(['success' => true, 'data' => $document]);
+    }
+
+    public function deleteDocument(Request $request, $id)
+    {
+        $document = Documents::find($id)->delete();
+
+        return response()->json(['success' => true, 'data' => $document]);
+    }
+
+    public function getMarintime(Request $request)
+    {
+        $marintime = Marin::all();
+
+        return response()->json(['success' => true, 'data' => $marintime]);
+    }
+
+    public function addMarintime(Request $request)
+    {
+        $marintime = Marin::create([
+            "userId" => $request->userId,
+            "job_title" => $request->job_title,
+            "years" => $request->years,
+            "vessel_type" => $request->vessel_type,
+            "client" => $request->client,
+            "employers" => $request->employers
+        ]);
+
+        return response()->json(['success' => true, 'data' => $marintime]);
+    }
+
+    public function deleteMarintime(Request $request, $id)
+    {
+        $marintime = Marin::find($id)->delete();
+
+        return response()->json(['success' => true, 'data' => $marintime]);
     }
 }
