@@ -8,6 +8,7 @@ use App\Models\Documents;
 use App\Models\Marintimes as Marin;
 use App\Models\Competency;
 use App\Models\Medical;
+use App\Models\Offshores;
 
 class CrudContoller extends Controller
 {
@@ -123,5 +124,33 @@ class CrudContoller extends Controller
         $medical = Medical::find($id)->delete();
 
         return response()->json(['success' => true, 'data' => $medical]);
+    }
+
+    //  Offshore Contoller
+    public function getOffshore(Request $request)
+    {
+        $offshore = Offshores::all();
+
+        return response()->json(['success' => true, 'data' => $offshore]);
+    }
+
+    public function addOffshore(Request $request)
+    {
+        $offshore = Offshores::create([
+            "userId" => $request->userId,
+            "name" => $request->name,
+            "number" => $request->number,
+            "issue_date" => substr($request->issue_date, 0, 10),
+            "expiry_date" => substr($request->expiry_date, 0, 10)
+        ]);
+
+        return response()->json(['success' => true, 'data' => $offshore]);
+    }
+
+    public function deleteOffshore(Request $request, $id)
+    {
+        $offshore = Offshores::find($id)->delete();
+
+        return response()->json(['success' => true, 'data' => $offshore]);
     }
 }

@@ -49,3 +49,7 @@ Route::delete('/controller/deleteCompetency/{id}', [CrudContoller::class, 'delet
 Route::get('/controller/getMedical', [CrudContoller::class, 'getMedical']);
 Route::post('/controller/addMedical', [CrudContoller::class, 'addMedical']);
 Route::delete('/controller/deleteMedical/{id}', [CrudContoller::class, 'deleteMedical']);
+
+Route::get('/controller/getOffshore', [CrudContoller::class, 'getOffshore']);
+Route::post('/controller/addOffshore', [CrudContoller::class, 'addOffshore']);
+Route::delete('/controller/deleteOffshore/{id}', [CrudContoller::class, 'deleteOffshore']);

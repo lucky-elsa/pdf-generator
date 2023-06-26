@@ -17,6 +17,7 @@ import { setDocument, createDocument, updateDocument, deleteDocument } from '../
 import { setMarintime, createMarintime, updateMarintime, deleteMarintime } from '../redux/reducers/marintimeslice';
 import { setCompetency, createCompetency, updateCompetency, deleteCompetency } from '../redux/reducers/competencyslice';
 import { setMedical, createMedical, updateMedical, deleteMedical } from '../redux/reducers/medicalslice';
+import { setOffshore, createOffshore, updateOffshore, deleteOffshore } from '../redux/reducers/offshoreslice';
 
 export default function CV() {
     const dispatch = useAppDispatch();
@@ -344,24 +345,24 @@ export default function CV() {
     useEffect(() => {
         axios.get('/api/controller/getOffshore')
             .then((res: AxiosResponse) => {
-                dispatch(setMedical(res.data.data))
+                dispatch(setOffshore(res.data.data))
             })
     }, [dispatch])
     const submitOffshore = () => {
-        axios.post('/api/controller/addOffshore', MedicalData)
+        axios.post('/api/controller/addOffshore', OffshoreData)
             .then((res: AxiosResponse) => {
-                dispatch(createMedical(res.data.data))
+                dispatch(createOffshore(res.data.data))
             })
-        setMedicalNumber('');
-        setSelectedMedical('');
+        setOffshoreNumber('');
+        setSelectedOffshore('');
     }
     //  Marintime State Value
-    // const medical = useSelector((state: RootState) => state.medicals.medical)
+    const offshore = useSelector((state: RootState) => state.offshores.offshore)
     //  Delete Marintime table
     const handleDeleteOffshore = (id: number) => {
         axios.delete(`/api/controller/deleteOffshore/${id}`)
             .then((res: AxiosResponse) => {
-                dispatch(deleteMedical(id))
+                dispatch(deleteOffshore(id))
             })
     }
 
@@ -1169,7 +1170,11 @@ export default function CV() {
                     <div className="flex w-full">
                         <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedOffshore}</div>
                         <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
+                            <button
+                                onClick={submitOffshore}
+                                className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>
+                                ADD
+                            </button>
                         </div>
                     </div>
 
@@ -1186,8 +1191,8 @@ export default function CV() {
                                             className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                             placeholder="Type your name"
                                             type="text"
-                                            value={name}
-                                            onChange={handleChange}
+                                            value={offshoreNumber}
+                                            onChange={handleOffshoreNumberChange}
                                         />
                                     </div>
                                 </div>
@@ -1201,8 +1206,8 @@ export default function CV() {
                                     <div className='w-[70%]'>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
+                                                value={offshoreIssueDate}
+                                                onChange={handleOffshoreIssueDateChange}
                                                 renderInput={(params) => <TextField
                                                     onClick={() => console.log("asd")}
                                                     sx={{
@@ -1224,8 +1229,8 @@ export default function CV() {
                                     <div className='w-[70%]'>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
+                                                value={offshoreExpirationDate}
+                                                onChange={handleOffshoreExpirationDateChange}
                                                 renderInput={(params) => <TextField
                                                     onClick={() => console.log("asd")}
                                                     sx={{
@@ -1256,36 +1261,29 @@ export default function CV() {
                                 <th className='w-[10%]'>Actions</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            <tr>
-                                <td className='text-start'>Basic Safety Training</td>
-                                <td className='text-start'>HACPP122324324325</td>
-                                <td className='text-start'>20.05.2020</td>
-                                <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className='text-start'>CUSTOM</td>
-                                <td className='text-start'>24214325436567</td>
-                                <td className='text-start'>20.05.2020</td>
-                                <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {
+                                offshore.map((item, i) => {
+                                    return (
+                                        <tr key={i}>
+                                            <td className='text-start'>{item.name}</td>
+                                            <td className='text-start'>{item.number}</td>
+                                            <td className='text-start'>{item.issue_date}</td>
+                                            <td className='text-start'>{item.expiry_date}</td>
+                                            <td className='text-start flex gap-[10px]'>
+                                                <button id="delete"
+                                                    onClick={() => handleDeleteOffshore(item.id)}
+                                                    style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/delete.png" alt="delete" />
+                                                </button>
+                                                <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/edit.png" alt="edit" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>

@@ -7,6 +7,7 @@ import documentslice from './reducers/documentslice'
 import marintimeslice from './reducers/marintimeslice'
 import competencyslice from './reducers/competencyslice'
 import medicalslice from './reducers/medicalslice'
+import offshoreslice from './reducers/offshoreslice'
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     marintimes: marintimeslice,
     competencies: competencyslice,
     medicals: medicalslice,
+    offshores: offshoreslice
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
