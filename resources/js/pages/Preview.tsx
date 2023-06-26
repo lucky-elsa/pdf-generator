@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
@@ -6,74 +6,67 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import TextField from '@mui/material/TextField';
-
+import axios, { AxiosResponse } from 'axios';
 import Select from 'react-select';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../redux/hooks';
+import { RootState } from '../redux/store';
+
+import { setDocument, createDocument, updateDocument, deleteDocument } from '../redux/reducers/documentslice';
+import { setMarintime, createMarintime, updateMarintime, deleteMarintime } from '../redux/reducers/marintimeslice';
+import { setCompetency, createCompetency, updateCompetency, deleteCompetency } from '../redux/reducers/competencyslice';
+import { setMedical, createMedical, updateMedical, deleteMedical } from '../redux/reducers/medicalslice';
+import { setOffshore, createOffshore, updateOffshore, deleteOffshore } from '../redux/reducers/offshoreslice';
+import { setSea, createSea, updateSea, deleteSea } from '../redux/reducers/seaslice';
+import { setInfomation, createInfomation, updateInfomation, deleteInfomation } from '../redux/reducers/informationslice';
+import { setPersonal, createPersonal, updatePersonal } from '../redux/reducers/personalslice';
+import Client from './client';
 
 export default function Preview() {
-    const [name, setName] = useState('');
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        axios.get('/api/controller/getDocuments')
+            .then((res: AxiosResponse) => {
+                dispatch(setDocument(res.data.data))
+            })
+        axios.get('/api/controller/getMarintime')
+            .then((res: AxiosResponse) => {
+                dispatch(setMarintime(res.data.data))
+            })
+        axios.get('/api/controller/getCompetency')
+            .then((res: AxiosResponse) => {
+                dispatch(setCompetency(res.data.data))
+            })
+        axios.get('/api/controller/getMedical')
+            .then((res: AxiosResponse) => {
+                dispatch(setMedical(res.data.data))
+            })
+        axios.get('/api/controller/getOffshore')
+            .then((res: AxiosResponse) => {
+                dispatch(setOffshore(res.data.data))
+            })
+        axios.get('/api/controller/getSea')
+            .then((res: AxiosResponse) => {
+                dispatch(setSea(res.data.data))
+            })
+        axios.get('/api/controller/getInfo')
+            .then((res: AxiosResponse) => {
+                dispatch(setInfomation(res.data.data))
+            })
+        axios.get('/api/controller/getPersonal')
+            .then((res: AxiosResponse) => {
+                dispatch(setPersonal(res.data.data))
+            })
+    }, [dispatch])
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setName(event.target.value);
-    };
-
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
-    function handleDateChange(date: Date | null) {
-        setSelectedDate(date);
-    }
-
-    const options = [
-        { value: 'passport', label: 'Passport / ID:' },
-        { value: 'seamna', label: 'Seaman´s Book' },
-        { value: 'visa', label: 'VISA' }
-    ];
-
-    const experienceOptions = [
-        { value: 'job-1', label: 'Job tilte 1' },
-        { value: 'job-2', label: 'Job title 2' },
-        { value: 'custom', label: 'CUSTOM' }
-    ]
-
-    const vesselOptions = [
-        { value: 'vessel_1', label: 'Vessel 1' },
-        { value: 'vessel_2', label: 'Vessel 2' }
-    ]
-
-    const yearsOptions = [
-        { value: '1', label: 'a year' },
-        { value: '2', label: '2 years' },
-        { value: '3', label: '3 years' },
-        { value: '4', label: '4 years' },
-        { value: '5', label: '5 years' },
-        { value: '6', label: '6 years' },
-        { value: '7', label: '7 years' },
-        { value: '8', label: '8 years' },
-        { value: '9', label: '9 years' },
-        { value: '10', label: '10 years' }
-    ]
-
-    const certificateOptions = [
-        { value: 'food', label: 'Food Safety and HACPP ' },
-        { value: 'onshore_cook', label: 'Onshore Cooks Certificate ' },
-        { value: 'custom', label: 'CUSTOM' }
-    ]
-
-    const medicalOptions = [
-        { value: 'OGUK', label: 'OGUK' },
-        { value: 'medical', label: 'Seafarers Medical' }
-    ]
-
-    const offshoreOptions = [
-        { value: 'training', label: 'Basic Safety Training' },
-        { value: 'BOSIET_5700', label: 'BOSIET 5700' },
-        { value: 'custom', label: 'CUSTOM' }
-    ]
-
-    const langOptions = [
-        { value: 'latvian', label: 'Latvian' },
-        { value: 'russian', label: 'Russian' },
-        { value: 'english', label: 'English' }
-    ]
+    const document = useSelector((state: RootState) => state.documents.document);
+    const marintime = useSelector((state: RootState) => state.marintimes.marintime);
+    const competency = useSelector((state: RootState) => state.competencies.competency)
+    const medical = useSelector((state: RootState) => state.medicals.medical);
+    const offshore = useSelector((state: RootState) => state.offshores.offshore);
+    const sea = useSelector((state: RootState) => state.seas.sea);
+    const information = useSelector((state: RootState) => state.informations.information);
+    const personal = useSelector((state: RootState) => state.personals.personal)
 
     return (
         <div className='pt-[75px] mb-[90px]'>
@@ -207,21 +200,21 @@ export default function Preview() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className='text-start'>passport</td>
-                                <td className='text-start'>Latvia</td>
-                                <td className='text-start'>LV343435545645</td>
-                                <td className='text-start'>20.05.2000.</td>
-                                <td className='text-start'>20.05.2030.</td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>passport</td>
-                                <td className='text-start'>Latvia</td>
-                                <td className='text-start'>LV343435545645</td>
-                                <td className='text-start'>20.05.2000.</td>
-                                <td className='text-start'>20.05.2030.</td>
-                            </tr>
+                            {
+                                document.map((item, i) => {
+                                    if (item.userId === localStorage.getItem('userId')) {
+                                        return (
+                                            <tr key={i}>
+                                                <td className='text-start'>{item.document_type}</td>
+                                                <td className='text-start'>{item.country}</td>
+                                                <td className='text-start'>{item.number}</td>
+                                                <td className='text-start'>{item.issue_date}</td>
+                                                <td className='text-start'>{item.expiration_date}</td>
+                                            </tr>
+                                        )
+                                    }
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -244,21 +237,21 @@ export default function Preview() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className='text-start'>Job title 1</td>
-                                <td className='text-start'>5</td>
-                                <td className='text-start'>Vessel 1 </td>
-                                <td className='text-start'>Clients</td>
-                                <td className='text-start'>Crewing's, Employers</td>
-                            </tr>
-
-                            <tr>
-                                <td className='text-start'>CUSTOM</td>
-                                <td className='text-start'>5</td>
-                                <td className='text-start'>Vessel 2 </td>
-                                <td className='text-start'>Clients</td>
-                                <td className='text-start'>Crewing's, Employers</td>
-                            </tr>
+                            {
+                                marintime.map((item, i) => {
+                                    if (item.userId === localStorage.getItem('userId')) {
+                                        return (
+                                            <tr>
+                                                <td className='text-start'>{item.job_title}</td>
+                                                <td className='text-start'>{item.years}</td>
+                                                <td className='text-start'>{item.vessel_type}</td>
+                                                <td className='text-start'>{item.client}</td>
+                                                <td className='text-start'>{item.employers}</td>
+                                            </tr>
+                                        )
+                                    }
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -281,7 +274,6 @@ export default function Preview() {
                                 <th className='w-[12%]'>Expiry Date</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <tr>
                                 <td className='text-start'>Food Safety and HACPP </td>

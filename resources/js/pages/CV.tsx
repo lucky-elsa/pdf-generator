@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Autocomplete from '@mui/material/Autocomplete';
 import { AutocompleteChangeReason, AutocompleteChangeDetails } from '@mui/lab';
-
+import { useNavigate } from 'react-router-dom';
 // slice part
 import { setDocument, createDocument, updateDocument, deleteDocument } from '../redux/reducers/documentslice';
 import { setMarintime, createMarintime, updateMarintime, deleteMarintime } from '../redux/reducers/marintimeslice';
@@ -23,6 +23,7 @@ import { setMedical, createMedical, updateMedical, deleteMedical } from '../redu
 import { setOffshore, createOffshore, updateOffshore, deleteOffshore } from '../redux/reducers/offshoreslice';
 import { setSea, createSea, updateSea, deleteSea } from '../redux/reducers/seaslice';
 import { setInfomation, createInfomation, updateInfomation, deleteInfomation } from '../redux/reducers/informationslice';
+import { setPersonal, createPersonal, updatePersonal } from '../redux/reducers/personalslice';
 
 interface CountryType {
     code: string;
@@ -458,6 +459,7 @@ export default function CV() {
     ];
 
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('/api/category/getCategories')
@@ -672,7 +674,7 @@ export default function CV() {
     function handleComExpirationDateChange(date: Date | null) {
         setComExpirationDate(date);
     }
-    //  Marintime Data
+    //  Competency Data
     const CompetencyData = {
         'userId': localStorage.getItem('userId'),
         'name': selectedCompetency,
@@ -963,10 +965,34 @@ export default function CV() {
     }
     //  Personal Data
     const PersonalData = {
-        
+        'userId': localStorage.getItem('userId'),
+        'name': name,
+        'surname': surname,
+        'citizen': citizen,
+        'country': personalCountry,
+        'phone': phone,
+        'airport': name,
+        'email': email,
+        'birthday': birthday,
+        'gender': gender,
+        'link': link,
     }
-
-
+    const sutmitCV = () => {
+        axios.post('/api/controller/addPersonal', PersonalData)
+            .then((res: AxiosResponse) => {
+                dispatch(createPersonal(res.data.data))
+            })
+        setName('');
+        setSurname('');
+        setCitizen('');
+        setPersonalCountry('');
+        setAirport('');
+        setPhone('');
+        setEmail('');
+        setLink('');
+        setGender('');
+        navigate('/preview');
+    }
 
 
     const langOptions = [
@@ -2215,7 +2241,12 @@ export default function CV() {
             </div >
 
             <div className='flex justify-end mr-[100px] mt-[96px] pt-[96x]'>
-                <button className='mt-[96x] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]' type='button'>PREVIEW</button>
+                <button
+                    onClick={sutmitCV}
+                    className='mt-[96x] bg-[#116ACC] rounded-[7px] w-[117px] h-[52px] text-[16px] font-[500] text-[#fff]'
+                    type='button'>
+                    PREVIEW
+                </button>
             </div>
         </div >
     )

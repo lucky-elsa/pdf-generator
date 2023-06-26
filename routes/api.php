@@ -61,3 +61,6 @@ Route::delete('/controller/deleteSea/{id}', [CrudContoller::class, 'deleteSea'])
 Route::get('/controller/getInfo', [CrudContoller::class, 'getInfo']);
 Route::post('/controller/addInfo', [CrudContoller::class, 'addInfo']);
 Route::delete('/controller/deleteInfo/{id}', [CrudContoller::class, 'deleteInfo']);
+
+Route::get('/controller/getPersonal', [CrudContoller::class, 'getPersonal']);
+Route::post('/controller/addPersonal', [CrudContoller::class, 'addPersonal']);

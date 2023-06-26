@@ -10,6 +10,7 @@ import medicalslice from './reducers/medicalslice'
 import offshoreslice from './reducers/offshoreslice'
 import seaslice from './reducers/seaslice'
 import informationslice from './reducers/informationslice'
+import personalslice from './reducers/personalslice'
 
 const store = configureStore({
   reducer: {
@@ -23,7 +24,8 @@ const store = configureStore({
     medicals: medicalslice,
     offshores: offshoreslice,
     seas: seaslice,
-    informations: informationslice
+    informations: informationslice,
+    personals: personalslice
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

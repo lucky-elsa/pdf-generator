@@ -232,7 +232,7 @@ class CrudContoller extends Controller
             "phone" => $request->phone,
             "airport" => $request->airport,
             "email" => $request->email,
-            "birthday" => $request->birthday,
+            "birthday" => substr($request->birthday, 0, 10),
             "gender" => $request->gender,
             "link" => $request->link
         ]);
