@@ -6,9 +6,11 @@ use App\Models\Marintimes;
 use Illuminate\Http\Request;
 use App\Models\Documents;
 use App\Models\Marintimes as Marin;
+use App\Models\Competency;
 
 class CrudContoller extends Controller
 {
+    //  Documents Contoller
     public function getDocuments(Request $request)
     {
         $document = Documents::all();
@@ -37,6 +39,7 @@ class CrudContoller extends Controller
         return response()->json(['success' => true, 'data' => $document]);
     }
 
+    //  Marintime Contoller
     public function getMarintime(Request $request)
     {
         $marintime = Marin::all();
@@ -63,5 +66,33 @@ class CrudContoller extends Controller
         $marintime = Marin::find($id)->delete();
 
         return response()->json(['success' => true, 'data' => $marintime]);
+    }
+
+    //  Competency Contoller
+    public function getCompetency(Request $request)
+    {
+        $competency = Competency::all();
+
+        return response()->json(['success' => true, 'data' => $competency]);
+    }
+
+    public function addCompetency(Request $request)
+    {
+        $competency = Competency::create([
+            "userId" => $request->userId,
+            "name" => $request->name,
+            "number" => $request->number,
+            "issue_date" => $request->issue_date,
+            "expiry_date" => $request->expiry_date
+        ]);
+
+        return response()->json(['success' => true, 'data' => $competency]);
+    }
+
+    public function deleteCompetency(Request $request, $id)
+    {
+        $competency = Competency::find($id)->delete();
+
+        return response()->json(['success' => true, 'data' => $competency]);
     }
 }

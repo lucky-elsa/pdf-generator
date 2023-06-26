@@ -41,3 +41,7 @@ Route::delete('/controller/deleteDocument/{id}', [CrudContoller::class, 'deleteD
 Route::get('/controller/getMarintime', [CrudContoller::class, 'getMarintime']);
 Route::post('/controller/addMarintime', [CrudContoller::class, 'addMarintime']);
 Route::delete('/controller/deleteMarintime/{id}', [CrudContoller::class, 'deleteMarintime']);
+
+Route::get('/controller/getCompetency', [CrudContoller::class, 'getCompetency']);
+Route::post('/controller/addCompetency', [CrudContoller::class, 'addCompetency']);
+Route::delete('/controller/deleteCompetency/{id}', [CrudContoller::class, 'deleteCompetency']);

@@ -5,6 +5,7 @@ import crewingReducer from './reducers/crewingslice'
 import categoryslice from './reducers/categoryslice'
 import documentslice from './reducers/documentslice'
 import marintimeslice from './reducers/marintimeslice'
+import competencyslice from './reducers/competencyslice'
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     crewings: crewingReducer,
     categories: categoryslice,
     documents: documentslice,
-    marintimes: marintimeslice
+    marintimes: marintimeslice,
+    competencies: competencyslice
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

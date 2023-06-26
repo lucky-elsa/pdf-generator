@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 // slice part
 import { setDocument, createDocument, updateDocument, deleteDocument } from '../redux/reducers/documentslice';
 import { setMarintime, createMarintime, updateMarintime, deleteMarintime } from '../redux/reducers/marintimeslice';
-
+import { setCompetency, createCompetency, updateCompetency, deleteCompetency } from '../redux/reducers/competencyslice';
 
 export default function CV() {
     const dispatch = useAppDispatch();
@@ -223,8 +223,101 @@ export default function CV() {
             })
     }
 
+    /* Competency table state management */
+    // Inputs States
+    const [comNumber, setComNumber] = useState<string | undefined>('');
+    const [comIssueDate, setComIssueDate] = useState<Date | null>(new Date());
+    const [comExpirationDate, setComExpirationDate] = useState<Date | null>(new Date());
+    // HandleChange functions
+    const handleComNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setComNumber(event.target.value);
+    };
+    function handleComIssueDateChange(date: Date | null) {
+        setComIssueDate(date);
+    }
+    function handleComExpirationDateChange(date: Date | null) {
+        setComExpirationDate(date);
+    }
+    //  Marintime Data
+    const CompetencyData = {
+        'userId': localStorage.getItem('userId'),
+        'name': selectedCompetency,
+        'number': comNumber,
+        'issue_date': comIssueDate,
+        'expiry_date': comExpirationDate
+    }
+    useEffect(() => {
+        axios.get('/api/controller/getCompetency')
+            .then((res: AxiosResponse) => {
+                dispatch(setCompetency(res.data.data))
+            })
+    }, [dispatch])
+    const submitCompetecy = () => {
+        axios.post('/api/controller/addCompetency', CompetencyData)
+            .then((res: AxiosResponse) => {
+                dispatch(createCompetency(res.data.data))
+            })
+        setComNumber('');
+        setSelectedCompetency('');
+    }
+    //  Marintime State Value
+    const competency = useSelector((state: RootState) => state.competencies.competency)
+    //  Delete Marintime table
+    const handleDeleteCompetecny = (id: number) => {
+        axios.delete(`/api/controller/deleteCompetency/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(deleteCompetency(id))
+            })
+    }
 
+    /*  table state management */
+    // Inputs States
+    const [medicalNumber, setMedicalNumber] = useState<string | undefined>('');
+    const [medicalIssueDate, setMedicalIssueDate] = useState<Date | null>(new Date());
+    const [medicalExpirationDate, setMedicalExpirationDate] = useState<Date | null>(new Date());
+    // HandleChange functions
+    const handleMedicalNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMedicalNumber(event.target.value);
+    };
+    function handleMedicalIssueDateChange(date: Date | null) {
+        setMedicalIssueDate(date);
+    }
+    function handleMedicalExpirationDateChange(date: Date | null) {
+        setMedicalExpirationDate(date);
+    }
+    //  Marintime Data
+    const MedicalData = {
+        'userId': localStorage.getItem('userId'),
+        'name': selectedCompetency,
+        'number': comNumber,
+        'issue_date': comIssueDate,
+        'expiry_date': comExpirationDate
+    }
+    useEffect(() => {
+        axios.get('/api/controller/getCompetency')
+            .then((res: AxiosResponse) => {
+                dispatch(setCompetency(res.data.data))
+            })
+    }, [dispatch])
+    const submitMedical = () => {
+        axios.post('/api/controller/addCompetency', MedicalData)
+            .then((res: AxiosResponse) => {
+                dispatch(createCompetency(res.data.data))
+            })
+        setComNumber('');
+        setSelectedCompetency('');
+    }
+    //  Marintime State Value
 
+    // const competency = useSelector((state: RootState) => state.competencies.competency)
+
+    //  Delete Marintime table
+    const handleDeleteMedical = (id: number) => {
+        axios.delete(`/api/controller/deleteCompetency/${id}`)
+            .then((res: AxiosResponse) => {
+                dispatch(deleteCompetency(id))
+            })
+    }
 
     const langOptions = [
         { value: 'latvian', label: 'Latvian' },
@@ -742,7 +835,11 @@ export default function CV() {
                     <div className="flex w-full">
                         <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedCompetency}</div>
                         <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
+                            <button
+                                onClick={submitCompetecy}
+                                className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>
+                                ADD
+                            </button>
                         </div>
                     </div>
 
@@ -757,10 +854,10 @@ export default function CV() {
                                         <input
                                             style={{ padding: "8px 10px 8px 16px", border: "1px solid #9CA3AF" }}
                                             className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
-                                            placeholder="Type your name"
+                                            placeholder="Type your number"
                                             type="text"
-                                            value={name}
-                                            onChange={handleChange}
+                                            value={comNumber}
+                                            onChange={handleComNumberChange}
                                         />
                                     </div>
                                 </div>
@@ -774,8 +871,8 @@ export default function CV() {
                                     <div className='w-[70%]'>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
+                                                value={comIssueDate}
+                                                onChange={handleComIssueDateChange}
                                                 renderInput={(params) => <TextField
                                                     onClick={() => console.log("asd")}
                                                     sx={{
@@ -797,8 +894,8 @@ export default function CV() {
                                     <div className='w-[70%]'>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
+                                                value={comExpirationDate}
+                                                onChange={handleComExpirationDateChange}
                                                 renderInput={(params) => <TextField
                                                     onClick={() => console.log("asd")}
                                                     sx={{
@@ -831,34 +928,28 @@ export default function CV() {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td className='text-start'>Food Safety and HACPP </td>
-                                <td className='text-start'>HACPP122324324325</td>
-                                <td className='text-start'>20.05.2020</td>
-                                <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className='text-start'>Food Safety and HACPP </td>
-                                <td className='text-start'>HACPP122324324325</td>
-                                <td className='text-start'>20.05.2020</td>
-                                <td className='text-start'>20.05.2025</td>
-                                <td className='text-start flex gap-[10px]'>
-                                    <button id="delete" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/delete.png" alt="delete" />
-                                    </button>
-                                    <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
-                                        <img src="/image/edit.png" alt="edit" />
-                                    </button>
-                                </td>
-                            </tr>
+                            {
+                                competency.map((item, i) => {
+                                    return (
+                                        <tr key={i}>
+                                            <td className='text-start'>Food Safety and HACPP </td>
+                                            <td className='text-start'>HACPP122324324325</td>
+                                            <td className='text-start'>20.05.2020</td>
+                                            <td className='text-start'>20.05.2025</td>
+                                            <td className='text-start flex gap-[10px]'>
+                                                <button id="delete"
+                                                    onClick={() => handleDeleteCompetecny(item.id)}
+                                                    style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/delete.png" alt="delete" />
+                                                </button>
+                                                <button id="edit" style={{ padding: "8px 14px", borderRadius: "8px", backgroundColor: "#fff", width: "44px", height: "44px" }}>
+                                                    <img src="/image/edit.png" alt="edit" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -887,7 +978,11 @@ export default function CV() {
                     <div className="flex w-full">
                         <div className='w-[80%] font-[700] text-[32px] leading-[36px] text-[#374151]'>{selectedMedical}</div>
                         <div className='flex justify-end w-[20%]'>
-                            <button className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>ADD</button>
+                            <button
+                                onClick={submitMedical}
+                                className='w-[82px] h-[52px] text-[16px] font-[500] leading-[20px] rounded-[7px] text-[#fff] bg-[#116ACC]'>
+                                ADD
+                            </button>
                         </div>
                     </div>
 
@@ -904,8 +999,8 @@ export default function CV() {
                                             className='w-[300px] ml-[17px] h-[44px] rounded-[7px] input_style focus:outline-[#3088c2] hover:outline-black transition duration-500 ease-in-out'
                                             placeholder="Type your name"
                                             type="text"
-                                            value={name}
-                                            onChange={handleChange}
+                                            value={medicalNumber}
+                                            onChange={handleMedicalNumberChange}
                                         />
                                     </div>
                                 </div>
@@ -919,8 +1014,8 @@ export default function CV() {
                                     <div className='w-[70%]'>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
+                                                value={medicalIssueDate}
+                                                onChange={handleMedicalIssueDateChange}
                                                 renderInput={(params) => <TextField
                                                     onClick={() => console.log("asd")}
                                                     sx={{
@@ -942,8 +1037,8 @@ export default function CV() {
                                     <div className='w-[70%]'>
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <MobileDatePicker
-                                                value={selectedDate}
-                                                onChange={handleDateChange}
+                                                value={medicalExpirationDate}
+                                                onChange={handleMedicalExpirationDateChange}
                                                 renderInput={(params) => <TextField
                                                     onClick={() => console.log("asd")}
                                                     sx={{
